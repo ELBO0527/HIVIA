@@ -1,4 +1,4 @@
-package com.example.hibia.configuration.domain;
+package com.example.hibia.domain;
 
 import java.time.LocalDateTime;
 

@@ -1,10 +1,10 @@
-package com.example.hibia.configuration.mapper;
+package com.example.hibia.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.hibia.configuration.domain.BoardDTO;
+import com.example.hibia.domain.BoardDTO;
 
 @Mapper
 public interface BoardMapper {
