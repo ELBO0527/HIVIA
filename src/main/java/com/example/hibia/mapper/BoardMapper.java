@@ -4,20 +4,20 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.hibia.domain.BoardDTO;
+import com.example.hibia.domain.BoardDto;
 
 @Mapper
 public interface BoardMapper {
 
-	public int insertBoard(BoardDTO params);
+	public int insertBoard(BoardDto params);
 
-	public BoardDTO selectBoardDetail(Long idx);
+	public BoardDto selectBoardDetail(Long idx);
 
-	public int updateBoard(BoardDTO params);
+	public int updateBoard(BoardDto params);
 
 	public int deleteBoard(Long idx);
 
-	public List<BoardDTO> selectBoardList();
+	public List<BoardDto> selectBoardList();
 
 	public int selectBoardTotalCount();
 

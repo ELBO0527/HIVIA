@@ -2,44 +2,88 @@ package com.example.hibia.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-public class BoardDTO {
+@Entity
+@Table(name="boards")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class BoardDto extends TimeEntity {
 
-	/** 번호 (PK) */
-	private Long idx;
-
-	/** 제목 */
+	@Id
+	@Column(name = "board_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	@Column(length = 100, nullable = false)
 	private String title;
-
-	/** 내용 */
+	
+	@Lob
 	private String content;
+	
+	@Column(length = 11, nullable = false)
+	private int pnumber;
+	
+	private LocalDateTime createdDate;
+	
+	private LocalDateTime modifiedDate;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	public BoardDto(Long id, String title, String content, int pnumber) {
+		this.id = id;
+		this.title = title;
+	    this.content = content;
+	    this.pnumber = pnumber;
+	}
 
-	/** 작성자 */
-	private String writer;
+	public Long getId() {
+		return id;
+	}
 
-	/** 조회 수 */
-	private int viewCnt;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	/** 공지 여부 */
-	private String noticeYn;
+	public String getTitle() {
+		return title;
+	}
 
-	/** 비밀 여부 */
-	private String secretYn;
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-	/** 삭제 여부 */
-	private String deleteYn;
+	public String getContent() {
+		return content;
+	}
 
-	/** 등록일 */
-	private LocalDateTime insertTime;
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-	/** 수정일 */
-	private LocalDateTime updateTime;
+	public int getPnumber() {
+		return pnumber;
+	}
 
-	/** 삭제일 */
-	private LocalDateTime deleteTime;
-
+	public void setPnumber(int pnumber) {
+		this.pnumber = pnumber;
+	};
+	
+	public String toString() {
+		return "Board [id :" + id + ", title: " + title + ", content : " + content + "]";
+	};
 }

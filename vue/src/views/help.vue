@@ -27,6 +27,7 @@
        </v-row>
       </v-sheet>
     </v-col>
+  <v-form v-model="valid">
     <v-col
     cols="12"
     md="12">
@@ -34,7 +35,8 @@
     <v-tab>
     문의 하기
     </v-tab>
-    <v-tab>
+    <v-tab
+    to="/help-list">
     문의 내용 보기
     </v-tab>
   </v-tabs>
@@ -73,12 +75,13 @@
             dense
             full-width="200"
           ></v-text-field>
-        <v-list-item-subtitle>*문의문의</v-list-item-subtitle>
+        <v-list-item-subtitle>*답변 등록 시 연락받을 이메일 주소를 입력하세요.</v-list-item-subtitle>
       </v-row>
       </v-col>
        </v-row>
       </v-sheet>
     </v-col>
+    <!--구분선-->
         <v-col
     cols="12"
     md="12">
@@ -107,7 +110,7 @@
             solo
             dense
           ></v-text-field>
-        <v-list-item-subtitle>*문의문의</v-list-item-subtitle>
+        <v-list-item-subtitle>*'-'을 제외한 휴대폰 번호를 입력하세요.</v-list-item-subtitle>
       </v-row>
       </v-col>
        </v-row>
@@ -149,7 +152,7 @@
           class="px-4"
         ></v-select>
         <v-list-item-subtitle
-        class="pt-4">*문의문의</v-list-item-subtitle>
+        class="pt-4">*문의 유형을 선택하세요</v-list-item-subtitle>
       </v-row>
       </v-col>
        </v-row>
@@ -183,7 +186,7 @@
             solo
             dense
           ></v-text-field>
-        <v-list-item-subtitle>*문의문의</v-list-item-subtitle>
+        <v-list-item-subtitle>*제목을 입력하세요</v-list-item-subtitle>
       </v-row>
       </v-col>
        </v-row>
@@ -229,6 +232,7 @@
       </v-sheet>
     </v-col>
     </v-row>
+    </v-form>
   </v-row>
 </div>
 </template>
