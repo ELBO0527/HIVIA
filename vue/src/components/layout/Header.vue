@@ -73,9 +73,5 @@
 </template>
 
 <script>
-export default {
-  data: {
-    modal: false,
-  },
-};
+export default {};
 </script>

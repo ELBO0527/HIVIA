@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --port 3000",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -24,7 +24,7 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-standard": "^5.1.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
@@ -37,6 +37,7 @@
     "vuetify-loader": "^1.7.0"
   },
   "eslintConfig": {
+    "parser": "babel-eslint",
     "root": true,
     "env": {
       "node": true
@@ -56,5 +57,8 @@
     "not dead"
   ],
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "description": "```\r npm install\r ```",
+  "keywords": [],
+  "author": ""
 }
