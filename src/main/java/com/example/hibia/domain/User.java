@@ -13,6 +13,8 @@ import com.example.hibia.repository.UserRepository;
 
 import lombok.Getter;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 public class User {
@@ -31,16 +33,9 @@ public class User {
 	@Column(length = 50, nullable = false)
 	private String passwd;
 	
-	public User() {}
-	
-	public User(UserForm userForm) {
-		this.email = userForm.getEmail();
-		this.userName = userForm.getUserName();
-		this.passwd = userForm.getPasswd();
-	}
-	
-	public static User createUser(UserForm userForm) {
-		return new User(userForm);
-	}
-	
+	@Column
+	private LocalDate birthday;
+
+	@Column
+	private String mobile;
 }

@@ -19,7 +19,8 @@
         </v-sheet>
       </v-col>
       <v-col cols="12" md="12"> </v-col>
-      <!-- 문의하기 내용 -->
+
+      <!-- 로그인 내용 -->
       <v-row class="mx-24">
         <v-col cols="12" md="12">
           <div class="pa-12" justify="center" align="center">

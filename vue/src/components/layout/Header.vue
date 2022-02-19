@@ -5,7 +5,7 @@
       <v-spacer></v-spacer>
 
       <v-btn text color="black" dark v-bind="attrs" v-on="on" to="/">
-        Ksolution
+        SHOPPINGMALL
       </v-btn>
 
       <v-spacer></v-spacer>
