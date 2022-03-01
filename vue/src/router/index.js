@@ -31,9 +31,28 @@ const routes = [
     component: () => import("../views/company.vue")
   },
   {
-    path: "/Postitem",
-    name: "postItem",
-    component: () => import("../views/postitem.vue")
+    path: "/admin",
+    name: "",
+    component: () => import("../views/admin.vue"),
+    children:[
+      {
+        path : "",
+        name : "dashboard",
+        component: () => import("../components/admin/dashboard.vue"),
+      },
+      {
+        path : "postitems",
+        name : "postitems",
+        component: () => import("../components/admin/postitems.vue"),
+        children:[
+          {
+            path : "test",
+            name : "test",
+            component: () => import("../components/admin/test.vue"),
+          }
+        ]
+      },
+    ]
   },
   {
     path: "/solution",

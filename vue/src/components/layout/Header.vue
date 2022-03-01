@@ -47,7 +47,7 @@
         문의하기
       </v-btn>
 
-      <v-btn text color="primary" dark v-bind="attrs" v-on="on" to="/postitem">
+      <v-btn text color="primary" dark v-bind="attrs" v-on="on" to="/admin">
         상품등록
       </v-btn>
 

@@ -10,7 +10,7 @@
           OVERLINE
         </div>
         <v-list-item-title class="text-h5 mb-1">
-          this is admin/dashboard
+          ttttttttt
         </v-list-item-title>
         <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
       </v-list-item-content>
@@ -27,9 +27,16 @@
         outlined
         rounded
         text
+        v-bind="attrs" v-on="on"
+        to="/admin/postitems/test"
       >
         Button
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
+
+<script>
+export default {
+};
+</script>
