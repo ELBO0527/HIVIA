@@ -30,7 +30,7 @@
         <v-divider></v-divider>
 
         <v-card-text class="white--text">
-          {{ new Date().getFullYear() }} — <strong>ITDesk</strong>
+          {{ new Date().getFullYear() }} — <strong>Hibia mall</strong>
         </v-card-text>
       </v-card>
     </v-footer>

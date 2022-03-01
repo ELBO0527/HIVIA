@@ -1,7 +1,7 @@
 <template>
   <v-card class="overflow-hidden">
     <!--앱바-->
-    <v-app-bar color="white">
+    <v-app-bar clipped-left app color="white">
       <v-spacer></v-spacer>
 
       <v-btn text color="black" dark v-bind="attrs" v-on="on" to="/">
@@ -11,9 +11,9 @@
       <v-spacer></v-spacer>
 
       <!-- 회사소개 -->
-      <v-btn text color="primary" dark v-bind="attrs" v-on="on" to="/company">
+      <!-- <v-btn text color="primary" dark v-bind="attrs" v-on="on" to="/company">
         회사소개
-      </v-btn>
+      </v-btn> -->
 
       <!-- 첫번째 드롭박스 -->
       <div class="text-center">
@@ -45,6 +45,10 @@
       <!-- 상품버튼 -->
       <v-btn text color="primary" dark v-bind="attrs" v-on="on" to="/help">
         문의하기
+      </v-btn>
+
+      <v-btn text color="primary" dark v-bind="attrs" v-on="on" to="/postitem">
+        상품등록
       </v-btn>
 
       <!--검색바-->
