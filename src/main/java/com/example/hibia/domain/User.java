@@ -1,22 +1,20 @@
 package com.example.hibia.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.transaction.Transactional;
+import javax.persistence.*;
 
-import com.example.hibia.dto.UserForm;
-import com.example.hibia.exception.DuplicateEmailException;
-import com.example.hibia.repository.UserRepository;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Builder
 @Entity
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "user")
 public class User {
 		
 	@Id

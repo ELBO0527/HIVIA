@@ -1,8 +1,10 @@
 <template>
   <v-app>
     <Header />
-    <router-view></router-view>
-    <Footer />
+    <v-content>
+      <router-view></router-view>
+    </v-content>
+    <!-- <Footer /> -->
   </v-app>
 </template>
 
@@ -12,17 +14,6 @@ import Header from "./components/layout/Header.vue";
 
 export default {
   components: { Footer, Header },
-  name: "App",
-
-  data: () => ({
-    model: null,
-    icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
-    items: [
-      { title: "전체보기" },
-      { title: "HP" },
-      { title: "Microsoft" },
-      { title: "Kakao" },
-    ],
-  }),
+  name: "App"
 };
 </script>
