@@ -25,8 +25,14 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 
-	public User save(){
-		User user = User.builder().build();
+	public User saveUser(UserDTO userDTO){
+		User user = User.builder()
+				.id(userDTO.getId())
+				.birthday(userDTO.getBirthday())
+				.email(userDTO.getEmail())
+				.mobile(userDTO.getMobile())
+				.passwd(userDTO.getPasswd())
+				.build();
 		return userRepository.save(user);
 	}
 }

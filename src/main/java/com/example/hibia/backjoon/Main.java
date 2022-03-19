@@ -10,12 +10,6 @@ public class Main {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int n = Integer.valueOf(br.readLine());
-        String str = br.readLine();
-
-        for(int i=0; i<n; i++){
-
-        }
     }
 
 }

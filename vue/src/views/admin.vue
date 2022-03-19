@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <!-- drawer 삽입 -->
+    <div style="position : static">
     <v-navigation-drawer clipped permanent app>
       <v-list nav dense>
         <v-list-item>
@@ -21,9 +22,10 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <v-container>
+    </div>
+    <v-content app>
     <router-view></router-view>
-    </v-container>
+    </v-content>
   </v-app>
 </template>
 
