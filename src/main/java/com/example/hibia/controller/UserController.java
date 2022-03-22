@@ -28,6 +28,11 @@ public class UserController {
 		return responseService.getListResult(userService.findAllUsers());
 	}
 
+	@GetMapping(value = "/user/{id}")
+	public SingleResult<User> findUserById(@PathVariable Long id) throws Exception{
+		return responseService.getSingleResult(userService.findUser(id).orElseThrow(Exception::new));
+	}
+
 	@PostMapping(value = "/save")
 	public SingleResult<User> saveUser(@RequestBody UserDTO userDTO){
 		return responseService.getSingleResult(userService.saveUser(userDTO));
