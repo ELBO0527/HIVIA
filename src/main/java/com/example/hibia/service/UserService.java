@@ -29,10 +29,16 @@ public class UserService {
 		User user = User.builder()
 				.id(userDTO.getId())
 				.birthday(userDTO.getBirthday())
+				.username(userDTO.getUserName())
 				.email(userDTO.getEmail())
 				.mobile(userDTO.getMobile())
 				.passwd(userDTO.getPasswd())
 				.build();
 		return userRepository.save(user);
+	}
+
+	public void deleteUser(Long id){
+		this.findUser(id);
+		userRepository.deleteById(id);
 	}
 }
