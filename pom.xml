@@ -19,7 +19,14 @@
 		<maven.compiler.target>8</maven.compiler.target>
 	</properties>
 	<dependencies>
-	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+		<!-- https://mvnrepository.com/artifact/net.rakugakibox.util/yaml-resource-bundle -->
+		<dependency>
+			<groupId>net.rakugakibox.util</groupId>
+			<artifactId>yaml-resource-bundle</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-data-jpa</artifactId>

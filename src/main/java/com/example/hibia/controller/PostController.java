@@ -1,7 +1,7 @@
 package com.example.hibia.controller;
 
+import com.example.hibia.advice.exception.ResourceNotFoundException;
 import com.example.hibia.domain.Post;
-import com.example.hibia.exception.ResourceNotFoundException;
 import com.example.hibia.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

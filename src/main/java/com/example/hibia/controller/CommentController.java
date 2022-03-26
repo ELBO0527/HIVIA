@@ -1,17 +1,14 @@
 package com.example.hibia.controller;
 
+import com.example.hibia.advice.exception.ResourceNotFoundException;
 import com.example.hibia.domain.Comment;
-import com.example.hibia.exception.ResourceNotFoundException;
 import com.example.hibia.repository.CommentRepository;
 import com.example.hibia.repository.PostRepository;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
