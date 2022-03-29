@@ -34,12 +34,12 @@ public class UserController {
 		return responseService.getSingleResult(userService.findUser(id).orElseThrow(CUserNotFoundException::new));
 	}
 
-	@PostMapping(value = "/save")
+	@PostMapping(value = "")
 	public SingleResult<User> saveUser(@RequestBody UserDTO userDTO){
 		return responseService.getSingleResult(userService.saveUser(userDTO));
 	}
 
-	@PutMapping(value = "/update")
+	@PutMapping(value = "/")
 	public SingleResult<User> updateUser(@RequestParam Long id, @RequestParam String email, @RequestParam String username, @RequestParam String passwd, @RequestParam String mobile){
 		User user = User.builder()
 				.id(id)
@@ -52,7 +52,7 @@ public class UserController {
 		return responseService.getSingleResult(userRepository.save(user));
 	}
 
-	@DeleteMapping(value = "/delete/{id}")
+	@DeleteMapping(value = "/{id}")
 	public CommonResult deleteUser(@PathVariable Long id){
 		userService.deleteUser(id);
 		return responseService.getSuccessResult();

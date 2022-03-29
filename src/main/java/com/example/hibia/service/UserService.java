@@ -28,7 +28,7 @@ public class UserService {
 	public User saveUser(UserDTO userDTO){
 		User user = User.builder()
 				.birthday(userDTO.getBirthday())
-				.username(userDTO.getUserName())
+				.username(userDTO.getUsername())
 				.email(userDTO.getEmail())
 				.mobile(userDTO.getMobile())
 				.passwd(userDTO.getPasswd())
@@ -40,7 +40,7 @@ public class UserService {
 		User user = User.builder()
 				.id(userDTO.getId())
 				.birthday(userDTO.getBirthday())
-				.username(userDTO.getUserName())
+				.username(userDTO.getUsername())
 				.email(userDTO.getEmail())
 				.mobile(userDTO.getMobile())
 				.passwd(userDTO.getPasswd())
