@@ -36,4 +36,14 @@ public class User {
 
 	@Column
 	private String mobile;
+
+
+	public User setUser(String email,String username, String passwd, LocalDate birthday, String mobile){
+		this.email = email;
+		this.username = username;
+		this.passwd = passwd;
+		this.birthday = birthday;
+		this.mobile = mobile;
+		return this;
+	}
 }

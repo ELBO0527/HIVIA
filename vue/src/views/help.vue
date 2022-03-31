@@ -146,7 +146,7 @@
         ></v-select>
         <v-select
           :items="items"
-          label="-------------------------------------"
+          label="ass"
           solo
           hide-details
           class="px-4"

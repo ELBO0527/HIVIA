@@ -23,7 +23,7 @@
       </v-list>
     </v-navigation-drawer>
     </div>
-    <v-content app>
+    <v-content>
     <router-view></router-view>
     </v-content>
   </v-app>

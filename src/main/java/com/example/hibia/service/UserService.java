@@ -1,18 +1,18 @@
 package com.example.hibia.service;
 
+import com.example.hibia.advice.exception.CUserNotFoundException;
 import com.example.hibia.domain.User;
 import com.example.hibia.dto.UserDTO;
-import org.springframework.stereotype.Service;
-
 import com.example.hibia.repository.UserRepository;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserService {
 	
 	private final UserRepository userRepository;
@@ -21,8 +21,8 @@ public class UserService {
 		return userRepository.findAll();
 	}
 
-	public Optional<User> findUser(Long id){
-		return userRepository.findById(id);
+	public User findUser(Long id){
+		return userRepository.findById(id).orElseThrow(CUserNotFoundException::new);
 	}
 
 	public User saveUser(UserDTO userDTO){
@@ -36,16 +36,10 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-	public User updateUser(UserDTO userDTO){
-		User user = User.builder()
-				.id(userDTO.getId())
-				.birthday(userDTO.getBirthday())
-				.username(userDTO.getUsername())
-				.email(userDTO.getEmail())
-				.mobile(userDTO.getMobile())
-				.passwd(userDTO.getPasswd())
-				.build();
-		return userRepository.save(user);
+	public User updateUser(Long id,UserDTO userDTO){
+			User user = findUser(id);
+			user.setUser(userDTO.getEmail(), userDTO.getUsername(), userDTO.getPasswd(), userDTO.getBirthday(), userDTO.getMobile());
+		return user;
 	}
 
 	public void deleteUser(Long id){
