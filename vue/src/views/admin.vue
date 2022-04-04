@@ -1,11 +1,11 @@
 <template>
   <v-app>
     <!-- drawer 삽입 -->
-    <div style="position : static">
+    <div style="position : fixed">
     <v-navigation-drawer clipped permanent app>
       <v-list nav dense>
         <v-list-item>
-          <v-list-item-title class="title">ADMIN #1</v-list-item-title>
+          <v-list-item-title class="title">ADMIN PAGE</v-list-item-title>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item-group v-model="selectedItem" color="primary">
@@ -23,9 +23,7 @@
       </v-list>
     </v-navigation-drawer>
     </div>
-    <v-content>
     <router-view></router-view>
-    </v-content>
   </v-app>
 </template>
 
@@ -37,7 +35,10 @@ export default {
     items: [
       { text: "dashboard", icon: "mdi-clock", route:"/admin" },
       { text: "post", icon: "mdi-account", route: "/admin/postitems"},
-      { text: "Conversions", icon: "mdi-flag", route: "/admin/postitems/test" }
+      { text: "test", icon: "mdi-flag", route: "/admin/postitems/test" },
+      { text: "item", icon: "mdi-flag", route: "/admin/item" },
+      { text: "user", icon: "mdi-flag", route: "/admin/user" },
+      { text: "category", icon: "mdi-flag", route: "/admin/category" }
     ]
   })
 };
