@@ -1,32 +1,23 @@
 <template>
-<div>
-  <!-- 회원가입 헤더 -->
-  <v-row>
-    <v-col
-    cols="12"
-    md="12">
-      <v-sheet
-       color="grey lighten-3"
-       height="280">
-       <v-row
-          align="center"
-          justify="center"
-          class="fill-height">
-          <v-col
-           class="pa-3"
-           cols=6
-           md="3">
-           <div
-             color="grey lighten-3"
-             align="center"
-             justify="center"
-             width="420">
-              <h1>회원가입</h1>
-            </div>
-          </v-col>
-        </v-row>
-      </v-sheet>
-    </v-col>
+  <div>
+    <!-- 회원가입 헤더 -->
+    <v-row>
+      <v-col cols="12" md="12">
+        <v-sheet color="grey lighten-3" height="280">
+          <v-row align="center" justify="center" class="fill-height">
+            <v-col class="pa-3" cols="6" md="3">
+              <div
+                color="grey lighten-3"
+                align="center"
+                justify="center"
+                width="420"
+              >
+                <h1>회원가입</h1>
+              </div>
+            </v-col>
+          </v-row>
+        </v-sheet>
+      </v-col>
       <!-- 회원가입 내용 -->
       <v-row class="mx-24">
         <v-col cols="12" md="12">
@@ -73,8 +64,8 @@
                 </v-row>
               </v-col>
             </v-row>
-              <!--비밀번호 확인-->
-             <v-row>
+            <!--비밀번호 확인-->
+            <v-row>
               <v-col class="pa-4" cols="3" md="5">
                 <v-sheet align="center" justify="center">
                   <h4>비밀번호 확인</h4>
@@ -92,7 +83,7 @@
               </v-col>
             </v-row>
             <!--생일 정보-->
-             <v-row>
+            <v-row>
               <v-col class="pa-4" cols="3" md="5">
                 <v-sheet align="center" justify="center">
                   <h4>생년월일</h4>
@@ -110,7 +101,7 @@
               </v-col>
             </v-row>
             <!--주소 정보-->
-             <v-row>
+            <v-row>
               <v-col class="pa-4" cols="3" md="5">
                 <v-sheet align="center" justify="center">
                   <h4>주소</h4>
@@ -134,8 +125,8 @@
                 </v-row>
               </v-col>
             </v-row>
-             <!--핸드폰 번호-->
-             <v-row>
+            <!--핸드폰 번호-->
+            <v-row>
               <v-col class="pa-4" cols="3" md="5">
                 <v-sheet align="center" justify="center">
                   <h4>핸드폰</h4>
@@ -153,9 +144,9 @@
               </v-col>
               <v-col class="d-flex" cols="12" sm="3">
                 <v-row>
-                   <div class="pa-12" justify="center" align="center">
-              <v-btn color="primary"> 인증하기</v-btn>
-            </div>
+                  <div class="pa-12" justify="center" align="center">
+                    <v-btn color="primary"> 인증하기</v-btn>
+                  </div>
                 </v-row>
               </v-col>
             </v-row>
@@ -169,6 +160,6 @@
           </v-col>
         </v-row>
       </v-row>
-  </v-row>
-</div>
+    </v-row>
+  </div>
 </template>
