@@ -41,6 +41,11 @@ const routes = [
         component: () => import("../components/admin/dashboard.vue"),
       },
       {
+        path : "item",
+        name : "item",
+        component: () => import("../components/admin/item/item.vue"),
+      },
+      {
         path : "postitems",
         name : "postitems",
         component: () => import("../components/admin/postitems.vue"),

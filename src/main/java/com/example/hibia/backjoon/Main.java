@@ -11,29 +11,38 @@ public class Main {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int n = Integer.parseInt(br.readLine());
+        int num = Integer.parseInt(br.readLine());
 
-        String arr1[] = new String[n];
-        String str1 = br.readLine();
-        arr1 = str1.split(" ");
+        String arr[] = new String[num];
 
-        int m = Integer.parseInt(br.readLine());
+        String n = br.readLine();
+            arr = n.split(" ");
 
-        String arr2[] = new String[m];
-        String str2 = br.readLine();
-        arr2 = str2.split(" ");
+        int num2 = Integer.parseInt(br.readLine());
 
-        for (int i=0; i<arr1.length-1;i++){
+        String arr2[] = new String[num2];
+
+        String m = br.readLine();
+        arr2 = m.split(" ");
+
+        for (int i = 0; i<arr.length-1; i++){
             int count = 0;
             for (int j = 0; j<arr2.length-1; i++){
-                if (arr1[i].equals(arr2[j])){
+                if (arr[i].equals(arr2[j])){
                     count++;
+                    continue;
                 }
             }
+
             if (count > 0){
-                System.out.println("1");
-            }else
-                System.out.println("0");
+                System.out.println(1);
+            }else if (count == 0){
+                System.out.println(0);
+            }
+
         }
+
+
+
     }
 }

@@ -5,13 +5,10 @@ import com.example.hibia.dto.UserDTO;
 import com.example.hibia.model.response.CommonResult;
 import com.example.hibia.model.response.ListResult;
 import com.example.hibia.model.response.SingleResult;
-import com.example.hibia.repository.UserRepository;
 import com.example.hibia.service.ResponseService;
 import com.example.hibia.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,7 +16,6 @@ import javax.validation.Valid;
 public class UserController {
 
 	private final UserService userService;
-	private final UserRepository userRepository;
 	private final ResponseService responseService;
 
 	@GetMapping(value = "/list")

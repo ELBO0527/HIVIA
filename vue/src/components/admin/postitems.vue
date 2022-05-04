@@ -1,9 +1,5 @@
 <template>
-  <v-card
-    color="blue-grey darken-1"
-    dark
-    :loading="isUpdating"
-  >
+  <v-card color="blue-grey darken-1" dark :loading="isUpdating">
     <template v-slot:progress>
       <v-progress-linear
         absolute
@@ -17,21 +13,10 @@
       src="https://cdn.vuetifyjs.com/images/cards/dark-beach.jpg"
     >
       <v-row>
-        <v-col
-          class="text-right"
-          cols="12"
-        >
-          <v-menu
-            bottom
-            left
-            transition="slide-y-transition"
-          >
+        <v-col class="text-right" cols="12">
+          <v-menu bottom left transition="slide-y-transition">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                icon
-                v-bind="attrs"
-                v-on="on"
-              >
+              <v-btn icon v-bind="attrs" v-on="on">
                 <v-icon>mdi-dots-vertical</v-icon>
               </v-btn>
             </template>
@@ -47,11 +32,7 @@
             </v-list>
           </v-menu>
         </v-col>
-        <v-row
-          class="pa-4"
-          align="center"
-          justify="center"
-        >
+        <v-row class="pa-4" align="center" justify="center">
           <v-col class="text-center">
             <h3 class="text-h5">
               {{ name }}
@@ -64,10 +45,7 @@
     <v-form>
       <v-container>
         <v-row>
-          <v-col
-            cols="12"
-            md="6"
-          >
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="name"
               :disabled="isUpdating"
@@ -76,10 +54,7 @@
               label="Name"
             ></v-text-field>
           </v-col>
-          <v-col
-            cols="12"
-            md="6"
-          >
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="title"
               :disabled="isUpdating"
@@ -88,9 +63,7 @@
               label="Title"
             ></v-text-field>
           </v-col>
-          <v-col
-            cols="12"
-          >
+          <v-col cols="12">
             <v-text-field
               v-model="name"
               :disabled="isUpdating"
@@ -99,9 +72,7 @@
               label="Name"
             ></v-text-field>
           </v-col>
-          <v-col
-            cols="12"
-          >
+          <v-col cols="12">
             <v-text-field
               v-model="name"
               :disabled="isUpdating"
@@ -110,9 +81,7 @@
               label="Name"
             ></v-text-field>
           </v-col>
-          <v-col
-            cols="12"
-          >
+          <v-col cols="12">
             <v-text-field
               v-model="name"
               :disabled="isUpdating"
@@ -121,9 +90,7 @@
               label="Name"
             ></v-text-field>
           </v-col>
-          <v-col
-            cols="12"
-          >
+          <v-col cols="12">
             <v-text-field
               v-model="name"
               :disabled="isUpdating"
@@ -132,9 +99,7 @@
               label="Name"
             ></v-text-field>
           </v-col>
-          <v-col
-            cols="12"
-          >
+          <v-col cols="12">
             <v-text-field
               v-model="name"
               :disabled="isUpdating"
@@ -176,11 +141,15 @@
                 </template>
                 <template v-else>
                   <v-list-item-avatar>
-                    <img :src="data.item.avatar">
+                    <img :src="data.item.avatar" />
                   </v-list-item-avatar>
                   <v-list-item-content>
-                    <v-list-item-title v-html="data.item.name"></v-list-item-title>
-                    <v-list-item-subtitle v-html="data.item.group"></v-list-item-subtitle>
+                    <v-list-item-title
+                      v-html="data.item.name"
+                    ></v-list-item-title>
+                    <v-list-item-subtitle
+                      v-html="data.item.group"
+                    ></v-list-item-subtitle>
                   </v-list-item-content>
                 </template>
               </template>
@@ -217,51 +186,53 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      const srcs = {
-        1: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-        2: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-        3: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-        4: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
-        5: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
+import axios from "axios";
+
+export default {
+  data() {
+    const srcs = {
+      1: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+      2: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+      3: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+      4: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
+      5: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
+    };
+
+    return {
+      autoUpdate: true,
+      friends: ["Sandra Adams", "Britta Holt"],
+      isUpdating: false,
+      name: "Midnight Crew",
+      people: [
+        { header: "Group 1" },
+        { name: "Sandra Adams", group: "Group 1", avatar: srcs[1] },
+        { name: "Ali Connors", group: "Group 1", avatar: srcs[2] },
+        { name: "Trevor Hansen", group: "Group 1", avatar: srcs[3] },
+        { name: "Tucker Smith", group: "Group 1", avatar: srcs[2] },
+        { divider: true },
+        { header: "Group 2" },
+        { name: "Britta Holt", group: "Group 2", avatar: srcs[4] },
+        { name: "Jane Smith ", group: "Group 2", avatar: srcs[5] },
+        { name: "John Smith", group: "Group 2", avatar: srcs[1] },
+        { name: "Sandra Williams", group: "Group 2", avatar: srcs[3] }
+      ],
+      title: "The summer breeze"
+    };
+  },
+
+  watch: {
+    isUpdating(val) {
+      if (val) {
+        setTimeout(() => (this.isUpdating = false), 3000);
       }
+    }
+  },
 
-      return {
-        autoUpdate: true,
-        friends: ['Sandra Adams', 'Britta Holt'],
-        isUpdating: false,
-        name: 'Midnight Crew',
-        people: [
-          { header: 'Group 1' },
-          { name: 'Sandra Adams', group: 'Group 1', avatar: srcs[1] },
-          { name: 'Ali Connors', group: 'Group 1', avatar: srcs[2] },
-          { name: 'Trevor Hansen', group: 'Group 1', avatar: srcs[3] },
-          { name: 'Tucker Smith', group: 'Group 1', avatar: srcs[2] },
-          { divider: true },
-          { header: 'Group 2' },
-          { name: 'Britta Holt', group: 'Group 2', avatar: srcs[4] },
-          { name: 'Jane Smith ', group: 'Group 2', avatar: srcs[5] },
-          { name: 'John Smith', group: 'Group 2', avatar: srcs[1] },
-          { name: 'Sandra Williams', group: 'Group 2', avatar: srcs[3] },
-        ],
-        title: 'The summer breeze',
-      }
-    },
-
-    watch: {
-      isUpdating (val) {
-        if (val) {
-          setTimeout(() => (this.isUpdating = false), 3000)
-        }
-      },
-    },
-
-    methods: {
-      remove (item) {
-        const index = this.friends.indexOf(item.name)
-        if (index >= 0) this.friends.splice(index, 1)
-      },
-    },
+  methods: {
+    remove(item) {
+      const index = this.friends.indexOf(item.name);
+      if (index >= 0) this.friends.splice(index, 1);
+    }
   }
+};
 </script>
