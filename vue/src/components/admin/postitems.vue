@@ -2,6 +2,7 @@
   <v-card
     color="blue-grey darken-1"
     dark
+    @click="fetchItem"
     :loading="isUpdating"
   >
     <template v-slot:progress>
@@ -217,6 +218,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     data () {
       const srcs = {
@@ -262,6 +265,15 @@
         const index = this.friends.indexOf(item.name)
         if (index >= 0) this.friends.splice(index, 1)
       },
+      fetchItem: function(){
+        axios.get('http://localhost:8080/item/')
+        .then(function(response){
+          console.log(response)
+        })
+        .catch(function(error){
+          console.log(error)
+        });
+      }
     },
   }
 </script>

@@ -1,6 +1,8 @@
 package com.example.hibia.domain;
 
 import com.example.hibia.domain.common.CommonDateEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,9 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Builder
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Item extends CommonDateEntity {
 
     @Id
@@ -46,4 +50,18 @@ public class Item extends CommonDateEntity {
 
     @Column
     private LocalDate prodDate;
+
+    public Item setItem(String name, String country, String color, String brand, int price,
+                        int stars,int stock,int size, LocalDate prodDate){
+        this.name = name;
+        this.country = country;
+        this.color = color;
+        this.brand = brand;
+        this.price = price;
+        this.stars = stars;
+        this.stock = stock;
+        this.size = size;
+        this.prodDate = prodDate;
+        return this;
+    }
 }

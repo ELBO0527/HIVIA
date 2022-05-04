@@ -44,4 +44,8 @@ public class CategoryService {
                     addSubCategories(s, groupingByParentId);
                 });
     }
+
+    private List<Category> findAll(){
+        return categoryRepository.findAll();
+    }
 }
