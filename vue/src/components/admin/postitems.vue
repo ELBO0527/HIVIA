@@ -48,7 +48,6 @@
           <v-col cols="12" md="6">
             <v-text-field
               v-model="name"
-              :disabled="isUpdating"
               filled
               color="blue-grey lighten-2"
               label="Name"
@@ -56,56 +55,42 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
-              v-model="title"
-              :disabled="isUpdating"
+              v-model="price"
               filled
               color="blue-grey lighten-2"
-              label="Title"
+              label="Price"
             ></v-text-field>
           </v-col>
           <v-col cols="12">
             <v-text-field
-              v-model="name"
-              :disabled="isUpdating"
+              v-model="stock"
               filled
               color="blue-grey lighten-2"
-              label="Name"
+              label="Stock"
             ></v-text-field>
           </v-col>
           <v-col cols="12">
             <v-text-field
-              v-model="name"
-              :disabled="isUpdating"
+              v-model="brand"
               filled
               color="blue-grey lighten-2"
-              label="Name"
+              label="Brand"
             ></v-text-field>
           </v-col>
           <v-col cols="12">
             <v-text-field
-              v-model="name"
-              :disabled="isUpdating"
+              v-model="country"
               filled
               color="blue-grey lighten-2"
-              label="Name"
+              label="Country"
             ></v-text-field>
           </v-col>
           <v-col cols="12">
             <v-text-field
-              v-model="name"
-              :disabled="isUpdating"
+              v-model="size"
               filled
               color="blue-grey lighten-2"
-              label="Name"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12">
-            <v-text-field
-              v-model="name"
-              :disabled="isUpdating"
-              filled
-              color="blue-grey lighten-2"
-              label="Name"
+              label="Size"
             ></v-text-field>
           </v-col>
           <v-col cols="12">
@@ -160,21 +145,11 @@
     </v-form>
     <v-divider></v-divider>
     <v-card-actions>
-      <v-switch
-        v-model="autoUpdate"
-        :disabled="isUpdating"
-        class="mt-0"
-        color="green lighten-2"
-        hide-details
-        label="Auto Update"
-      ></v-switch>
       <v-spacer></v-spacer>
       <v-btn
-        :disabled="autoUpdate"
-        :loading="isUpdating"
         color="blue-grey darken-3"
         depressed
-        @click="isUpdating = true"
+        @click="postItem()"
       >
         <v-icon left>
           mdi-update
@@ -202,7 +177,14 @@ export default {
       autoUpdate: true,
       friends: ["Sandra Adams", "Britta Holt"],
       isUpdating: false,
-      name: "Midnight Crew",
+      name: "",
+      price: "",
+      brand: "",
+      stock: "",
+      stars: 0,
+      country: "",
+      color: "",
+      size: "",
       people: [
         { header: "Group 1" },
         { name: "Sandra Adams", group: "Group 1", avatar: srcs[1] },
@@ -216,7 +198,6 @@ export default {
         { name: "John Smith", group: "Group 2", avatar: srcs[1] },
         { name: "Sandra Williams", group: "Group 2", avatar: srcs[3] }
       ],
-      title: "The summer breeze"
     };
   },
 
@@ -232,7 +213,29 @@ export default {
     remove(item) {
       const index = this.friends.indexOf(item.name);
       if (index >= 0) this.friends.splice(index, 1);
+    },
+    postItem() {
+      axios.post("http://localhost:8080/item/",
+          {
+          name : this.name, 
+          price : this.price,
+          brand : this.brand,
+          size : this.size,
+          color : this.color,
+          country : this.country,
+          stars : this.stars,
+          stock : this.stock}
+          )
+      .then(response => {
+        alert("성공")
+          console.log(response);
+        })
+        .catch(error => {
+          alert("fail" + error)
+          console.log(error);
+        });
+
+      }
     }
-  }
 };
 </script>
