@@ -36,7 +36,7 @@ public class ExceptionAdvice {
     @ExceptionHandler(CEmailSigninFailedException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected CommonResult emailSigninFailedException(HttpServletRequest request, CEmailSigninFailedException e) {
-        return responseService.getFailResult(Integer.valueOf(getMessage("userNotFound.code")), getMessage("userNotFound.msg"));
+        return responseService.getFailResult(Integer.valueOf(getMessage("emailSigninFailed.code")), getMessage("emailSigninFailed.msg"));
     }
 
     private String getMessage(String code){

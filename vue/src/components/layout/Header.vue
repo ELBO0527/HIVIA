@@ -4,7 +4,7 @@
     <v-app-bar clipped-left app color="white">
       <v-spacer></v-spacer>
 
-      <v-btn text color="black" dark v-bind="attrs" v-on="on" to="/">
+      <v-btn text color="black" dark to="/">
         SHOPPINGMALL
       </v-btn>
 
@@ -69,7 +69,7 @@
       </v-btn>
       <v-spacer></v-spacer>
       <v-btn class="ma-2" color="primary" outlined to="/signin">로그인</v-btn>
-      <v-btn color="primary" dark v-bind="attrs" v-on="on" to="/signup"
+      <v-btn color="primary" dark to="/signup"
         >회원가입</v-btn
       >
     </v-app-bar>
@@ -77,5 +77,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+  return{
+    attrs: "",
+    on: "",
+    items: []
+  }
+}
+};
+
 </script>

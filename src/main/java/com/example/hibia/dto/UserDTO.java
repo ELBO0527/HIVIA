@@ -15,4 +15,5 @@ public class UserDTO {
     private String passwd;
     private LocalDate birthday;
     private String mobile;
+    private int balance;
 }

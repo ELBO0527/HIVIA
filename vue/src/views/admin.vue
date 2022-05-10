@@ -34,14 +34,16 @@
 <script>
 export default {
   name: "App",
-  data: () => ({
+  data() {
+    return{
     selectedItem: 1,
     items: [
-      { text: "dashboard", icon: "mdi-clock", route: "/admin" },
+      { text: "dashboard", icon: "mdi-clock", route: '/admin' },
       { text: "item", icon: "mdi-flag", route: "/admin/item" },
       { text: "user", icon: "mdi-flag", route: "/admin/user" },
       { text: "category", icon: "mdi-flag", route: "/admin/category" }
     ]
-  })
+    }
+  }
 };
 </script>

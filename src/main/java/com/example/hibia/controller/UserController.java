@@ -28,7 +28,7 @@ public class UserController {
 		return responseService.getSingleResult(userService.findUser(id));
 	}
 
-	@PostMapping(value = "/")
+	@PostMapping(value = "/signup")
 	public SingleResult<User> saveUser(@RequestBody UserDTO userDTO){
 		return responseService.getSingleResult(userService.saveUser(userDTO));
 	}

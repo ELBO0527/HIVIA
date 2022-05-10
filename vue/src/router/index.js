@@ -48,7 +48,7 @@ const routes = [
       {
         path : "postitems",
         name : "postitems",
-        component: () => import("../components/admin/postitems.vue"),
+        component: () => import("../components/admin/item/postitems.vue"),
         children:[
           {
             path : "test",
@@ -56,7 +56,11 @@ const routes = [
             component: () => import("../components/admin/test.vue"),
           }
         ]
-      },
+      },  {
+        path : "updateitems",
+        name : "updateitems",
+        component: () => import("../components/admin/item/updateitems.vue"),
+      }
     ]
   },
   {

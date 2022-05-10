@@ -13,3 +13,9 @@ spring:
   messages:
     basename: i18n/exception
     encoding: UTF-8
+  servlet:
+    multipart:
+      max-request-size: 50MB
+      max-file-size: 50MB
+  jwt:
+    secret: hibia

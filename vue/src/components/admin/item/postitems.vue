@@ -37,7 +37,6 @@
             <h3 class="text-h5">
               {{ name }}
             </h3>
-            <span class="grey--text text--lighten-1">{{ title }}</span>
           </v-col>
         </v-row>
       </v-row>
@@ -50,7 +49,7 @@
               v-model="name"
               filled
               color="blue-grey lighten-2"
-              label="Name"
+              label="상품명"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
@@ -58,7 +57,7 @@
               v-model="price"
               filled
               color="blue-grey lighten-2"
-              label="Price"
+              label="가격(원)"
             ></v-text-field>
           </v-col>
           <v-col cols="12">
@@ -66,7 +65,7 @@
               v-model="stock"
               filled
               color="blue-grey lighten-2"
-              label="Stock"
+              label="재고량"
             ></v-text-field>
           </v-col>
           <v-col cols="12">
@@ -74,7 +73,7 @@
               v-model="brand"
               filled
               color="blue-grey lighten-2"
-              label="Brand"
+              label="브랜드"
             ></v-text-field>
           </v-col>
           <v-col cols="12">
@@ -82,7 +81,7 @@
               v-model="country"
               filled
               color="blue-grey lighten-2"
-              label="Country"
+              label="생산국가"
             ></v-text-field>
           </v-col>
           <v-col cols="12">
@@ -90,7 +89,7 @@
               v-model="size"
               filled
               color="blue-grey lighten-2"
-              label="Size"
+              label="사이즈"
             ></v-text-field>
           </v-col>
           <v-col cols="12">
@@ -149,12 +148,21 @@
       <v-btn
         color="blue-grey darken-3"
         depressed
+      >
+        <v-icon left>
+          mdi-update
+        </v-icon>
+        취소
+      </v-btn>
+      <v-btn
+        color="blue-grey darken-3"
+        depressed
         @click="postItem()"
       >
         <v-icon left>
           mdi-update
         </v-icon>
-        Update Now
+        등록
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -227,12 +235,10 @@ export default {
           stock : this.stock}
           )
       .then(response => {
-        alert("성공")
-          console.log(response);
+        alert(response.data.msg)
         })
-        .catch(error => {
-          alert("fail" + error)
-          console.log(error);
+        .catch(response => {
+          alert(response.data.msg)
         });
 
       }
