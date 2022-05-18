@@ -39,7 +39,7 @@ public class User implements UserDetails {
 	@Column(length = 50, nullable = false)
 	private String username;
 	
-	@Column(length = 50, nullable = false)
+	@Column(nullable = false)
 	private String passwd;
 
 	@Column(columnDefinition = "integer default 0")

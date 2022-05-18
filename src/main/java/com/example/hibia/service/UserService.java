@@ -1,5 +1,6 @@
 package com.example.hibia.service;
 
+import com.example.hibia.advice.exception.CEmailSigninFailedException;
 import com.example.hibia.advice.exception.CUserNotFoundException;
 import com.example.hibia.domain.User;
 import com.example.hibia.dto.UserDTO;
@@ -23,7 +24,6 @@ public class UserService implements UserDetailsService {
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 
-	@Override
 	public UserDetails loadUserByUsername(String username) {
 		return userRepository.findById(Long.valueOf(username)).orElseThrow(CUserNotFoundException::new);
 	}
@@ -32,8 +32,8 @@ public class UserService implements UserDetailsService {
 		return userRepository.findAll();
 	}
 
-	public User findUser(Long id){
-		return userRepository.findById(id).orElseThrow(CUserNotFoundException::new);
+	public User findUser(String id){
+		return userRepository.findByUsername(id).orElseThrow(CUserNotFoundException::new);
 	}
 
 	public User saveUser(UserDTO userDTO){
@@ -49,14 +49,14 @@ public class UserService implements UserDetailsService {
 		return userRepository.save(user);
 	}
 
-	public User updateUser(Long id,UserDTO userDTO){
+	public User updateUser(String id,UserDTO userDTO){
 			User user = findUser(id);
 			user.setUser(userDTO.getEmail(), userDTO.getUsername(),  userDTO.getPasswd(), userDTO.getBalance(), userDTO.getBirthday(), userDTO.getMobile());
 		return user;
 	}
 
-	public void deleteUser(Long id){
+	public void deleteUser(String id){
 		this.findUser(id);
-		userRepository.deleteById(id);
+		userRepository.deleteById(Long.valueOf(id));
 	}
 }

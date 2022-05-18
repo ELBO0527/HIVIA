@@ -3,7 +3,7 @@ package com.example.hibia.backjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Main {
 
@@ -11,38 +11,30 @@ public class Main {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int num = Integer.parseInt(br.readLine());
+        PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder()) {};
 
-        String arr[] = new String[num];
+       int n = Integer.parseInt(br.readLine());
 
-        String n = br.readLine();
-            arr = n.split(" ");
+       for ( int i = 0; i< n; i++){
+           String s = br.readLine();
+           String[] a = new String[2];
+           a = s.split(" ");
 
-        int num2 = Integer.parseInt(br.readLine());
+           String ss = br.readLine();
+           String[] aa = new String[Integer.parseInt(a[0])];
+           aa = ss.split(" ");
 
-        String arr2[] = new String[num2];
+           String tmp = aa[Integer.parseInt(a[1])];
 
-        String m = br.readLine();
-        arr2 = m.split(" ");
+           for (int j=0;j<aa.length;j++)
+           {
+               queue.add(Integer.parseInt(aa[j]));
+           }
 
-        for (int i = 0; i<arr.length-1; i++){
-            int count = 0;
-            for (int j = 0; j<arr2.length-1; i++){
-                if (arr[i].equals(arr2[j])){
-                    count++;
-                    continue;
-                }
-            }
-
-            if (count > 0){
-                System.out.println(1);
-            }else if (count == 0){
-                System.out.println(0);
-            }
-
-        }
-
-
-
+           for(int l=0; l<aa.length; l++){
+               System.out.println(queue.poll());
+           }
+       }
     }
 }
+
