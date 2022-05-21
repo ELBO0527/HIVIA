@@ -2,6 +2,7 @@ package com.example.hibia.advice;
 
 import com.example.hibia.advice.exception.CEmailSigninFailedException;
 import com.example.hibia.advice.exception.CUserNotFoundException;
+import com.example.hibia.controller.exception.CAuthenticationEntryPointException;
 import com.example.hibia.model.response.CommonResult;
 import com.example.hibia.service.ResponseService;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,11 @@ public class ExceptionAdvice {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected CommonResult emailSigninFailedException(HttpServletRequest request, CEmailSigninFailedException e) {
         return responseService.getFailResult(Integer.valueOf(getMessage("emailSigninFailed.code")), getMessage("emailSigninFailed.msg"));
+    }
+
+    @ExceptionHandler(CAuthenticationEntryPointException.class)
+    public CommonResult authenticationEntryPointException(HttpServletRequest request, CAuthenticationEntryPointException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("entryPointException.code")), getMessage("entryPointException.msg"));
     }
 
     private String getMessage(String code){
