@@ -3,10 +3,10 @@ package com.example.hibia.controller;
 import com.example.hibia.advice.exception.CEmailSigninFailedException;
 import com.example.hibia.config.security.JwtTokenProvider;
 import com.example.hibia.domain.User;
+import com.example.hibia.dto.SigninRequestDTO;
 import com.example.hibia.dto.UserDTO;
 import com.example.hibia.model.response.CommonResult;
 import com.example.hibia.model.response.SingleResult;
-import com.example.hibia.repository.UserRepository;
 import com.example.hibia.service.ResponseService;
 import com.example.hibia.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +24,10 @@ public class SignController {
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping(value = "/signin")
-    public SingleResult<String> signin(@RequestParam(value = "id") String id, @RequestParam String passwd){
-        User user = userService.findUser(id);
-        if(!passwordEncoder.matches(passwd, user.getPasswd()))
+//    public SingleResult<String> signin(@RequestParam(value = "id") String id, @RequestParam String passwd){
+    public SingleResult<String> signin(@RequestBody SigninRequestDTO signinRequestDTO){
+        User user = userService.findUser(signinRequestDTO.getId());
+        if(!passwordEncoder.matches(signinRequestDTO.getPasswd(), user.getPasswd()))
             throw new CEmailSigninFailedException();
 
         return responseService.getSingleResult(jwtTokenProvider.createToken(String.valueOf(user.getId()),user.getRoles()));
