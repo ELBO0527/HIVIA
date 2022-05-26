@@ -1,8 +1,6 @@
 package com.example.hibia.advice;
 
-import com.example.hibia.advice.exception.CEmailSigninFailedException;
-import com.example.hibia.advice.exception.CUserNotFoundException;
-import com.example.hibia.advice.exception.CAuthenticationEntryPointException;
+import com.example.hibia.advice.exception.*;
 import com.example.hibia.model.response.CommonResult;
 import com.example.hibia.service.ResponseService;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +47,18 @@ public class ExceptionAdvice {
     @ExceptionHandler(AccessDeniedException.class)
     public CommonResult accessDeniedException(HttpServletRequest request, AccessDeniedException e) {
         return responseService.getFailResult(Integer.valueOf(getMessage("accessDenied.code")), getMessage("accessDenied.msg"));
+    }
+
+    @ExceptionHandler(CNotOwnerException.class)
+    @ResponseStatus(HttpStatus.NON_AUTHORITATIVE_INFORMATION)
+    public CommonResult notOwnerException(HttpServletRequest request, CNotOwnerException e){
+        return responseService.getFailResult(Integer.valueOf(getMessage("notOwnerException.code")),getMessage("notOwnerException.msg"));
+    }
+
+    @ExceptionHandler(CResourceNotExistException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public CommonResult resourceNotExistException(HttpServletRequest request, CResourceNotExistException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("resourceNotExist.code")), getMessage("resourceNotExist.msg"));
     }
 
     private String getMessage(String code){

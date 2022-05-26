@@ -1,6 +1,5 @@
 package com.example.hibia.service;
 
-import com.example.hibia.advice.exception.CEmailSigninFailedException;
 import com.example.hibia.advice.exception.CUserNotFoundException;
 import com.example.hibia.domain.User;
 import com.example.hibia.dto.UserDTO;
@@ -8,7 +7,6 @@ import com.example.hibia.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
