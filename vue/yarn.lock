@@ -5924,6 +5924,11 @@
   "resolved" "https://registry.npm.taobao.org/neo-async/download/neo-async-2.6.2.tgz"
   "version" "2.6.2"
 
+"new@^0.1.1":
+  "integrity" "sha512-et66JzEf07vnDYRrJrRd6IEZvbb4c69ksiLWzHoKzlCgXJgipIIQdmSUvoKJByWPQMyt5yuUF/00e509IMrj+A=="
+  "resolved" "https://registry.npmjs.org/new/-/new-0.1.1.tgz"
+  "version" "0.1.1"
+
 "nice-try@^1.0.4":
   "integrity" "sha1-ozeKdpbOfSI+iPybdkvX7xCJ42Y="
   "resolved" "https://registry.nlark.com/nice-try/download/nice-try-1.0.5.tgz"

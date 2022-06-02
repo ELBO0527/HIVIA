@@ -41,18 +41,22 @@ export default {
   },
   methods: {
     fetchItem() {
-      axios
-        .get("http://localhost:8080/item/")
-        .then(response => {
-          this.items = response.data.list;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      // axios
+      //   .get("/item/",{
+      //     headers: {"X-AUTH-TOKEN": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzOSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTM5Nzk0ODMsImV4cCI6MTY1Mzk4MzA4M30.GE_V1DnoOGrk6ztF5GLJ8aJrRNwEdVqu5fYlAkf1qWQ"}}
+      //     )
+      //   .then(response => {
+      //     this.items = response.data.list;
+      //     console.log(response)
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   });
     }, 
     fetchOneItem(){
     axios
-    .get("http://localhost:8080/item/"+ this.selected[0].id)
+    .get("http://localhost:8080/item/"+ this.selected[0].id,{
+          headers: { "Access-Control-Allow-Origin": "*", "X-AUTH-TOKEN": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzOSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTM5NzUwODcsImV4cCI6MTY1Mzk3ODY4N30.8srbpy2WCzzBlMx-RHY8S0zd513-Dr3ceLPmvI-GEPg" },})
     .then(response => {
       console.log(response)
 
@@ -62,7 +66,7 @@ export default {
     })
   },
   deleteItem(){
-    axios.delete("http://localhost:8080/item/" + this.selected[0].id)
+    axios.delete("http://localhost:8081/item/" + this.selected[0].id)
     .then(response => {
       console.log(response);
       alert(response.data.msg);

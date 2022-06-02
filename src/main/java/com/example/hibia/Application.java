@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-		//(exclude = { SecurityAutoConfiguration.class })
+		//스프링시큐리티 기본 로그인 화면 제거
+// (exclude = { SecurityAutoConfiguration.class })
 @EnableJpaAuditing
 public class Application {
 
