@@ -1,6 +1,7 @@
 package com.example.hibia.service;
 
 
+import com.example.hibia.advice.exception.ResourceNotFoundException;
 import com.example.hibia.domain.Item;
 import com.example.hibia.dto.ItemDTO;
 import com.example.hibia.repository.ItemRepository;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,8 +24,14 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
+    //아이템 이름 id값으로 단일 조회, 아래 함수와 오버로딩
     public Item findItem(Long id){
         return itemRepository.findById(id).orElseThrow(null);
+    }
+
+    //아이템 이름 이름값으로 단일 조회, 윗 함수와 오버로딩
+    public Item findItem(String itemName){
+        return Optional.ofNullable(itemRepository.findByName(itemName)).orElseThrow(ResourceNotFoundException::new);
     }
 
     public Item saveItem(ItemDTO itemDTO){

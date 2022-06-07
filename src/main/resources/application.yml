@@ -19,6 +19,7 @@ spring:
       max-file-size: 50MB
   jwt:
     secret: hibia
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 server:
@@ -29,3 +30,7 @@ logging:
       springframework:
         security: DEBUG
 >>>>>>> Stashed changes
+=======
+server:
+  port: 8081
+>>>>>>> main
