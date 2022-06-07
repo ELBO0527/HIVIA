@@ -172,7 +172,7 @@ export default {
   methods: {
    fetchItem() {
       axios
-        .get("http://localhost:8080/item/")
+        .get("/item/user")
         .then(response => {
           console.log(response.data.list)
           this.items2 = response.data.list;

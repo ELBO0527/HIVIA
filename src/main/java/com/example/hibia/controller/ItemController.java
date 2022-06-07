@@ -27,7 +27,7 @@ public class ItemController {
     }
 
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/user")
     public ListResult<Item> findAllItem(){
         return responseService.getListResult(itemService.findAllItems());
     }

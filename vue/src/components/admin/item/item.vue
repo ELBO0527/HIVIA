@@ -1,14 +1,14 @@
 <template>
   <div>
-    <v-data-table :headers="headers" :items="items" class="elevation-1" show-select single-select v-model="selected">
+    <v-data-table :headers="headers" :items="itemsList" class="elevation-1" show-select single-select v-model="selected">
     </v-data-table>
     <v-btn color="primary" dark to="postitems"
       >아이템 등록</v-btn
     >
-     <v-btn color="primary" dark to="updateitems" @click="fetchOneItem()"
+     <v-btn color="primary" dark to="updateitems" @click="fetchOneItem(selected[0].id)"
       >아이템 수정</v-btn
     >
-    <v-btn color="primary" dark @click="deleteItem()"
+    <v-btn color="primary" dark @click="deleteItem(selected[0].id)"
       >아이템 삭제</v-btn
     >
     <!-- to="/admin/item/updateitems"  -->
@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -40,45 +41,11 @@ export default {
     };
   },
   methods: {
-    fetchItem() {
-      // axios
-      //   .get("/item/",{
-      //     headers: {"X-AUTH-TOKEN": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzOSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTM5Nzk0ODMsImV4cCI6MTY1Mzk4MzA4M30.GE_V1DnoOGrk6ztF5GLJ8aJrRNwEdVqu5fYlAkf1qWQ"}}
-      //     )
-      //   .then(response => {
-      //     this.items = response.data.list;
-      //     console.log(response)
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
-    }, 
-    fetchOneItem(){
-    axios
-    .get("http://localhost:8080/item/"+ this.selected[0].id,{
-          headers: { "Access-Control-Allow-Origin": "*", "X-AUTH-TOKEN": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzOSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTM5NzUwODcsImV4cCI6MTY1Mzk3ODY4N30.8srbpy2WCzzBlMx-RHY8S0zd513-Dr3ceLPmvI-GEPg" },})
-    .then(response => {
-      console.log(response)
-
-    })
-    .catch(error => {
-      console.log(error)
-    })
+    ...mapActions(["fetchItems","deleteItem","fetchOneItem"]),
   },
-  deleteItem(){
-    axios.delete("http://localhost:8081/item/" + this.selected[0].id)
-    .then(response => {
-      console.log(response);
-      alert(response.data.msg);
-      this.fetchItem();
-    })
-    .catch(response =>{
-      alert(response.data.msg)
-    })
-  }
-  },
+  computed: mapGetters(["itemsList"]),
   mounted() {
-    this.fetchItem();
+    this.fetchItems();
   }
 };
 </script>

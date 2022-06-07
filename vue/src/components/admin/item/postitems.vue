@@ -170,6 +170,7 @@
 
 <script>
 import axios from "axios";
+import { mapActions } from 'vuex';
 
 export default {
   data() {
@@ -218,13 +219,14 @@ export default {
   },
 
   methods: {
+    ...mapActions(["addItems"]),
+
     remove(item) {
       const index = this.friends.indexOf(item.name);
       if (index >= 0) this.friends.splice(index, 1);
     },
     postItem() {
-      axios.post("http://localhost:8080/item/",
-          {
+      this.addItems({
           name : this.name, 
           price : this.price,
           brand : this.brand,
@@ -232,15 +234,7 @@ export default {
           color : this.color,
           country : this.country,
           stars : this.stars,
-          stock : this.stock}
-          )
-      .then(response => {
-        alert(response.data.msg)
-        })
-        .catch(response => {
-          alert(response.data.msg)
-        });
-
+          stock : this.stock})
       }
     }
 };
