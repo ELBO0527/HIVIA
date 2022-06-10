@@ -21,7 +21,7 @@ public class ItemController {
     private final ItemService itemService;
     private final ResponseService responseService;
 
-    @GetMapping(value= "/{id}")
+    @GetMapping(value= "/user/{id}")
     public SingleResult<Item> findItem(@PathVariable Long id){
         return responseService.getSingleResult(itemService.findItem(id));
     }
@@ -38,7 +38,7 @@ public class ItemController {
     }
 
     @PutMapping(value = "/{id}")
-    public SingleResult<Item> updateItem(@RequestBody ItemDTO itemDTO, @PathVariable Long id){
+    public SingleResult<Item> updateItem(@PathVariable Long id,@RequestBody ItemDTO itemDTO){
         return responseService.getSingleResult(itemService.updateItem(id,itemDTO));
     }
 

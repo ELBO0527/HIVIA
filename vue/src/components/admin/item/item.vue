@@ -11,7 +11,6 @@
     <v-btn color="primary" dark @click="deleteItem(selected[0].id)"
       >아이템 삭제</v-btn
     >
-    <!-- to="/admin/item/updateitems"  -->
   </div>
 </template>
 
@@ -36,7 +35,6 @@ export default {
         { text: "수량", value: 'stock' },
         { text: "별점", value: 'stars'}
       ],
-      items: [],
       selected: [],
     };
   },

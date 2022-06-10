@@ -40,6 +40,7 @@
                     solo
                     dense
                     full-width="200"
+                    v-model="userId"
                   ></v-text-field>
                   <!--<v-list-item-subtitle>*답변 등록 시 연락받을 이메일 주소를 입력하세요.</v-list-item-subtitle>-->
                 </v-row>
@@ -62,6 +63,8 @@
                     label="비밀번호를 입력하세요."
                     solo
                     dense
+                    type="password"
+                    v-model="passwd"
                   ></v-text-field>
                 </v-row>
               </v-col>
@@ -71,7 +74,9 @@
         <v-row>
           <v-col cols="12" md="12">
             <div class="pa-12" justify="center" align="center">
-              <v-btn color="primary"> 로그인</v-btn>
+              <v-btn 
+              color="primary"
+              @click="loginSubmit()"> 로그인</v-btn>
             </div>
           </v-col>
         </v-row>
@@ -79,3 +84,45 @@
     </v-row>
   </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      userId : "",
+      passwd : ""
+    };
+  },
+
+  methods: {
+    loginSubmit() {
+      let saveData = {};
+      saveData.id = this.id;
+      saveData.passwd = this.passwd;
+      console.log(this.id)
+      console.log(this.passwd)
+
+      try{
+        this.$axios
+        .post("/sign/signin", JSON.stringify(saveData),{
+          headers: {
+            "Content-Type" : `application/json`,
+          },
+        })
+        .then((res) => {
+          if(res.status == 200){
+            console.log(res.data)
+            this.$store.commit("Signin",res.data);
+            this.$router.push("/")
+          }
+        });
+      } catch (error){
+        console.log(error);
+        console.log(this.id)
+      console.log(this.passwd)
+      }
+    },
+  },
+};
+
+</script>
