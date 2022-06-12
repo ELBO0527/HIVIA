@@ -16,3 +16,4 @@ public class Cart {
     @Column(name = "cart_id")
     private Long id;
 }
+
