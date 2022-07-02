@@ -37,7 +37,8 @@
                     label="아이디를 입력하세요."
                     solo
                     dense
-                    full-width="200"
+                    type="email"
+                    v-model="email"
                   ></v-text-field>
                   <!--<v-list-item-subtitle>*답변 등록 시 연락받을 이메일 주소를 입력하세요.</v-list-item-subtitle>-->
                 </v-row>
@@ -60,6 +61,8 @@
                     label="비밀번호를 입력하세요."
                     solo
                     dense
+                    v-model="passwd"
+                    type="password"
                   ></v-text-field>
                 </v-row>
               </v-col>
@@ -78,6 +81,7 @@
                     label="비밀번호를 다시 한 번 입력하세요."
                     solo
                     dense
+                    type="password"
                   ></v-text-field>
                 </v-row>
               </v-col>
@@ -96,6 +100,7 @@
                     label="생년 월일을 입력하세요."
                     solo
                     dense
+                    v-model="birthday"
                   ></v-text-field>
                 </v-row>
               </v-col>
@@ -139,6 +144,7 @@
                     label="핸드폰 번호를 입력하세요."
                     solo
                     dense
+                    v-model="mobile"
                   ></v-text-field>
                 </v-row>
               </v-col>
@@ -155,7 +161,15 @@
         <v-row>
           <v-col cols="12" md="12">
             <div class="pa-12" justify="center" align="center">
-              <v-btn color="primary"> 회원가입</v-btn>
+              <v-btn color="primary"
+              @click="addNewUser()"> 회원가입</v-btn>
+              <!-- <v-alert
+              dense
+              type="success"
+              v-model="alert"
+              >
+              {{}}
+            </v-alert> -->
             </div>
           </v-col>
         </v-row>
@@ -163,3 +177,37 @@
     </v-row>
   </div>
 </template>
+
+<script>
+import { mapActions } from 'vuex';
+
+export default {
+  data() {
+      return {
+    email : "",
+    username: "",
+    passwd: "",
+    birthday: "",
+    mobile: "",
+    balance: 0,
+    alert : this.$store.alert
+    };
+  },
+
+
+  methods: {
+    ...mapActions(["addUser"]),
+      addNewUser() {
+      this.addUser({
+        email : this.email,
+        username: this.username,
+        passwd: this.passwd,
+        birthday: this.birthday,
+        mobile: this.mobile,
+        balance: this.balance,
+        })
+      }
+    }
+};
+</script>
+

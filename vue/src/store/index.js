@@ -2,6 +2,7 @@ import axios from 'axios';
 import Vue from 'vue'
 import Vuex from 'vuex'
 import ItemsModule from '../store/module/items-module'
+import userModule from '@/store/module/users-module.js'
 
 Vue.use(Vuex)
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-   a: ItemsModule
+   a: ItemsModule,
+   userModule: userModule
   }
 })

@@ -96,31 +96,37 @@ export default {
 
   methods: {
     loginSubmit() {
-      let saveData = {};
-      saveData.id = this.id;
-      saveData.passwd = this.passwd;
-      console.log(this.id)
-      console.log(this.passwd)
-
-      try{
-        this.$axios
-        .post("/sign/signin", JSON.stringify(saveData),{
-          headers: {
-            "Content-Type" : `application/json`,
-          },
-        })
-        .then((res) => {
-          if(res.status == 200){
-            console.log(res.data)
-            this.$store.commit("Signin",res.data);
-            this.$router.push("/")
-          }
+          let saveData = { 
+            id: this.userId, 
+            passwd: this.passwd 
+          };
+          this.$store.dispatch("doLogin", saveData).then(() => {
+	        this.$router.push("/");
+        }).catch((err) => {
+	        this.errorMessage = err.response.data.errormessage;
         });
-      } catch (error){
-        console.log(error);
-        console.log(this.id)
-      console.log(this.passwd)
-      }
+      // saveData.id = this.userId;
+      // saveData.passwd = this.passwd;
+
+      // try{
+      //   this.$axios
+      //   .post("/sign/signin", JSON.stringify(saveData),{
+      //     headers: {
+      //       "Content-Type" : `application/json`,
+      //     },
+      //   })
+      //   .then((res) => {
+      //     if(res.status == 200){
+      //       console.log(res.data)
+      //       alert(res.data.msg)
+      //       this.$store.commit("login", res.data);
+      //       this.$router.push("/")
+      //     }else
+      //       alert(res.data.msg)
+      //   });
+      // } catch (error){
+      //   console.log(error);
+      // }
     },
   },
 };
