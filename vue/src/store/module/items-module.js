@@ -1,4 +1,5 @@
 import axios from 'axios'
+import userModule from '@/store/module/users-module.js'
 
 const state = { 
     items: [],
@@ -22,22 +23,36 @@ const getters = {
 };
 
 const actions = { 
+    
     async fetchItems({commit}){
-      const response = await axios.get("/item/user");
-      commit("setItems", response.data.list)
+    const getData = JSON.parse(localStorage.getItem("vuex"));
+    const token = getData.userModule.accessToken;
+      const response = await axios.get("/item/user/", { headers: { "X-AUTH-TOKEN" : token
+      }});
+    console.log(response.data.list)
+    commit("setItems", response.data.list)
     },
     async fetchOneItem({commit},id){
-        const response = await axios.get(`/item/user/${id}`)
+    const getData = JSON.parse(localStorage.getItem("vuex"));
+    const token = getData.userModule.accessToken;
+    const response = await axios.get(`/item/user/${id}`,{ headers: { "X-AUTH-TOKEN" : token
+    }})
         console.log(response.data.data.name)
         commit("setOneItem", response.data.data)
     },
     async addItems({commit}, item){
-      const response = await axios.post("/item/", item, { headers : {"X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzOSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTQ4Mzc5MjgsImV4cCI6MTY1NDg0MTUyOH0.-jhqgBpokre6AzhVzbBAwWo1tLV7DLMEilfnh31LB_I"}});
+        const getData = JSON.parse(localStorage.getItem("vuex"));
+        const token = getData.userModule.accessToken;
+      const response = await axios.post("/item/", item, { headers: { "X-AUTH-TOKEN" : token
+    }});
       alert(response.data)
       commit("addNewItem", response.data.list)
     },
     async updateItem({commit}, id, item){
-        const response = await axios.put(`/item/${id}`, { headers : {"X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzOSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTQ4NDQ2MTcsImV4cCI6MTY1NDg0ODIxN30.lapNm90Zhny-2zI8XRHSLKoX3g3fROAWvGe8vyd6bhI"}})
+        const getData = JSON.parse(localStorage.getItem("vuex"));
+        const token = getData.userModule.accessToken;
+        const response = await axios.put(`/item/${id}`, item, { headers: { "X-AUTH-TOKEN" : token
+    }})
         console.log(response)
         console.log(id)
         console.log(response.data)
@@ -45,7 +60,10 @@ const actions = {
         commit("updateItem", response.data.data, id)
     },
     async deleteItem({commit}, id){
-      await axios.delete(`/item/${id}`,  { headers : {"X-AUTH-TOKEN" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzOSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NTQ4Mzc5MjgsImV4cCI6MTY1NDg0MTUyOH0.-jhqgBpokre6AzhVzbBAwWo1tLV7DLMEilfnh31LB_I"}});
+        const getData = JSON.parse(localStorage.getItem("vuex"));
+        const token = getData.userModule.accessToken;
+      await axios.delete(`/item/${id}`, { headers: { "X-AUTH-TOKEN" : token
+    }});
       commit("removeItem", id)
     }
 };

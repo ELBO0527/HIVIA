@@ -102,31 +102,11 @@ export default {
           };
           this.$store.dispatch("doLogin", saveData).then(() => {
 	        this.$router.push("/");
+          console.log(id, passwd);
         }).catch((err) => {
 	        this.errorMessage = err.response.data.errormessage;
-        });
-      // saveData.id = this.userId;
-      // saveData.passwd = this.passwd;
-
-      // try{
-      //   this.$axios
-      //   .post("/sign/signin", JSON.stringify(saveData),{
-      //     headers: {
-      //       "Content-Type" : `application/json`,
-      //     },
-      //   })
-      //   .then((res) => {
-      //     if(res.status == 200){
-      //       console.log(res.data)
-      //       alert(res.data.msg)
-      //       this.$store.commit("login", res.data);
-      //       this.$router.push("/")
-      //     }else
-      //       alert(res.data.msg)
-      //   });
-      // } catch (error){
-      //   console.log(error);
-      // }
+          console.log(id, passwd);
+        })
     },
   },
 };
