@@ -42,7 +42,7 @@ export default {
     ...mapActions(["fetchItems","deleteItem","fetchOneItem"]),
   },
   computed: mapGetters(["itemsList"]),
-  mounted() {
+   mounted() {
     this.fetchItems();
   }
 };

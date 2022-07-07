@@ -100,7 +100,7 @@ export default {
             id: this.userId, 
             passwd: this.passwd 
           };
-          this.$store.dispatch("doLogin", saveData).then(() => {
+          this.$store.dispatch('doLogin', saveData).then(() => {
 	        this.$router.push("/");
           console.log(id, passwd);
         }).catch((err) => {

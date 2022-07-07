@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/*/signup", "/*/signin", "/exception/**").permitAll()
                 //.antMatchers("/item/**").hasRole("ADMIN")
-                .antMatchers("/*/item/*", "/review/**").hasRole("USER")
+                .antMatchers("/item/**", "/review/**").hasRole("USER")
                 .anyRequest().hasRole("USER")
                 .and()
                 .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler())

@@ -17,16 +17,6 @@ const getters = {
 };
 
 const actions = { 
-    async fetchItems({commit}){
-      const response = await axios.get("/item/user");
-      commit("setItems", response.data.list)
-    },
-    async fetchOneItem({commit},id){
-        const response = await axios.get(`/item/user/${id}`)
-        console.log(response.data.data.name)
-        commit("setOneItem", response.data.data)
-    },
-
     async doLogin({commit}, userInfo){
         let result = false;
         let resultErr = null;

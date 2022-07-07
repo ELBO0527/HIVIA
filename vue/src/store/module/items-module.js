@@ -1,20 +1,9 @@
 import axios from 'axios'
-import userModule from '@/store/module/users-module.js'
+import router from '@/router'
 
 const state = { 
     items: [],
     item: "",
-
-    //item DTO
-    brand: "",
-    name : "",
-    color : "",
-    country : "",
-    price: "",
-    size: "",
-    stock: "",
-    stars: ""
-    
 };
 
 const getters = { 
@@ -23,13 +12,13 @@ const getters = {
 };
 
 const actions = { 
-    
     async fetchItems({commit}){
     const getData = JSON.parse(localStorage.getItem("vuex"));
     const token = getData.userModule.accessToken;
       const response = await axios.get("/item/user/", { headers: { "X-AUTH-TOKEN" : token
       }});
     console.log(response.data.list)
+    console.log("success")
     commit("setItems", response.data.list)
     },
     async fetchOneItem({commit},id){
@@ -47,6 +36,7 @@ const actions = {
     }});
       alert(response.data)
       commit("addNewItem", response.data.list)
+      router.push("item");
     },
     async updateItem({commit}, id, item){
         const getData = JSON.parse(localStorage.getItem("vuex"));
@@ -77,8 +67,9 @@ const mutations = {
         console.log(state.item.name)
     ),
     addNewItem: (state, item) => state.items.unshift(item),
-    updateItem: (state, item) =>{
+    updateItem: (state,id, item) =>{
         state.items.filter(item => item.id !== id),
+        state.items.splice(item => item.id, 1),
         state.items.unshift(item)
     }
     ,

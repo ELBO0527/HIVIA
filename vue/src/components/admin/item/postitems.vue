@@ -227,7 +227,7 @@ export default {
     },
     postItem() {
       this.addItems({
-          name : this.$store.name, 
+          name : this.name, 
           price : this.price,
           brand : this.brand,
           size : this.size,

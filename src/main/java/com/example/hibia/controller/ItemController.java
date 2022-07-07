@@ -10,12 +10,10 @@ import com.example.hibia.service.ResponseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.Path;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/item")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ItemController {
 
     private final ItemService itemService;

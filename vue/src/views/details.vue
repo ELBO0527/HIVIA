@@ -2,15 +2,7 @@
   <div>
     <v-row>
       <v-col cols="12" md="12">
-        <v-sheet color="grey lighten-3" height="380">
-          <v-row>
-            <v-col class="pa-3" cols="6" md="3">
-              <v-sheet color="white">
-                <h1>123</h1>
-              </v-sheet>
-            </v-col>
-          </v-row>
-        </v-sheet>
+     
       </v-col>
     </v-row>
   </div>
