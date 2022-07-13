@@ -20,6 +20,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    ItemsModule
+   a: ItemsModule
   }
 })
