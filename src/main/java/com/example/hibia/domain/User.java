@@ -52,6 +52,9 @@ public class User implements UserDetails {
 	@Column
 	private String mobile;
 
+	@Column
+	private String profile_url;
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	@Builder.Default
 	private List<String> roles = new ArrayList<>();

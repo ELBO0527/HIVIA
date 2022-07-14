@@ -3,7 +3,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import ItemsModule from '../store/module/items-module'
 import userModule from '@/store/module/users-module.js'
-import store from '@/store';
 import createPersistedState from "vuex-persistedstate"
 
 Vue.use(Vuex)

@@ -35,7 +35,7 @@ const actions = {
       const response = await axios.post("/item/", item, { headers: { "X-AUTH-TOKEN" : token
     }});
       alert(response.data)
-      commit("addNewItem", response.data.list)
+      commit("addNewItem", response.data.list)              
       router.push("item");
     },
     async updateItem({commit}, id, item){

@@ -43,10 +43,31 @@ public class UserService implements UserDetailsService {
 				.passwd(passwordEncoder.encode(userDTO.getPasswd()))
 				.roles(Collections.singletonList("ROLE_USER"))
 				.balance(userDTO.getBalance())
+				.profile_url("/resources/img/default_profile.png")
 				.build();
 		return userRepository.save(user);
 	}
 
+	public User saveAdmin(UserDTO userDTO){
+		User user = User.builder()
+				.birthday(null)
+				.username(userDTO.getUsername())
+				.email(userDTO.getEmail())
+				.mobile(userDTO.getMobile())
+				.passwd(passwordEncoder.encode(userDTO.getPasswd()))
+				.roles(Collections.singletonList("ROLE_ADMIN"))
+				.balance(2147483647)
+				.profile_url("/resources/img/default_profile.png")
+				.build();
+		return userRepository.save(user);
+	}
+
+	public User resetAdminPassword(String id, UserDTO userDTO){
+		User user = findUser(id);
+		user.setUser(userDTO.getEmail(), userDTO.getUsername(), "admin", userDTO.getBalance(), userDTO.getBirthday(), userDTO.getMobile());
+
+		return null;
+	}
 	public User updateUser(String id,UserDTO userDTO){
 			User user = findUser(id);
 			user.setUser(userDTO.getEmail(), userDTO.getUsername(),  userDTO.getPasswd(), userDTO.getBalance(), userDTO.getBirthday(), userDTO.getMobile());

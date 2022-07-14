@@ -57,22 +57,30 @@ const routes = [
             component: () => import("../components/admin/test.vue"),
           }
         ]
-      },  {
+      },  
+      {
         path : "updateitems",
         name : "updateitems",
         component: () => import("../components/admin/item/updateitems.vue"),
       }
     ]
   },
-  {
-    path: "/solution",
-    name: "Solution",
-    component: () => import("../views/solution.vue")
-  },
-  {
-    path: "/details",
-    name: "Details",
-    component: () => import("../views/details.vue")
+  { 
+    path: "/item",
+    name: "Item",
+    component: () => import("../views/item.vue"),
+    children:[
+      {
+      path: "/",
+      name: "item",
+      component: () => import("../views/users/item/item-main.vue"),
+    },
+      {
+        path : "itemdetail",
+        name : "ItemDetail",
+        component: () => import("../views/users/item/item-detail.vue"),
+      }
+    ]
   },
   {
     path: "/help",

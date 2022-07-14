@@ -1,11 +1,6 @@
 <template>
-  <div class="pa-3">
+  <div class="pt-3">
     <v-row>
-      <v-col cols="6" md="3">
-        <v-card left class="mx-auto" width="250" tile>
-        </v-card>
-      </v-col>
-
       <v-col cols="24" md="8">
         <v-row class="ma-n3">
           <!-- 첫 줄 두번째 구분 -->
@@ -83,7 +78,7 @@
                   ><v-card
                     class="mx-auto my-4"
                     max-width="374"
-                  to="/details"
+                    to="/itemDetail"
                   >
                     <template slot="progress">
                       <v-progress-linear
@@ -138,7 +133,7 @@
                       <div>
                         상품소개.
                       </div>
-                      <v-btn color="primary" class="mt-2" to="/details">
+                      <v-btn color="primary" class="mt-2" to="/itemDetail">
                         상세보기</v-btn
                       >
                     </v-card-text>
