@@ -42,7 +42,7 @@ public class UserService implements UserDetailsService {
 				.mobile(userDTO.getMobile())
 				.passwd(passwordEncoder.encode(userDTO.getPasswd()))
 				.roles(Collections.singletonList("ROLE_USER"))
-				.balance(userDTO.getBalance())
+				.balance(0)
 				.build();
 		return userRepository.save(user);
 	}

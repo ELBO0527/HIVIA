@@ -52,6 +52,23 @@ public class User implements UserDetails {
 	@Column
 	private String mobile;
 
+	//주소,상세주소,우편번호,카테고리,장바구니 추가(2022-07-19)
+	@Column
+	private String addr;
+
+	@Column
+	private String addr_detail;
+
+	@Column
+	private String zipcode;
+
+	@Column
+	private String category;
+
+	//한명의 유저는 하나의 장바구니
+	@OneToOne(mappedBy = "user")
+	private Cart cart;
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	@Builder.Default
 	private List<String> roles = new ArrayList<>();
