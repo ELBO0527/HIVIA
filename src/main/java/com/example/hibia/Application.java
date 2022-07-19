@@ -9,7 +9,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-		//(exclude = { SecurityAutoConfiguration.class })
+		//스프링시큐리티 기본 로그인 화면 제거
+// (exclude = { SecurityAutoConfiguration.class })
 @EnableJpaAuditing
 public class Application {
 

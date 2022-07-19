@@ -4,12 +4,10 @@ package com.example.hibia.service;
 import com.example.hibia.advice.exception.CNotOwnerException;
 import com.example.hibia.advice.exception.CResourceNotExistException;
 import com.example.hibia.advice.exception.CUserNotFoundException;
-import com.example.hibia.advice.exception.ResourceNotFoundException;
 import com.example.hibia.domain.Item;
 import com.example.hibia.domain.Review;
 import com.example.hibia.domain.User;
 import com.example.hibia.dto.ReviewDTO;
-import com.example.hibia.repository.ItemRepository;
 import com.example.hibia.repository.ReviewRepository;
 import com.example.hibia.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -63,5 +60,4 @@ public class ReviewService {
         reviewRepository.delete(review);
         return true;
     }
-
 }

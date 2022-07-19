@@ -16,4 +16,5 @@ public class UserDTO {
     private LocalDate birthday;
     private String mobile;
     private int balance;
+    private String profile_url;
 }

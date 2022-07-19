@@ -29,9 +29,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+<<<<<<< HEAD
                 .antMatchers("/*/signup", "/*/signin",  "/cart/**", "/exception/**").permitAll()
+=======
+                .antMatchers("/*/signup", "/*/signin", "/item/user/**", "/exception/**").permitAll()
+>>>>>>> login
                 //.antMatchers("/item/**").hasRole("ADMIN")
-                .antMatchers("/*/item/*", "/review/**").hasRole("USER")
+                .antMatchers("/item/**", "/review/**").hasRole("USER")
                 .anyRequest().hasRole("USER")
                 .and()
                 .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler())

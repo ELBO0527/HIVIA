@@ -40,6 +40,7 @@
                     solo
                     dense
                     full-width="200"
+                    v-model="userId"
                   ></v-text-field>
                   <!--<v-list-item-subtitle>*답변 등록 시 연락받을 이메일 주소를 입력하세요.</v-list-item-subtitle>-->
                 </v-row>
@@ -62,6 +63,8 @@
                     label="비밀번호를 입력하세요."
                     solo
                     dense
+                    type="password"
+                    v-model="passwd"
                   ></v-text-field>
                 </v-row>
               </v-col>
@@ -71,7 +74,9 @@
         <v-row>
           <v-col cols="12" md="12">
             <div class="pa-12" justify="center" align="center">
-              <v-btn color="primary"> 로그인</v-btn>
+              <v-btn 
+              color="primary"
+              @click="loginSubmit()"> 로그인</v-btn>
             </div>
           </v-col>
         </v-row>
@@ -79,3 +84,31 @@
     </v-row>
   </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      userId : "",
+      passwd : ""
+    };
+  },
+
+  methods: {
+    loginSubmit() {
+          let saveData = { 
+            id: this.userId, 
+            passwd: this.passwd 
+          };
+          this.$store.dispatch('doLogin', saveData).then(() => {
+	        this.$router.push("/");
+          console.log(id, passwd);
+        }).catch((err) => {
+	        this.errorMessage = err.response.data.errormessage;
+          console.log(id, passwd);
+        })
+    },
+  },
+};
+
+</script>

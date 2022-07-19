@@ -10,24 +10,22 @@ import com.example.hibia.service.ResponseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.Path;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/item")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ItemController {
 
     private final ItemService itemService;
     private final ResponseService responseService;
 
-    @GetMapping(value= "/{id}")
+    @GetMapping(value= "/user/{id}")
     public SingleResult<Item> findItem(@PathVariable Long id){
         return responseService.getSingleResult(itemService.findItem(id));
     }
 
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/user")
     public ListResult<Item> findAllItem(){
         return responseService.getListResult(itemService.findAllItems());
     }
@@ -38,7 +36,7 @@ public class ItemController {
     }
 
     @PutMapping(value = "/{id}")
-    public SingleResult<Item> updateItem(@RequestBody ItemDTO itemDTO, @PathVariable Long id){
+    public SingleResult<Item> updateItem(@PathVariable Long id,@RequestBody ItemDTO itemDTO){
         return responseService.getSingleResult(itemService.updateItem(id,itemDTO));
     }
 

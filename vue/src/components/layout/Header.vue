@@ -25,16 +25,16 @@
               dark
               v-bind="attrs"
               v-on="on"
-              to="/solution"
+              to="/item"
             >
-              솔루션 검색
+              컬렉션
             </v-btn>
           </template>
           <v-list>
             <v-list-item
               v-for="(item, index) in items"
               :key="index"
-              to="/solution"
+              to="/item"
             >
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item>
@@ -43,12 +43,12 @@
       </div>
 
       <!-- 상품버튼 -->
-      <v-btn text color="primary" dark v-bind="attrs" v-on="on" to="/help">
+      <!-- <v-btn text color="primary" dark v-bind="attrs" v-on="on" to="/help">
         문의하기
-      </v-btn>
+      </v-btn> -->
 
       <v-btn text color="primary" dark v-bind="attrs" v-on="on" to="/admin">
-        상품등록
+        관리자 페이지
       </v-btn>
 
       <!--검색바-->
@@ -68,10 +68,13 @@
         <v-icon>mdi-heart</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
+      <v-btn v-if="isLogin" class="ma-2" color="primary" outlined to="/signin" @click="Logout()">로그아웃</v-btn>
+      <div v-else>
       <v-btn class="ma-2" color="primary" outlined to="/signin">로그인</v-btn>
       <v-btn color="primary" dark to="/signup"
         >회원가입</v-btn
       >
+      </div>
     </v-app-bar>
   </v-card>
 </template>
@@ -83,8 +86,22 @@ export default {
     attrs: "",
     on: "",
     items: []
-  }
-}
+    }
+  },
+  methods : {
+		Logout() {
+			this.$store.dispatch("doLogout");
+			this.$router.push('/');
+		}
+	},
+
+	computed : {
+		isLogin() {
+			return this.$store.getters['isLogin'];
+		}
+	}
+
+
 };
 
 </script>
