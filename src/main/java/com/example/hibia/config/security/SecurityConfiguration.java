@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.ws.rs.HEAD;
+
 @RequiredArgsConstructor
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -29,11 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-<<<<<<< HEAD
                 .antMatchers("/*/signup", "/*/signin",  "/cart/**", "/exception/**").permitAll()
-=======
-                .antMatchers("/*/signup", "/*/signin", "/item/user/**", "/exception/**").permitAll()
->>>>>>> login
                 //.antMatchers("/item/**").hasRole("ADMIN")
                 .antMatchers("/item/**", "/review/**").hasRole("USER")
                 .anyRequest().hasRole("USER")

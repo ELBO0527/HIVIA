@@ -42,12 +42,8 @@ public class UserService implements UserDetailsService {
 				.mobile(userDTO.getMobile())
 				.passwd(passwordEncoder.encode(userDTO.getPasswd()))
 				.roles(Collections.singletonList("ROLE_USER"))
-<<<<<<< HEAD
 				.balance(0)
-=======
-				.balance(userDTO.getBalance())
 				.profile_url("/resources/img/default_profile.png")
->>>>>>> login
 				.build();
 		return userRepository.save(user);
 	}

@@ -52,7 +52,6 @@ public class User implements UserDetails {
 	@Column
 	private String mobile;
 
-<<<<<<< HEAD
 	//주소,상세주소,우편번호,카테고리,장바구니 추가(2022-07-19)
 	@Column
 	private String addr;
@@ -69,10 +68,9 @@ public class User implements UserDetails {
 	//한명의 유저는 하나의 장바구니
 	@OneToOne(mappedBy = "user")
 	private Cart cart;
-=======
+
 	@Column
 	private String profile_url;
->>>>>>> login
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	@Builder.Default
