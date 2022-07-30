@@ -24,11 +24,11 @@ public class CartController {
     private final CartService cartService;
     private final ResponseService responseService;
 
-    @GetMapping("/{email}/{id}")
-    public ListResult<Cart> findCartList(@PathVariable String email, Long id){
+    @GetMapping("/")
+    public ListResult<Cart> findCartList(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String uid = authentication.getName();
-        return responseService.getListResult(cartService.findAllCartItems(email,id));
+        return responseService.getListResult(cartService.findAllCartItems(uid));
     }
 
     @GetMapping("/{id}")
@@ -38,11 +38,11 @@ public class CartController {
         return responseService.getSingleResult(cartService.findCartItem(id));
     }
 
-    @PostMapping("/{name}")
-    public SingleResult<Cart> addCartItem(@PathVariable String name, @RequestBody CartDTO cartDTO){
+    @PostMapping("/{itemname}")
+    public SingleResult<Cart> addCartItem(@PathVariable String itemname, @RequestBody CartDTO cartDTO){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String uid = authentication.getName();
-        return responseService.getSingleResult(cartService.createCartItem(name, uid, cartDTO));
+        return responseService.getSingleResult(cartService.addCartItem(itemname, uid, cartDTO));
     }
 
     @PutMapping("/{id}")

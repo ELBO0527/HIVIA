@@ -25,15 +25,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http
+                http
                 .httpBasic().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/*/signup", "/*/signin",  "/cart/**", "/exception/**").permitAll()
+                .antMatchers("/sign/**", "/cart/**", "/exception/**", "/item/user/**").permitAll()
                 //.antMatchers("/item/**").hasRole("ADMIN")
-                .antMatchers("/item/**", "/review/**").hasRole("USER")
+                .antMatchers("/item/**", "/review/**", "/user/**").hasRole("USER")
+                .antMatchers("/**").hasRole("ADMIN")
                 .anyRequest().hasRole("USER")
                 .and()
                 .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler())

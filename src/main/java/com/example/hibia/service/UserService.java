@@ -34,6 +34,10 @@ public class UserService implements UserDetailsService {
 		return userRepository.findByUsername(id).orElseThrow(CUserNotFoundException::new);
 	}
 
+	public User findUser(Long id){
+		return userRepository.findById(id).orElseThrow(CUserNotFoundException::new);
+	}
+
 	public User saveUser(UserDTO userDTO){
 		User user = User.builder()
 				.birthday(userDTO.getBirthday())
@@ -43,7 +47,9 @@ public class UserService implements UserDetailsService {
 				.passwd(passwordEncoder.encode(userDTO.getPasswd()))
 				.roles(Collections.singletonList("ROLE_USER"))
 				.balance(0)
-				.profile_url("/resources/img/default_profile.png")
+				.addr(userDTO.getAddr())
+				.addr_detail(userDTO.getAddr_detail())
+				.zipcode(userDTO.getZipcode())
 				.build();
 		return userRepository.save(user);
 	}
@@ -57,25 +63,29 @@ public class UserService implements UserDetailsService {
 				.passwd(passwordEncoder.encode(userDTO.getPasswd()))
 				.roles(Collections.singletonList("ROLE_ADMIN"))
 				.balance(2147483647)
-				.profile_url("/resources/img/default_profile.png")
+				.addr(userDTO.getAddr())
+				.addr_detail(userDTO.getAddr_detail())
+				.zipcode(userDTO.getZipcode())
 				.build();
 		return userRepository.save(user);
 	}
 
 	public User resetAdminPassword(String id, UserDTO userDTO){
 		User user = findUser(id);
-		user.setUser(userDTO.getEmail(), userDTO.getUsername(), "admin", userDTO.getBalance(), userDTO.getBirthday(), userDTO.getMobile());
+		user.setUser(userDTO.getEmail(), userDTO.getUsername(), passwordEncoder.encode("admin"),
+				 userDTO.getBirthday(), userDTO.getMobile(), userDTO.getAddr(), userDTO.getAddr_detail(), userDTO.getZipcode());
 
-		return null;
+		return user;
 	}
-	public User updateUser(String id,UserDTO userDTO){
+	public User updateUser(Long id,UserDTO userDTO){
 			User user = findUser(id);
-			user.setUser(userDTO.getEmail(), userDTO.getUsername(),  userDTO.getPasswd(), userDTO.getBalance(), userDTO.getBirthday(), userDTO.getMobile());
+			user.setUser(userDTO.getEmail(), userDTO.getUsername(),  passwordEncoder.encode(userDTO.getPasswd()),
+					userDTO.getBirthday(), userDTO.getMobile(), userDTO.getAddr(), userDTO.getAddr_detail(), userDTO.getZipcode());
 		return user;
 	}
 
-	public void deleteUser(String id){
+	public void deleteUser(Long id){
 		this.findUser(id);
-		userRepository.deleteById(Long.valueOf(id));
+		userRepository.deleteById(id);
 	}
 }

@@ -23,10 +23,10 @@ public class UserController {
 		return responseService.getListResult(userService.findAllUsers());
 	}
 
-//	@GetMapping(value = "/{id}")
-//	public SingleResult<User> findUserById(@PathVariable Long id, @RequestParam String lang){
-//		return responseService.getSingleResult(userService.findUser(id));
-//	}
+	@GetMapping(value = "/{id}")
+	public SingleResult<User> findUserById(@PathVariable Long id){
+		return responseService.getSingleResult(userService.findUser(id));
+	}
 
 	@PostMapping(value = "/signup")
 	public SingleResult<User> saveUser(@RequestBody UserDTO userDTO){
@@ -34,12 +34,12 @@ public class UserController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public SingleResult<User> updateUser(@PathVariable String id, @RequestBody UserDTO userDto){
+	public SingleResult<User> updateUser(@PathVariable Long id, @RequestBody UserDTO userDto){
 		return responseService.getSingleResult(userService.updateUser(id, userDto));
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public CommonResult deleteUser(@PathVariable String id){
+	public CommonResult deleteUser(@PathVariable Long id){
 		userService.deleteUser(id);
 		return responseService.getSuccessResult();
 	}

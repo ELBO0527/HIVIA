@@ -7,5 +7,7 @@ import com.example.hibia.domain.User;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUsername(String email);
+    Optional<User> findByEmail(String email);
+    //사용안하는 메서드
+    Optional<User> findByUsername(String name);
 }
