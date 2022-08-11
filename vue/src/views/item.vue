@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- drawer 삽입 -->
-    <div style="position : fixed">
+    <div style="position : fixed" class="d-none d-lg-block">
       <v-navigation-drawer clipped permanent app>
         <v-list nav dense>
           <v-list-item>

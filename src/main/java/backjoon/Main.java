@@ -6,30 +6,19 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int x = Integer.parseInt(br.readLine());
+        int max = 0;
+        ArrayList<Integer> arr=new ArrayList<Integer>();
 
-        int n = Integer.parseInt(br.readLine());
-        ArrayList<String>[] arr = new ArrayList[n];
-
-        for(int i=0; i<n; i++){
-            arr[i] = new ArrayList<String>();
-            String s = br.readLine();
-            String[] split = s.split(" ");
-            arr[i].add(split[0]);
-            arr[i].add(split[1]);
-            for (int j=0;j< arr.length;j++){
-                if (Integer.parseInt(arr[i].get(0)) < Integer.parseInt(arr[j].get(0))){
-                    ArrayList<String> temp = arr[i];
-
-                }
-            }
-        }
-
-        for (int i=0; i<n; i++){
-                System.out.println(arr[i].get(0)+ " " +arr[i].get(1));
+        for (int i=0;i<x;i++){
+            int stair = Integer.parseInt(br.readLine());
+            arr.add(stair);
         }
 
 
     }
+
 }

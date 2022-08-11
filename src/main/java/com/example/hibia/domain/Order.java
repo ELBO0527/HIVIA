@@ -21,4 +21,6 @@ public class Order extends CommonDateEntity {
     @GeneratedValue
     @Column(name = "order_id")
     private Long id;
+
+
 }

@@ -44,6 +44,12 @@
     <v-form>
       <v-container>
         <v-row>
+          <v-col cols="12" md="12">
+            <v-file-input
+  show-size
+  truncate-length="15"
+></v-file-input>
+          </v-col>
           <v-col cols="12" md="6">
             <v-text-field
               v-model="name"
