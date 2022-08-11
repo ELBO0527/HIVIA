@@ -47,15 +47,15 @@
         <v-row>
           <v-col cols="12" md="6">
             <v-text-field
-              v-model="$store.state.a.item.name"
+              v-model="name"
               filled
               color="blue-grey lighten-2"
               label="상품명"
-            >{{updateitem.name}}</v-text-field>
+            ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
-              v-model="$store.state.a.item.price"
+              v-model="price"
               filled
               color="blue-grey lighten-2"
               label="가격"
@@ -63,7 +63,7 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              v-model="$store.state.a.item.stock"
+              v-model="stock"
               filled
               color="blue-grey lighten-2"
               label="재고량"
@@ -71,7 +71,7 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              v-model="$store.state.a.item.brand"
+              v-model="brand"
               filled
               color="blue-grey lighten-2"
               label="브랜드"
@@ -79,7 +79,7 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              v-model="$store.state.a.item.country"
+              v-model="country"
               filled
               color="blue-grey lighten-2"
               label="생산국가"
@@ -87,7 +87,7 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              v-model="$store.state.a.item.size"
+              v-model="size"
               filled
               color="blue-grey lighten-2"
               label="사이즈"
@@ -95,13 +95,11 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              v-model="$store.state.a.item.id"
+              v-model="id"
               filled
               color="blue-grey lighten-2"
               label="id"
             ></v-text-field>
-          </v-col>
-        
           </v-col>
         </v-row>
       </v-container>
@@ -121,7 +119,7 @@
        <v-btn
         color="blue-grey darken-3"
         depressed
-        @click="changeItem(updateitem.id)"
+        @click="updateProduct(id)"
       >
         <v-icon left>
           mdi-update
@@ -134,6 +132,7 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex';
+import axios from 'axios';
 
 export default {
   data() {
@@ -145,22 +144,63 @@ export default {
       5: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
     };
     return {
-      name: "",
-      price: "",
-      brand: "",
-      stock: "",
-      stars: 0,
-      country: "",
-      color: "",
-      size: "",
+      name: this.$store.state.a.item.name,
+      price: this.$store.state.a.item.price,
+      brand: this.$store.state.a.item.brand,
+      stock: this.$store.state.a.item.stock,
+      stars: this.$store.state.a.item.stars,
+      country: this.$store.state.a.item.country,
+      color: this.$store.state.a.item.color,
+      size: this.$store.state.a.item.size,
+      id : this.$store.state.a.item.id,
     };
   },
 
   methods: {
     ...mapActions(["updateItem","fetchOneItem"]),
-      changeItem() {
-      this.updateItem()
-      }
+      // changeItem() {
+      // this.updateItem(
+      //   this.updateitem.id,
+      //   {
+      //     name : this.name, 
+      //     price : this.price,
+      //     brand : this.brand,
+      //     size : this.size,
+      //     color : this.color,
+      //     country : this.country,
+      //     stars : this.stars,
+      //     stock : this.stock}
+      // )
+      // },
+          updateProduct(productId) {
+    const getData = JSON.parse(localStorage.getItem("vuex"));
+    const token = getData.userModule.accessToken;
+
+        const data = {
+    		name : this.name, 
+          price : this.price,
+          brand : this.brand,
+          size : this.size,
+          color : this.color,
+          country : this.country,
+          stars : this.stars,
+          stock : this.stock
+    	};
+
+        this.$axios.put(`/item/${productId}`, data,{ headers: { "X-AUTH-TOKEN" : token
+    }})
+             .then(response => {
+              this.$router.push({
+                        name: "item"
+                    });
+                    alert(response.data.msg)
+                 console.log(response);
+             })
+             .catch(function (error) {
+                console.log(error.response)
+                    alert(response.data.msg)
+             })
+    }
     },
     computed:{
       ...mapGetters(["updateitem"]),

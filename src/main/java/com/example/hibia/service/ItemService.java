@@ -8,7 +8,6 @@ import com.example.hibia.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +28,7 @@ public class ItemService {
         return itemRepository.findById(id).orElseThrow(null);
     }
 
-    //아이템 이름 이름값으로 단일 조회, 윗 함수와 오버로딩
+    //아이템 이름 이름값으로 단일 조회, 윗 함수 오버로딩
     public Item findItem(String itemName){
         return Optional.ofNullable(itemRepository.findByName(itemName)).orElseThrow(ResourceNotFoundException::new);
     }

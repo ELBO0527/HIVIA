@@ -1,8 +1,11 @@
 package com.example.hibia.dto;
 
+import com.example.hibia.domain.Cart;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Data
@@ -16,4 +19,9 @@ public class UserDTO {
     private LocalDate birthday;
     private String mobile;
     private int balance;
+    private String profile_url;
+    private String addr;
+    private String addr_detail;
+    private String zipcode;
+    private String category;
 }

@@ -1,51 +1,65 @@
+import axios from 'axios';
 import router from '@/router';
 
-const userModule = {
-  state: {
-    id: '',
-    passwd: '',
-    token: '',
-  },
-  mutations: {
-    login: function(state, payload) {
-      console.log(payload.id);
-      console.log(payload.email);
-      console.log(payload.token);
-      state.id = payload.id;
-      state.email = payload.email;
-      state.token = payload.token;
-    },
-    loginCheck: function(state) {
-      if (!state.token) {
-        router
-          .push({
-            name: 'Signin',
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
-    },
-  },
-};
-
 const state = {
-  items: [],
-  item: '',
+  users: [],
+  alert: false,
+  id: '',
+  accessToken: '',
+  userInfo: [],
 };
 
-const getters = {};
+const getters = {
+  isLogin(state) {
+    return state.accessToken == '' ? false : true;
+  },
+};
 
 const actions = {
-  async login({ commit }, user) {
-    const response = await axios.post('/sign/signin', user);
-    console.log(response.data);
-    commit('addNewItem', response.data);
+  async doLogin({ commit }, userInfo) {
+    let result = false;
+    let resultErr = null;
+    try {
+      let res = await axios.post('/sign/signin', userInfo);
+      if (res.data.success == true) {
+        console.log(userInfo);
+        console.log(res.data.data);
+        commit('setId', userInfo.id);
+        commit('setAccessToken', res.data.data);
+        axios.defaults.headers.common['X-AUTH-TOKEN'] = res.data.data;
+        result = true;
+      } else {
+        let err = new Error('401');
+        err.response = { data: { success: false, errormessage: '실패' } };
+        resultErr = err;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  doLogout({ commit }) {
+    commit('reset');
+    delete axios.defaults.headers.common['X-AUTH-TOKEN'];
+  },
+  async addUser({ commit }, users) {
+    const response = await axios.post('/sign/signup', users);
+    commit('addNewUser', response.data);
+    alert(response.data.msg);
+    router.push('/signin');
   },
 };
 
 const mutations = {
-  loginAdd: (state, item) => state.items.unshift(item),
+  addNewUser: (state, user) => state.users.unshift(user),
+  setId(state, id) {
+    state.id = id;
+  },
+  setAccessToken(state, accessToken) {
+    state.accessToken = accessToken;
+  },
+  reset(state) {
+    (state.id = ''), (state.accessToken = '');
+  },
 };
 
 export default {
@@ -53,5 +67,4 @@ export default {
   getters,
   actions,
   mutations,
-  userModule,
 };

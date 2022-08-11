@@ -94,31 +94,20 @@ export default {
 
   methods: {
     loginSubmit() {
-      let saveData = {};
-      saveData.id = this.id;
-      saveData.passwd = this.passwd;
-      console.log(this.id);
-      console.log(this.passwd);
-
-      try {
-        this.$axios
-          .post('/sign/signin', JSON.stringify(saveData), {
-            headers: {
-              'Content-Type': `application/json`,
-            },
-          })
-          .then(res => {
-            if (res.status == 200) {
-              console.log(res.data);
-              this.$store.commit('login', res.data);
-              this.$router.push('/');
-            }
-          });
-      } catch (error) {
-        console.log(error);
-        console.log(this.id);
-        console.log(this.passwd);
-      }
+      let saveData = {
+        id: this.userId,
+        passwd: this.passwd,
+      };
+      this.$store
+        .dispatch('doLogin', saveData)
+        .then(() => {
+          this.$router.push('/');
+          console.log(id, passwd);
+        })
+        .catch(err => {
+          this.errorMessage = err.response.data.errormessage;
+          console.log(id, passwd);
+        });
     },
   },
 };

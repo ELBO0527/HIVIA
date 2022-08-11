@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.ws.rs.HEAD;
+
 @RequiredArgsConstructor
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -29,10 +31,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/*/signup", "/*/signin", "/exception/**").permitAll()
-                .antMatchers("/item/**").permitAll()
+                .antMatchers("/*/signup", "/*/signin",  "/cart/**", "/exception/**").permitAll()
                 //.antMatchers("/item/**").hasRole("ADMIN")
-                .antMatchers("/*/item/*", "/review/**").hasRole("USER")
+                .antMatchers("/item/**", "/review/**").hasRole("USER")
                 .anyRequest().hasRole("USER")
                 .and()
                 .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler())
