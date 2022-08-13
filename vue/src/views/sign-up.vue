@@ -24,7 +24,27 @@
           <div class="pa-12" justify="center" align="center">
             <h2>정보를 입력해주세요</h2>
           </div>
-          <v-sheet height="120">
+        </v-col>
+        <v-col cols="12" md="12">
+          <v-sheet height="360">
+            <v-row>
+              <v-col class="pa-4" cols="3" md="5">
+                <v-sheet align="center" justify="center">
+                  <h4>이름</h4>
+                </v-sheet>
+              </v-col>
+              <v-col class="d-flex" cols="12" sm="3">
+                <v-row>
+                  <v-text-field
+                    label="사용될 이름을 입력하세요."
+                    solo
+                    dense
+                    v-model="usrname"
+                  ></v-text-field>
+                  <!--<v-list-item-subtitle>*답변 등록 시 연락받을 이메일 주소를 입력하세요.</v-list-item-subtitle>-->
+                </v-row>
+              </v-col>
+            </v-row>
             <v-row>
               <v-col class="pa-4" cols="3" md="5">
                 <v-sheet align="center" justify="center">
@@ -44,10 +64,6 @@
                 </v-row>
               </v-col>
             </v-row>
-          </v-sheet>
-        </v-col>
-        <v-col cols="12" md="12">
-          <v-sheet height="360">
             <v-row>
               <v-col class="pa-4" cols="3" md="5">
                 <v-sheet align="center" justify="center">
@@ -96,12 +112,31 @@
 
               <v-col class="d-flex" cols="12" sm="3">
                 <v-row>
-                  <v-text-field
-                    label="생년 월일을 입력하세요."
-                    solo
-                    dense
-                    v-model="birthday"
-                  ></v-text-field>
+                  <v-menu
+        v-model="menu2"
+        :close-on-content-click="false"
+        :nudge-right="40"
+        transition="scale-transition"
+        offset-y
+        min-width="auto"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+          label="생년 월일을 입력하세요."
+            solo
+            dense
+            v-model="birthday"
+            prepend-icon="mdi-calendar"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="date"
+          @input="menu2 = false"
+        ></v-date-picker>
+      </v-menu>
                 </v-row>
               </v-col>
             </v-row>
@@ -184,10 +219,11 @@ import { mapActions } from 'vuex';
 export default {
   data() {
       return {
+    username: "",
     email : "",
     username: "",
     passwd: "",
-    birthday: "",
+    birthday: date,
     mobile: "",
     balance: 0,
     alert : this.$store.alert
