@@ -34,10 +34,15 @@ public class SignController {
     }
 
     @PostMapping(value = "/signup")
-    public CommonResult signin(@RequestBody UserDTO userDTO){
+    public CommonResult signup(@RequestBody UserDTO userDTO){
         userService.saveUser(userDTO);
         return responseService.getSuccessResult();
     }
 
-
+    //어드민 생성용 임시 api
+    @PostMapping(value = "/adminsignup")
+    public CommonResult adminSignup(@RequestBody UserDTO userDTO){
+        userService.saveAdmin(userDTO);
+        return responseService.getSuccessResult();
+    }
 }

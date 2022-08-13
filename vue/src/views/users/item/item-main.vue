@@ -78,7 +78,7 @@
                   ><v-card
                     class="mx-auto my-4"
                     max-width="374"
-                    to="/itemDetail"
+                    to="/item/itemDetail"
                   >
                     <template slot="progress">
                       <v-progress-linear

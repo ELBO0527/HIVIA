@@ -33,6 +33,7 @@ public class ReviewController {
     public SingleResult postReview(@PathVariable String itemName, @RequestBody ReviewDTO reviewDTO){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String uid = authentication.getName();
+        System.out.println(uid);
         return responseService.getSingleResult(reviewService.writeReview(itemName,uid,reviewDTO));
     }
 

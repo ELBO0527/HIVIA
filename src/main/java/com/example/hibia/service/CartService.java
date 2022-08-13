@@ -25,20 +25,16 @@ public class CartService {
     private final UserService userService;
     private final ItemService itemService;
 
-    public List<Cart> findAllCartItems(String email,Long id){//장바구니 전체 조회
-        Cart cart = findCartItem(id);
-        User user = cart.getUser();
-        if(!email.equals(user.getEmail()))
-            new CNotOwnerException();
-        return cartRepository.findByUser(userService.findUser(email));
+    public List<Cart> findAllCartItems(String name){//장바구니 전체 조회
+        return cartRepository.findByUser(userService.findUser(name));
     }
 
     public Cart findCartItem(Long id){//단건조회
         return cartRepository.findById(id).orElseThrow(CResourceNotExistException::new);
     }
 
-    public Cart createCartItem(String name, String email, CartDTO cartDTO){//장바구니 추가
-        Item item = itemService.findItem(name);
+    public Cart addCartItem(String itemname, String email, CartDTO cartDTO){//장바구니 추가
+        Item item = itemService.findItem(itemname);
         Cart cart = new Cart(userService.findUser(email), item, cartDTO.getQuantity());
 
         return cartRepository.save(cart);

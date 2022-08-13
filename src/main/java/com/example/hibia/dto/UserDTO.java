@@ -1,11 +1,7 @@
 package com.example.hibia.dto;
 
-import com.example.hibia.domain.Cart;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Column;
-import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Data

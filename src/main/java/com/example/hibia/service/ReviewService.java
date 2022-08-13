@@ -33,8 +33,8 @@ public class ReviewService {
         return reviewRepository.findById(id).orElseThrow(CResourceNotExistException::new);
     }
 
-    public Review writeReview(String name, String email, ReviewDTO reviewDTO){
-        Item item = itemService.findItem(name);
+    public Review writeReview(String itemname, String email, ReviewDTO reviewDTO){
+        Item item = itemService.findItem(itemname);
         Review review = new Review(userRepository.findByUsername(email).orElseThrow(CUserNotFoundException::new),item,
                 reviewDTO.getAuthor(), reviewDTO.getContent(), reviewDTO.getStars());
 

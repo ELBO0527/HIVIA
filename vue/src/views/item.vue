@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- drawer 삽입 -->
-    <div style="position : fixed">
+    <div style="position : fixed" class="d-none d-lg-block">
       <v-navigation-drawer clipped permanent app>
         <v-list nav dense>
           <v-list-item>
@@ -39,7 +39,7 @@ export default {
     selectedItem: 1,
     items: [
       { text: "dashboard", icon: "mdi-clock", route: '/item' },
-      { text: "item", icon: "mdi-flag", route: "/itemdetail" },
+      { text: "item", icon: "mdi-flag", route: "/item/itemdetail" },
       { text: "user", icon: "mdi-flag", route: "/admin/user" },
       { text: "category", icon: "mdi-flag", route: "/admin/category" }
     ]
