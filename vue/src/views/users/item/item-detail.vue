@@ -20,6 +20,7 @@
         <v-btn
         class="ma-2"
         outlined
+        to="/cart"
         color="indigo">
         장바구니에 담기
         </v-btn>
@@ -27,7 +28,7 @@
         class="ma-2"
         outlined
         color="indigo">
-        장바구니에 담기
+        주문하기
         </v-btn>
         </v-col>
       </v-col>
@@ -37,7 +38,31 @@
         <hr>
       </v-col>
       <v-col>
+          <v-tabs
+      v-model="tab"
+      background-color="transparent"
+      grow
+    >
+      <v-tab
+        v-for="item in tabItems"
+        :key="item"
+      >
+        {{ item }}
+      </v-tab>
+    </v-tabs>
 
+    <v-tabs-items v-model="tab">
+      <v-tab-item
+        v-for="item in tabItems"
+        :key="item"
+      >
+        <v-card
+          flat
+        >
+          <v-card-text>{{ text }}</v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs-items>
       </v-col>
     </v-row>
     </div>
@@ -46,9 +71,13 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-
+        tab: null,
+        tabItems: [
+          '상품 리뷰', '상품 문의', '판매자 소개', '배송/환불/AS/교환',
+        ],
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     }
   }
 }

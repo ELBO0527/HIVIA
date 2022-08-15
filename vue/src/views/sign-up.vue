@@ -219,11 +219,10 @@ import { mapActions } from 'vuex';
 export default {
   data() {
       return {
-    username: "",
     email : "",
     username: "",
     passwd: "",
-    birthday: date,
+    birthday: "",
     mobile: "",
     balance: 0,
     alert : this.$store.alert
