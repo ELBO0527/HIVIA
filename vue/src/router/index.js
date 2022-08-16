@@ -71,7 +71,7 @@ const routes = [
     component: () => import("../views/item.vue"),
     children:[
       {
-      path: "/",
+      path: "",
       name: "item",
       component: () => import("../views/users/item/item-main.vue"),
     },
