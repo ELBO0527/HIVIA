@@ -102,11 +102,9 @@ export default {
           };
           this.$store.dispatch('doLogin', saveData).then(() => {
 	        this.$router.push("/");
-          alert("성공")
-          console.log(id, passwd);
         }).catch((err) => {
-          alert("실패")
 	        this.errorMessage = err.response.data.errormessage;
+          console.log(err);
           console.log(id, passwd);
         })
     },

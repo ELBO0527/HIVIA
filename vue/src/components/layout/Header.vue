@@ -64,10 +64,13 @@
       ></v-text-field>
       <v-spacer></v-spacer>
       <!-- 아이콘-->
-      <v-btn icon>
+      <v-btn icon to="/signin">
         <v-icon>mdi-heart</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
+      <v-avatar v-if="isLogin" to="/mypage">
+          <img src="https://i.pravatar.cc/64">
+      </v-avatar>
       <v-btn v-if="isLogin" class="ma-2" color="primary" outlined to="/signin" @click="Logout()">로그아웃</v-btn>
       <div v-else>
       <v-btn class="ma-2" color="primary" outlined to="/signin">로그인</v-btn>

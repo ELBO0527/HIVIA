@@ -9,7 +9,15 @@
       <v-col cols="12" md="6" sm="12">
         <v-card elevation="2">
           <v-cardtitle class="ma-4">주문자 정보</v-cardtitle>
-          <v-card-subtitle>asdfasd</v-card-subtitle>
+          <v-row>
+      <v-col cols="12">
+        <v-input
+          outlined
+        >
+          Default Slot
+        </v-input>
+      </v-col>
+    </v-row>
         </v-card>
       </v-col>
     </v-row>

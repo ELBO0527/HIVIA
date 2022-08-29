@@ -42,4 +42,8 @@ public class Cart extends CommonDateEntity {
         this.quantity = quantity;
         return this;
     }
+
+    public int soldItem(Item item){
+        return item.getStock() - quantity;
+    }
 }

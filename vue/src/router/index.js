@@ -98,6 +98,11 @@ const routes = [
     component: () => import("../views/help.vue")
   },
   {
+    path: "/mypage",
+    name: "mypage",
+    component: () => import("../views/users/mypage/mypage-main.vue")
+  },
+  {
     path: "/cart",
     name: "cart",
     component: () => import("../views/users/mypage/cart.vue")

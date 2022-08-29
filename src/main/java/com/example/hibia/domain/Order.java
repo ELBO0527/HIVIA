@@ -22,5 +22,38 @@ public class Order extends CommonDateEntity {
     @Column(name = "order_id")
     private Long id;
 
+    @Column
+    private String needs;
 
+    @Column(name = "item_price")
+    private int price;
+
+    @Column
+    private int deliveryfee;
+
+    @Column(name = "total_price")
+    private int totalprice;
+
+    @Column
+    private String name;
+
+    @Column
+    private String mobile;
+
+    @Column
+    private String addr;
+
+    @Column
+    private String addrdetail;
+
+
+    //장바구니
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    //구매자를 나타내기 위해 사용자
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

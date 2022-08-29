@@ -7,7 +7,6 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.5.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
-
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>hibia-v0.3</artifactId>
@@ -21,6 +20,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.9.0</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/net.rakugakibox.util/yaml-resource-bundle -->
 		<dependency>
 			<groupId>net.rakugakibox.util</groupId>
@@ -33,13 +37,13 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-data-jpa</artifactId>
     <version>2.5.4</version>
 </dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
