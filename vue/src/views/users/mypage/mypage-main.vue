@@ -21,7 +21,7 @@
                     >
                       <template v-slot:append-outer>
                         <v-btn color="primary"  >
-                          검색
+                          검새애애앵
                         </v-btn>
                       </template>
                     </v-text-field>

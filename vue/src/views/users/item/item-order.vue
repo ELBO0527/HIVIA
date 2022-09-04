@@ -1,46 +1,45 @@
 <template>
-  <v-container
-  class="pa-6 ma-2">
-    <div>
-    <v-row cols="6" md="6" sm="6">
-      <v-col cols="12" md="6" sm="12">
-        <h1>상품 주문 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
+  <v-container align="center" justify="center" class="ma-2">
+    <v-row cols="12" md="12" sm="12">
+      <v-col aligh="center" justify="center" cols="12" md="6" sm="12">
+        <span align-center>주문하기</span>
       </v-col>
-      <v-col cols="6" md="6" sm="6">
-        <h1>t2nter</h1>
-        <v-col cols="12" md="6" sm="6">
-        <v-btn
-        class="ma-2"
-        outlined
-        color="indigo">
-        장바구니에 담기
-        </v-btn>
-        <v-btn
-        class="ma-2"
-        outlined
-        color="indigo">
-        장바구니에 담기
-        </v-btn>
-        </v-col>
+    </v-row>
+    <v-row cols="12" md="6" sm="6">
+      <v-col cols="12" md="6" sm="12">
+        <v-card elevation="2">
+          <v-cardtitle class="ma-4">주문자 정보</v-cardtitle>
+          <v-row>
+      <v-col cols="12">
+        <v-input
+          outlined
+        >
+          Default Slot
+        </v-input>
+      </v-col>
+    </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row cols="12" md="6" sm="6">
+      <v-col cols="12" md="6" sm="12">
+        <v-card elevation="2">
+          <v-cardtitle class="ma-4">상품 정보</v-cardtitle>
+          <v-card-subtitle>asdfasd</v-card-subtitle>
+        </v-card>
       </v-col>
     </v-row>
     <v-row>
       <v-col col="12" md="12" sm="12">
         <hr>
+        <v-col col="12" md="12" sm="12">
+          <v-btn>결제하기</v-btn>
+        </v-col>
       </v-col>
       <v-col>
 
       </v-col>
     </v-row>
-    </div>
   </v-container>
 </template>
 

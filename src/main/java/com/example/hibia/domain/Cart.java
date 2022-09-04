@@ -32,7 +32,7 @@ public class Cart extends CommonDateEntity {
     @Column(name = "item_quantity")//장바구니에 담은 아이템 수량
     private int quantity;
 
-    public Cart(User user, Item item, int quantity){
+    public Cart(User user, Item item, int quantity){    
         this.user = user;
         this.item = item;
         this.quantity = quantity;
@@ -41,5 +41,9 @@ public class Cart extends CommonDateEntity {
     public Cart setCart(int quantity){
         this.quantity = quantity;
         return this;
+    }
+
+    public int soldItem(Item item){
+        return item.getStock() - quantity;
     }
 }

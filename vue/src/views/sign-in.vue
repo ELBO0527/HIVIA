@@ -94,6 +94,7 @@ export default {
 
   methods: {
     loginSubmit() {
+<<<<<<< HEAD
       let saveData = {
         id: this.userId,
         passwd: this.passwd,
@@ -102,6 +103,17 @@ export default {
         .dispatch('doLogin', saveData)
         .then(() => {
           this.$router.push('/');
+=======
+          let saveData = { 
+            id: this.userId, 
+            passwd: this.passwd 
+          };
+          this.$store.dispatch('doLogin', saveData).then(() => {
+	        this.$router.push("/");
+        }).catch((err) => {
+	        this.errorMessage = err.response.data.errormessage;
+          console.log(err);
+>>>>>>> 04fee5a6ff01f3142ecb354b999eb509a1ec39e4
           console.log(id, passwd);
         })
         .catch(err => {

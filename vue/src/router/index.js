@@ -71,7 +71,7 @@ const routes = [
     component: () => import("../views/item.vue"),
     children:[
       {
-      path: "/",
+      path: "",
       name: "item",
       component: () => import("../views/users/item/item-main.vue"),
     },
@@ -96,6 +96,11 @@ const routes = [
     path: "/help",
     name: "Help",
     component: () => import("../views/help.vue")
+  },
+  {
+    path: "/mypage",
+    name: "mypage",
+    component: () => import("../views/users/mypage/mypage-main.vue")
   },
   {
     path: "/cart",

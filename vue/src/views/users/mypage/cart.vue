@@ -40,7 +40,6 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-card-actions>
       <v-btn
         to="/itemOrder"
         outlined
@@ -49,7 +48,6 @@
       >
         주문하기
       </v-btn>
-    </v-card-actions>
   </v-card>
       </v-col>
     </v-row>

@@ -67,7 +67,7 @@
             <v-divider class="ma-2"></v-divider>
             <!-- 상품 목록 -->
             <v-container>
-              <h2>전체</h2>
+              <h2>전체에에잉</h2>
               <v-list-item-subtitle>상세분류</v-list-item-subtitle>
               <v-row>
                 <v-col
@@ -78,7 +78,7 @@
                   ><v-card
                     class="mx-auto my-4"
                     max-width="374"
-                    to="/item/itemDetail"
+                    to="/item/itemdetail"
                   >
                     <template slot="progress">
                       <v-progress-linear

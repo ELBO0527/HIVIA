@@ -20,8 +20,11 @@
           <h2>상품 소개</h2>
           <v-col cols="12" md="6" sm="6">
             <v-row cols="12" md="12" sm="12">
-              <v-span class="pt-8">수량</v-span>
+              <v-col cols="6" md="6" sm="6">
+                <v-span class="px">사이즈</v-span>
+              </v-col>
               <v-col cols="12" md="6" sm="6">
+<<<<<<< HEAD
                 <v-text-field
                   v-model="quantity"
                   hide-details
@@ -39,12 +42,39 @@
                   type="number"
                   max-width="4"
                 />
+=======
+                <v-combobox v-model="size" :items="items" outlined dense hide-details></v-combobox>
+              </v-col>
+            </v-row>
+            <v-row cols="12" md="12" sm="12">
+              <v-col cols="6" md="6" sm="6">
+                <v-span class="pt-8">색상</v-span>
+              </v-col>
+              <v-col cols="6" md="6" sm="6">
+                <v-span class="pt-8">파랑</v-span>
+              </v-col>
+            </v-row>
+            <v-row cols="12" md="12" sm="12">
+               <v-col cols="6" md="6" sm="6">
+                <v-span class="pt-8">가격</v-span>
+              </v-col>
+               <v-col cols="6" md="6" sm="6">
+                <v-span class="pt-8">3000원</v-span>
+              </v-col>
+            </v-row>
+            <v-row cols="12" md="12" sm="12">
+              <v-col cols="6" md="6" sm="6">
+                <v-span class="pt-8">수량</v-span>
+              </v-col>
+              <v-col cols="6" md="6" sm="6">
+                <v-text-field v-model="quantity" hide-details type="number" max-width="4" />
+>>>>>>> 04fee5a6ff01f3142ecb354b999eb509a1ec39e4
               </v-col>
             </v-row>
             <v-btn class="ma-2 mt-lg-12" outlined to="/cart" color="indigo">
               장바구니에 담기
             </v-btn>
-            <v-btn class="ma-2" outlined color="indigo">
+            <v-btn class="ma-2" outlined to="/itemOrder" color="indigo">
               주문하기
             </v-btn>
           </v-col>
@@ -79,6 +109,7 @@ export default {
   data() {
     return {
       itemPics: [
+<<<<<<< HEAD
         {
           src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
         },
@@ -104,3 +135,38 @@ export default {
   },
 };
 </script>
+=======
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+          },
+        ],
+      quantity : "1",
+       items: [
+          '90',
+          '95',
+          '100',
+          '105',
+        ],
+        tab: null,
+        tabItems: [
+          '상품 리뷰', '상품 문의', '판매자 소개', '배송/환불/AS/교환',
+        ],
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        
+    }
+  } ,
+//  methods: {
+//    ...mapActions(["fetchOneItem"]),
+//  }
+}
+</script>
+>>>>>>> 04fee5a6ff01f3142ecb354b999eb509a1ec39e4
