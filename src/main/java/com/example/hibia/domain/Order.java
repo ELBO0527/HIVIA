@@ -25,4 +25,16 @@ public class Order extends CommonDateEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Column(name = "item_price")
+    private int iprice;
+
+    @Column(name = "total_price")
+    private int tprice;
+
+    @Column
+    private String require;
+
+    @Column
+    private Address address;
 }

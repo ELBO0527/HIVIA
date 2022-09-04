@@ -83,9 +83,24 @@ const routes = [
     ]
   },
   {
+    path : "/itemOrder",
+    name : "ItemOrder",
+    component: () => import("../views/users/item/item-order.vue"),
+  },
+  {
+    path : "/itemOrderConfirmed",
+    name : "ItemOrderConfirmed",
+    component: () => import("../views/users/item/item-orderComfirmed.vue"),
+  },
+  {
     path: "/help",
     name: "Help",
     component: () => import("../views/help.vue")
+  },
+  {
+    path: "/cart",
+    name: "cart",
+    component: () => import("../views/users/mypage/cart.vue")
   },
   {
     path: "/*",
