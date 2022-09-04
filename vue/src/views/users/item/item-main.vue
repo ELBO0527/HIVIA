@@ -1,13 +1,13 @@
 <template>
   <div class="pt-3">
     <v-row>
-      <v-col cols="24" md="8">
+      <v-col cols="12" md="12">
         <v-row class="ma-n3">
           <!-- 첫 줄 두번째 구분 -->
-          <v-col cols="12" md="8"> </v-col>
+          <v-col cols="12" md="12"> </v-col>
 
           <!-- 첫줄 세번째 구분 -->
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="12">
             <v-form>
               <v-container>
                 <v-row>
@@ -32,7 +32,7 @@
           </v-col>
 
           <!-- 카테고리슬라이더 -->
-          <v-col cols="24">
+          <v-col cols="12">
             <v-sheet class="mx-auto" max-width="1000">
               <v-slide-group multiple show-arrows>
                 <v-slide-item
@@ -53,13 +53,12 @@
                 </v-slide-item>
               </v-slide-group>
             </v-sheet>
-            <v-col class="d-flex" cols="12" md="4">
+            <v-col class="d-flex" cols="12" md="12">
               <v-container>
                 <v-sheet
                   color="grey lighten-3"
                   class="d-flex"
                   height="300"
-                  width="900"
                 >
                 </v-sheet>
               </v-container>

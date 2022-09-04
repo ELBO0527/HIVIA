@@ -1,43 +1,160 @@
 <template>
-  <v-container align="center" justify="center" class="ma-2">
-    <v-row cols="12" md="12" sm="12">
-      <v-col aligh="center" justify="center" cols="12" md="6" sm="12">
+  <v-container class="ma-2">
+    <v-row cols="12" md="12" sm="6">
+      <v-col cols="12" md="12" sm="6">
         <span align-center>주문하기</span>
       </v-col>
     </v-row>
-    <v-row cols="12" md="6" sm="6">
-      <v-col cols="12" md="6" sm="12">
-        <v-card elevation="2">
+    <v-row cols="12" md="12" sm="6">
+      <v-col cols="12" md="12" sm="6">
+        <v-card class="pa-3">
           <v-cardtitle class="ma-4">주문자 정보</v-cardtitle>
-          <v-row>
-      <v-col cols="12">
-        <v-input
-          outlined
+          <v-row class="ma-4">
+        <v-col
+          cols="12"
+          sm="12"
         >
-          Default Slot
-        </v-input>
-      </v-col>
-    </v-row>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row cols="12" md="6" sm="6">
-      <v-col cols="12" md="6" sm="12">
-        <v-card elevation="2">
-          <v-cardtitle class="ma-4">상품 정보</v-cardtitle>
-          <v-card-subtitle>asdfasd</v-card-subtitle>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col col="12" md="12" sm="12">
-        <hr>
-        <v-col col="12" md="12" sm="12">
-          <v-btn>결제하기</v-btn>
+          <v-text-field
+            v-model="title"
+            :rules="rules"
+            counter="25"
+            hint="This field uses counter prop"
+            label="주문자 이름"
+          ></v-text-field>
         </v-col>
-      </v-col>
-      <v-col>
 
+        <v-col
+          cols="12"
+          sm="12"
+        >
+          <v-text-field
+            v-model="description"
+            :rules="rules"
+            counter
+            maxlength="25"
+            hint="This field uses maxlength attribute"
+            label="주소"
+          ></v-text-field>
+        </v-col>
+        <v-col
+          cols="12"
+          sm="12"
+        >
+          <v-text-field
+            v-model="title"
+            :rules="rules"
+            counter="25"
+            hint="This field uses counter prop"
+            label="상세주소"
+          ></v-text-field>
+        </v-col>
+
+        <v-col
+          cols="12"
+          sm="12"
+        >
+          <v-text-field
+            v-model="description"
+            :rules="rules"
+            counter
+            maxlength="25"
+            hint="This field uses maxlength attribute"
+            label="요구사항"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+        </v-card>
+
+      </v-col>
+    </v-row>
+    <v-row cols="12" md="12" sm="6">
+      <v-col cols="12" md="12" sm="6">        
+        <v-card class="pa-3">
+          <v-cardtitle class="ma-4">상품 정보</v-cardtitle>
+          <v-row class="ma-4">
+        <v-col
+          cols="12"
+          sm="12"
+        >
+          <v-text-field
+            v-model="title"
+            :rules="rules"
+            counter="25"
+            hint="This field uses counter prop"
+            label="Regular"
+          ></v-text-field>
+        </v-col>
+
+        <v-col
+          cols="12"
+          sm="12"
+        >
+          <v-text-field
+            v-model="description"
+            :rules="rules"
+            counter
+            maxlength="25"
+            hint="This field uses maxlength attribute"
+            label="Limit exceeded"
+          ></v-text-field>
+        </v-col>
+        <v-col
+          cols="12"
+          sm="12"
+        >
+          <v-text-field
+            v-model="title"
+            :rules="rules"
+            counter="25"
+            hint="This field uses counter prop"
+            label="Regular"
+          ></v-text-field>
+        </v-col>
+
+        <v-col
+          cols="12"
+          sm="12"
+        >
+          <v-text-field
+            v-model="description"
+            :rules="rules"
+            counter
+            maxlength="25"
+            hint="This field uses maxlength attribute"
+            label="Limit exceeded"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row cols="12" md="12" sm="6">
+      <v-col cols="12" md="12" sm="6">        
+        <v-card class="pa-3">
+          <v-cardtitle class="ma-4">결제하기</v-cardtitle>
+            <v-row class="pa-3">
+              <v-col>
+                <h2>상품 총 가격</h2>
+              </v-col>
+            </v-row>
+            <v-row class="pa-3">
+              <v-col>
+                <h2>배달비</h2>
+              </v-col>
+            </v-row>
+          <v-divider></v-divider>
+          <v-row class="mt-2 pa-3">
+            <v-col>
+              <h2>총 주문 금액</h2>
+            </v-col>
+            <v-col>
+              {{235}}원
+            </v-col>
+          </v-row>
+          <v-row class="mt-3 pa-6" cols="12" md="12" sm="6">
+            <v-btn color="primary" to="/itemOrderConfirmed">결제하기</v-btn>
+         </v-row>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>

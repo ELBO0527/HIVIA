@@ -158,20 +158,6 @@ export default {
 
   methods: {
     ...mapActions(["updateItem","fetchOneItem"]),
-      // changeItem() {
-      // this.updateItem(
-      //   this.updateitem.id,
-      //   {
-      //     name : this.name, 
-      //     price : this.price,
-      //     brand : this.brand,
-      //     size : this.size,
-      //     color : this.color,
-      //     country : this.country,
-      //     stars : this.stars,
-      //     stock : this.stock}
-      // )
-      // },
           updateProduct(productId) {
     const getData = JSON.parse(localStorage.getItem("vuex"));
     const token = getData.userModule.accessToken;
@@ -205,7 +191,6 @@ export default {
     computed:{
       ...mapGetters(["updateitem"]),
       ...mapState([
-          
       ])
     },
 };

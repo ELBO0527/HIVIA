@@ -1,45 +1,43 @@
 <template>
   <v-container
   class="pa-6 ma-2">
-    <div>
-    <v-row cols="6" md="6" sm="6">
-      <v-col cols="12" md="6" sm="12">
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-        <h1>상품 상세 페이지</h1>
-      </v-col>
-      <v-col cols="6" md="6" sm="6">
-        <h1>t2nter</h1>
-        <v-col cols="12" md="6" sm="6">
-        <v-btn
-        class="ma-2"
-        outlined
-        color="indigo">
-        장바구니에 담기
-        </v-btn>
-        <v-btn
-        class="ma-2"
-        outlined
-        color="indigo">
-        장바구니에 담기
-        </v-btn>
-        </v-col>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col col="12" md="12" sm="12">
-        <hr>
-      </v-col>
-      <v-col>
+    <div align="center" justify-center>
+      <v-card
+    class="mx-auto"
+    max-width="344"
+    outlined
+  >
+    <v-list-item three-line>
+      <v-list-item-content>
+        <div class="text-overline mb-4">
+          주문 완료
+        </div>
+        <v-list-item-title class="text-h5 mb-1">
+          결제가 완료되었습니다!
+        </v-list-item-title>
+        <v-list-item-subtitle>안전하게 배송해 드리겠습니다.</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
 
-      </v-col>
-    </v-row>
+    <v-row class="pa-4" align="center" justify="center">
+    <v-card-actions>
+      <v-btn
+        outlined
+        primary
+        text
+      >
+        주문 내역 확인
+      </v-btn>
+      <v-btn
+        outlined
+        text
+        to="/"
+      >
+        홈으로
+      </v-btn>
+    </v-card-actions>
+  </v-row>
+  </v-card>
     </div>
   </v-container>
 </template>

@@ -88,7 +88,7 @@ export default {
   return{
     attrs: "",
     on: "",
-    items: []
+    items: [],
     }
   },
   methods : {
