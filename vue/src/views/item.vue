@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mapActions,mapGetters} from 'vuex';
 export default {
   name: "App",
   data() {
@@ -44,6 +45,9 @@ export default {
       { text: "category", icon: "mdi-flag", route: "/admin/category" }
     ]
     }
-  }
+  },
+  methods: {
+    ...mapActions(["fetchOneItem"])}
+    ,computed: mapGetters(["itemsList"]),
 };
 </script>

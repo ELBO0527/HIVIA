@@ -78,6 +78,7 @@
                     class="mx-auto my-4"
                     max-width="374"
                     to="/item/itemdetail"
+                    @click="fetchOneItem(item2.id)"
                   >
                     <template slot="progress">
                       <v-progress-linear
@@ -151,6 +152,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import axios from "axios";
 
 export default {
@@ -162,8 +164,8 @@ export default {
     items2: [],
     }
   },
-
   methods: {
+    ...mapActions(["fetchOneItem"]),
    fetchItem() {
       axios
         .get("/item/user")
