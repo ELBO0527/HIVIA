@@ -22,6 +22,23 @@ public class Order extends CommonDateEntity {
     @Column(name = "order_id")
     private Long id;
 
+<<<<<<< HEAD
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "item_price")
+    private int iprice;
+
+    @Column(name = "total_price")
+    private int tprice;
+
+    @Column
+    private String require;
+
+    @Column
+    private Address address;
+=======
     @Column
     private String needs;
 
@@ -55,4 +72,5 @@ public class Order extends CommonDateEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+>>>>>>> 04fee5a6ff01f3142ecb354b999eb509a1ec39e4
 }

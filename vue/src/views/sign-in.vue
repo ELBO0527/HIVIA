@@ -74,9 +74,7 @@
         <v-row>
           <v-col cols="12" md="12">
             <div class="pa-12" justify="center" align="center">
-              <v-btn 
-              color="primary"
-              @click="loginSubmit()"> 로그인</v-btn>
+              <v-btn color="primary" @click="loginSubmit()"> 로그인</v-btn>
             </div>
           </v-col>
         </v-row>
@@ -87,15 +85,25 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      userId : "",
-      passwd : ""
+      id: '',
+      passwd: '',
     };
   },
 
   methods: {
     loginSubmit() {
+<<<<<<< HEAD
+      let saveData = {
+        id: this.userId,
+        passwd: this.passwd,
+      };
+      this.$store
+        .dispatch('doLogin', saveData)
+        .then(() => {
+          this.$router.push('/');
+=======
           let saveData = { 
             id: this.userId, 
             passwd: this.passwd 
@@ -105,10 +113,14 @@ export default {
         }).catch((err) => {
 	        this.errorMessage = err.response.data.errormessage;
           console.log(err);
+>>>>>>> 04fee5a6ff01f3142ecb354b999eb509a1ec39e4
           console.log(id, passwd);
         })
+        .catch(err => {
+          this.errorMessage = err.response.data.errormessage;
+          console.log(id, passwd);
+        });
     },
   },
 };
-
 </script>
