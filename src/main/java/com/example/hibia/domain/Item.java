@@ -61,4 +61,9 @@ public class Item extends CommonDateEntity {
         this.prodDate = prodDate;
         return this;
     }
+
+    public Item setStock(int stock){
+        this.stock = stock;
+        return this;
+    }
 }
