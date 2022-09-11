@@ -33,10 +33,20 @@ public class OrderService {
         return orderRepository.findById(id).orElseThrow(CResourceNotExistException::new);
     }
 
-    public Order addOrder(String itemname, String email, OrderDTO orderDTO,CartDTO cartDTO) {//주문하기
+    public Order addOrder(long id, String uid, OrderDTO orderDTO,CartDTO cartDTO) {//주문하기
+
         Cart cart = cartService.findCartItem(cartDTO.getId());
-        Order order = new Order();
-        return null;
+        Order Order = findOrderItem(id);
+
+        User user = Order.getUser();
+        if (!uid.equals(user.getEmail())) {
+            new CUserNotFoundException();
+        }
+
+        Order order = new Order(orderDTO.getId(),orderDTO.getNeeds(),orderDTO.getPrice(),orderDTO.getPrice()
+        ,orderDTO.getTotalprice(),user.getUsername(),user.getMobile(),user.getAddr(),user.getAddr(), cart, user);
+
+        return orderRepository.save(order);
     }
     
     public Order returnOrder(Long id, String uid, OrderDTO OrderDTO) {//주문 환불

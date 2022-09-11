@@ -1,15 +1,12 @@
 package com.example.hibia.service;
 
-import com.example.hibia.advice.exception.CNotOwnerException;
 import com.example.hibia.advice.exception.CResourceNotExistException;
 import com.example.hibia.advice.exception.CUserNotFoundException;
 import com.example.hibia.domain.Cart;
 import com.example.hibia.domain.Item;
-import com.example.hibia.domain.Review;
 import com.example.hibia.domain.User;
 import com.example.hibia.dto.CartDTO;
 import com.example.hibia.repository.CartRepository;
-import com.example.hibia.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,19 +31,19 @@ public class CartService {
     }
 
     public Cart addCartItem(String itemname, String email, CartDTO cartDTO){//장바구니 추가
-        Item item = itemService.findItem(itemname);
-        Cart cart = new Cart(userService.findUser(email), item, cartDTO.getQuantity());
 
-        return cartRepository.save(cart);
+        Item item = itemService.findItem(itemname);
+        Cart cart1 = new Cart(userService.findUser(email), item, cartDTO.getQuantity());
+
+        return cartRepository.save(cart1);
     }
 
-    public Cart updateCartItem(Long id, String uid, CartDTO cartDTO){//장바구니 수정
+    public Cart updateCartItem(long id, String uid, CartDTO cartDTO){//장바구니 수정
         Cart cart = findCartItem(id);
         User user = cart.getUser();
         if (!uid.equals(user.getEmail())){
             new CUserNotFoundException();
         }
-
         cart.setCart(cartDTO.getQuantity());
         return cart;
     }

@@ -1,5 +1,6 @@
 package com.example.hibia.controller;
 
+import com.example.hibia.advice.exception.CCartItemExistException;
 import com.example.hibia.domain.Cart;
 import com.example.hibia.dto.CartDTO;
 import com.example.hibia.model.response.CommonResult;
@@ -14,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Path;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +26,7 @@ public class CartController {
     private final CartService cartService;
     private final ResponseService responseService;
 
+    
     @GetMapping("/")
     public ListResult<Cart> findCartList(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -42,6 +45,12 @@ public class CartController {
     public SingleResult<Cart> addCartItem(@PathVariable String itemname, @RequestBody CartDTO cartDTO){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String uid = authentication.getName();
+
+        Optional<Cart> cart= cartService.findAllCartItems(uid);
+        if(cart.isPresent()){
+            new CCartItemExistException();
+        }
+
         return responseService.getSingleResult(cartService.addCartItem(itemname, uid, cartDTO));
     }
 

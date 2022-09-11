@@ -7,13 +7,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Getter
-@RequiredArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id") // 양뱡향 무한참조
 @Table(name = "orders")
@@ -59,16 +60,8 @@ public class Order extends CommonDateEntity {
     private User user;
 
     //총 가격 구하기
-    public int sum(int price, int deliveryfee, int totalprice){
+    public int sumTotal(int price, int deliveryfee){
         return totalprice = deliveryfee + price;
     }
 
-    /*
-    * 수량 제거
-    */
-    public int stockRemove(){
-        Item item = new Item();
-        item.setStock(item.getStock() - cart.getQuantity());
-        return 1;
-    }
 }

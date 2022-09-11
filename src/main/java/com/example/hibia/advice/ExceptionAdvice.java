@@ -61,6 +61,12 @@ public class ExceptionAdvice {
         return responseService.getFailResult(Integer.valueOf(getMessage("resourceNotExist.code")), getMessage("resourceNotExist.msg"));
     }
 
+    @ExceptionHandler(CCartItemExistException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public CommonResult cartItemExistException(HttpServletRequest request, CCartItemExistException e){
+        return responseService.getFailResult(Integer.valueOf(getMessage("cartItemAlreadyExist.code")),getMessage("cartItemAlreadyExist.msg"));
+    }
+
     private String getMessage(String code){
         return getMessage(code, null);
     }

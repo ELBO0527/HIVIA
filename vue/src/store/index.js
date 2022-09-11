@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import ItemsModule from '../store/module/items-module'
 import userModule from '@/store/module/users-module.js'
 import createPersistedState from "vuex-persistedstate"
+import CartModule from './module/cart-module';
 
 Vue.use(Vuex)
 
@@ -29,7 +30,8 @@ export default new Vuex.Store({
   },
   modules: {
    a: ItemsModule,
-   userModule: userModule
+   userModule: userModule,
+   b: CartModule
   },
   plugins: [createPersistedState()]
 })

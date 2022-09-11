@@ -133,7 +133,9 @@
                       <div>
                         상품소개.
                       </div>
-                      <v-btn color="primary" class="mt-2" to="/itemDetail">
+                      <v-btn color="primary" class="mt-2"   
+                      to="/item/itemdetail"
+                      @click="fetchOneItem(item2.id)">
                         상세보기</v-btn
                       >
                     </v-card-text>
