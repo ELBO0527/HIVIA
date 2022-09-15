@@ -6,6 +6,7 @@ import com.example.hibia.dto.CartDTO;
 import com.example.hibia.model.response.CommonResult;
 import com.example.hibia.model.response.ListResult;
 import com.example.hibia.model.response.SingleResult;
+import com.example.hibia.repository.CartRepository;
 import com.example.hibia.service.CartService;
 import com.example.hibia.service.ResponseService;
 import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader;
@@ -24,6 +25,7 @@ import java.util.Optional;
 public class CartController {
 
     private final CartService cartService;
+    private final CartRepository cartRepository;
     private final ResponseService responseService;
 
     
@@ -45,11 +47,6 @@ public class CartController {
     public SingleResult<Cart> addCartItem(@PathVariable String itemname, @RequestBody CartDTO cartDTO){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String uid = authentication.getName();
-
-        Optional<Cart> cart= cartService.findAllCartItems(uid);
-        if(cart.isPresent()){
-            new CCartItemExistException();
-        }
 
         return responseService.getSingleResult(cartService.addCartItem(itemname, uid, cartDTO));
     }

@@ -1,5 +1,6 @@
 package com.example.hibia.service;
 
+import com.example.hibia.advice.exception.CCartItemExistException;
 import com.example.hibia.advice.exception.CResourceNotExistException;
 import com.example.hibia.advice.exception.CUserNotFoundException;
 import com.example.hibia.domain.Cart;
@@ -33,9 +34,10 @@ public class CartService {
     public Cart addCartItem(String itemname, String email, CartDTO cartDTO){//장바구니 추가
 
         Item item = itemService.findItem(itemname);
-        Cart cart1 = new Cart(userService.findUser(email), item, cartDTO.getQuantity());
-
-        return cartRepository.save(cart1);
+        Cart cart = new Cart(userService.findUser(email), item, cartDTO.getQuantity());
+        
+        User user = cart.getUser();
+        return cartRepository.save(cart);
     }
 
     public Cart updateCartItem(long id, String uid, CartDTO cartDTO){//장바구니 수정
