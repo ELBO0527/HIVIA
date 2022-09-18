@@ -68,9 +68,13 @@
         <v-icon>mdi-heart</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <v-avatar v-if="isLogin" to="/mypage">
+      <v-avatar class="mx-2" v-if="isLogin">
           <img src="https://i.pravatar.cc/64">
       </v-avatar>
+
+      <v-btn text to="/mypage">
+        <span to="/mypage">{{this.$store.state.userModule.id}}님</span>
+      </v-btn>
       <v-btn v-if="isLogin" class="ma-2" color="primary" outlined to="/signin" @click="Logout()">로그아웃</v-btn>
       <div v-else>
       <v-btn class="ma-2" color="primary" outlined to="/signin">로그인</v-btn>

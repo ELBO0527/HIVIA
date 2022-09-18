@@ -9,12 +9,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id") // 양뱡향 무한참조
 @Table(name = "orders")
@@ -58,10 +59,4 @@ public class Order extends CommonDateEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    //총 가격 구하기
-    public int sumTotal(int price, int deliveryfee){
-        return totalprice = deliveryfee + price;
-    }
-
 }

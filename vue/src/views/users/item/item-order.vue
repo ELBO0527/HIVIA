@@ -69,78 +69,38 @@
     </v-row>
     <v-row cols="12" md="12" sm="6">
       <v-col cols="12" md="12" sm="6">        
-        <v-card class="pa-3">
-          <v-cardtitle class="ma-4">상품 정보</v-cardtitle>
-          <v-row class="ma-4">
-        <v-col
-          cols="12"
-          sm="12"
-        >
-          <v-text-field
-            v-model="title"
-            :rules="rules"
-            counter="25"
-            hint="This field uses counter prop"
-            label="Regular"
-          ></v-text-field>
-        </v-col>
-
-        <v-col
-          cols="12"
-          sm="12"
-        >
-          <v-text-field
-            v-model="description"
-            :rules="rules"
-            counter
-            maxlength="25"
-            hint="This field uses maxlength attribute"
-            label="Limit exceeded"
-          ></v-text-field>
-        </v-col>
-        <v-col
-          cols="12"
-          sm="12"
-        >
-          <v-text-field
-            v-model="title"
-            :rules="rules"
-            counter="25"
-            hint="This field uses counter prop"
-            label="Regular"
-          ></v-text-field>
-        </v-col>
-
-        <v-col
-          cols="12"
-          sm="12"
-        >
-          <v-text-field
-            v-model="description"
-            :rules="rules"
-            counter
-            maxlength="25"
-            hint="This field uses maxlength attribute"
-            label="Limit exceeded"
-          ></v-text-field>
-        </v-col>
-      </v-row>
-        </v-card>
+        <v-card>
+      <v-card-title>
+        <h1>상품 정보</h1>
+      </v-card-title>
+      <v-data-table
+      :headers="headers"
+      :items="cartList"
+      class="elevation-1"
+    >
+    </v-data-table>
+  </v-card>
       </v-col>
     </v-row>
     <v-row cols="12" md="12" sm="6">
       <v-col cols="12" md="12" sm="6">        
         <v-card class="pa-3">
-          <v-cardtitle class="ma-4">결제하기</v-cardtitle>
+          <v-card-title class="ma-4">결제하기</v-card-title>
             <v-row class="pa-3">
               <v-col>
                 <h2>상품 총 가격</h2>
               </v-col>
+              <v-col>
+              {{this.$store.state.b.itemPrice}}원
+            </v-col>
             </v-row>
             <v-row class="pa-3">
               <v-col>
                 <h2>배달비</h2>
               </v-col>
+              <v-col>
+              {{this.deliveryFee}}원
+            </v-col>
             </v-row>
           <v-divider></v-divider>
           <v-row class="mt-2 pa-3">
@@ -148,7 +108,7 @@
               <h2>총 주문 금액</h2>
             </v-col>
             <v-col>
-              {{235}}원
+              {{this.totalPrice}}원
             </v-col>
           </v-row>
           <v-row class="mt-3 pa-6" cols="12" md="12" sm="6">
@@ -161,11 +121,36 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   data(){
     return {
-
-    }
+      headers: [
+        {
+          text: '이름',
+          align: 'start',
+          sortable: false,
+          value: 'item.name',
+        },
+        { text: '색상', value: 'item.color' },
+        { text: '가격', value: 'item.price' },
+        { text: '사이즈', value: 'item.size' },
+        { text: '수량', value: 'quantity' },
+      ],
+      itemPrice : this.$store.state.b.itemPrice,
+      deliveryFee: 3000,
+      totalPrice : 0,
+      }
+  },
+  methods: {
+    ...mapActions(['fetchCart']),
+  },
+  computed: 
+  mapGetters(['cartList']),  
+  mounted() {
+    this.fetchCart();
+    this.totalPrice = this.itemPrice + this.deliveryFee;
   }
 }
 </script>

@@ -122,7 +122,7 @@ export default {
           '상품 리뷰', '상품 문의', '판매자 소개', '배송/환불/AS/교환',
         ],
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        name: this.$store.state.a.item.name,
+      name: this.$store.state.a.item.name,
       price: this.$store.state.a.item.price,
       brand: this.$store.state.a.item.brand,
       stock: this.$store.state.a.item.stock,

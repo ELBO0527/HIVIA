@@ -2,45 +2,19 @@
   <v-container
   class="pa-6 ma-2" align="center" justify-center>
     <div>
-    <v-row cols="12" md="12" sm="6">
-      <v-col cols="12" md="12" sm="6" align="center" justify="center">
-    <v-card
-    class="mx-auto"
-    outlined
-  >
-    <v-list-item three-line>
-      <v-list-item-content>
-        <div class="text-overline mb-4">
-          장바구니
-        </div>
-        <v-simple-table>
-        <thead>
-        <tr>
-          <th class="text-left">
-            번호
-          </th>
-          <th class="text-left">
-            Name
-          </th>
-          <th class="text-left">
-            Calories
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="item in desserts"
-          :key="item.name"
-        > <td>{{ item.name }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.calories }}</td>
-        </tr>
-      </tbody>
-      </v-simple-table>
-      </v-list-item-content>
-    </v-list-item>
-
-      <v-btn
+      <v-card>
+      <v-card-title>
+        <h1>장바구니</h1>
+      </v-card-title>
+      <v-data-table
+      :headers="headers"
+      :items="cartList"
+      class="elevation-1"
+      single-select
+    >
+    </v-data-table>
+    <h3>총 주문 가격 : {{this.itemPrice}} 원</h3>
+    <v-btn
         to="/itemOrder"
         outlined
         rounded
@@ -49,17 +23,45 @@
         주문하기
       </v-btn>
   </v-card>
-      </v-col>
-    </v-row>
-    </div>
+  </div>
   </v-container>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
+      headers: [
+        {
+          text: '이름',
+          align: 'start',
+          sortable: false,
+          value: 'item.name',
+        },
+        { text: '색상', value: 'item.color' },
+        { text: '가격', value: 'item.price' },
+        { text: '사이즈', value: 'item.size' },
+        { text: '수량', value: 'quantity' },
+        { text: '삭제', value: 'quantity' },
+      ],
+      itemPrice : 0
     }
-  }
+  },
+  methods: {
+    ...mapActions(['fetchCart']),
+  },
+  computed: 
+  mapGetters(['cartList']),
+  mounted() {
+    this.fetchCart();
+    //장바구니 가격 총 가격
+    for(var i =0; i<this.$store.state.b.items.length; i++) {
+      this.itemPrice += this.$store.state.b.items[i].item.price * this.$store.state.b.items[i].quantity;
+      this.$store.state.b.itemPrice = this.itemPrice;
+    }
+    console.log(this.$store.state.b.itemPrice)
+  },
 }
 </script>

@@ -4,10 +4,12 @@ import router from '@/router';
 const state = {
   items: [],
   item: '',
+  itemPrice : 0,
+  totalPrice: 0
 };
 
 const getters = {
-  itemsList: state => state.items,
+  cartList: state => state.items,
   updateitem: state => state.item,
 };
 

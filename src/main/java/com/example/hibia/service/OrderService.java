@@ -3,12 +3,10 @@ package com.example.hibia.service;
 import com.example.hibia.advice.exception.CResourceNotExistException;
 import com.example.hibia.advice.exception.CUserNotFoundException;
 import com.example.hibia.domain.Cart;
-import com.example.hibia.domain.Order;
 import com.example.hibia.domain.Item;
+import com.example.hibia.domain.Order;
 import com.example.hibia.domain.User;
-import com.example.hibia.dto.CartDTO;
 import com.example.hibia.dto.OrderDTO;
-import com.example.hibia.repository.OrderRepository;
 import com.example.hibia.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,6 +22,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final UserService userService;
     private final CartService cartService;
+    private final ItemService itemService;
 
     public List<Order> findAllOrderItems(String name) {//주문내역 전체 조회
         return orderRepository.findByUser(userService.findUser(name));
@@ -33,19 +32,29 @@ public class OrderService {
         return orderRepository.findById(id).orElseThrow(CResourceNotExistException::new);
     }
 
-    public Order addOrder(long id, String uid, OrderDTO orderDTO,CartDTO cartDTO) {//주문하기
-
-        Cart cart = cartService.findCartItem(cartDTO.getId());
-        Order Order = findOrderItem(id);
-
-        User user = Order.getUser();
-        if (!uid.equals(user.getEmail())) {
+    public Order addOrder(String name, OrderDTO orderDTO,long id) {//주문하기
+        User user = userService.findUser(name);
+        if (!name.equals(user.getUsername())) {
             new CUserNotFoundException();
         }
 
-        Order order = new Order(orderDTO.getId(),orderDTO.getNeeds(),orderDTO.getPrice(),orderDTO.getPrice()
-        ,orderDTO.getTotalprice(),user.getUsername(),user.getMobile(),user.getAddr(),user.getAddr(), cart, user);
+        List<Cart> cartDTO = cartService.findAllCartItems(name);
+        for (int i=0; i<cartDTO.size();i++){
 
+        }
+        Cart cart = cartService.findCartItem(id);
+
+        Item item = itemService.findItem(id);
+        item.setStock(cart.getQuantity());
+
+
+        Order order = new Order(orderDTO.getId(),orderDTO.getNeeds(),orderDTO.getPrice(),orderDTO.getDeliveryfee(),orderDTO.getTotalprice(),
+                user.getUsername(),user.getMobile(), user.getAddr(), user.getAddr_detail(), cart, user);
+        //아이템 수량 제거//
+
+
+        //장바구니 제거//
+        //cartService.deleteCartItem();
         return orderRepository.save(order);
     }
     

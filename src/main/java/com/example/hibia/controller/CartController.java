@@ -26,7 +26,7 @@ public class CartController {
     private final CartService cartService;
     private final ResponseService responseService;
 
-    
+
     @GetMapping("/")
     public ListResult<Cart> findCartList(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -45,11 +45,6 @@ public class CartController {
     public SingleResult<Cart> addCartItem(@PathVariable String itemname, @RequestBody CartDTO cartDTO){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String uid = authentication.getName();
-
-        Optional<Cart> cart= cartService.findAllCartItems(uid);
-        if(cart.isPresent()){
-            new CCartItemExistException();
-        }
 
         return responseService.getSingleResult(cartService.addCartItem(itemname, uid, cartDTO));
     }
