@@ -51,6 +51,7 @@ public class UserService implements UserDetailsService {
 				.addr_detail(userDTO.getAddr_detail())
 				.zipcode(userDTO.getZipcode())
 				.build();
+
 		return userRepository.save(user);
 	}
 

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class OrderDTO {
-    private Long id;
+
     private String needs;
     private int price;
     private int deliveryfee;
@@ -15,6 +15,5 @@ public class OrderDTO {
     private String mobile;
     private String addr;
     private String addrdetail;
-    private Cart cart;
     private User user;
 }

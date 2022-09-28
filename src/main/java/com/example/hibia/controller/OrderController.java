@@ -31,11 +31,11 @@ public class OrderController {
     }
 
     @PostMapping("/{id}")
-    public SingleResult<Order> addOrder(@PathVariable long id, @RequestBody OrderDTO orderDTO){
+    public SingleResult<Order> addOrder(@PathVariable String id, @RequestBody OrderDTO orderDTO){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String uid = authentication.getName();
 
-        return responseService.getSingleResult(orderService.addOrder(uid,orderDTO,id));
+        return responseService.getSingleResult(orderService.addOrder(uid,orderDTO));
     }
 }

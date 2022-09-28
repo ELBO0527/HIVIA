@@ -40,7 +40,12 @@ public class CartService {
             new CCartItemExistException();
         }
 
-        Cart cart = new Cart(userService.findUser(email), item, cartDTO.getQuantity());
+        Cart cart = Cart.builder()
+                .user(userService.findUser(email))
+                .item(item)
+                .quantity(cartDTO.getQuantity())
+                .total(item.getPrice() * cartDTO.getQuantity())
+                .build();
         return cartRepository.save(cart);
     }
 

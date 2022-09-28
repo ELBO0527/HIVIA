@@ -1,14 +1,13 @@
 package com.example.hibia.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Builder
 @Entity
 @Getter
-@NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
 public class Item_order {
 
@@ -23,5 +22,15 @@ public class Item_order {
     @ManyToOne
     private Order order;
 
+    @Column(name = "item_name")
+    private String name;
 
+    @Column(name = "item_price")
+    private int price;
+
+    @Column(name = "item_total")
+    private int total;
+
+    @Column(name = "order_quantity")
+    private int quantity;
 }

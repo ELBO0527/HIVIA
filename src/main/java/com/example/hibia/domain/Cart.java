@@ -4,14 +4,15 @@ import com.example.hibia.domain.common.CommonDateEntity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Builder
 @Entity
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id") // 양뱡향 무한참조
 public class Cart extends CommonDateEntity {
@@ -32,11 +33,8 @@ public class Cart extends CommonDateEntity {
     @Column(name = "item_quantity")//장바구니에 담은 아이템 수량
     private int quantity;
 
-    public Cart(User user, Item item, int quantity){    
-        this.user = user;
-        this.item = item;
-        this.quantity = quantity;
-    }
+    @Column(name = "sub_total")//장바구니에 담은 아이템 수량
+    private int total;
 
     public Cart setCart(int quantity){
         this.quantity = quantity;

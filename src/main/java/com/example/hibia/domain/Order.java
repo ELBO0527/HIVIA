@@ -50,11 +50,6 @@ public class Order extends CommonDateEntity {
     @Column
     private String addrdetail;
 
-    //장바구니
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
-
     //구매자를 나타내기 위해 사용자
     @ManyToOne
     @JoinColumn(name = "user_id")

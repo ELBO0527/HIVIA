@@ -6,8 +6,6 @@ import lombok.Setter;
 
 @Data
 public class CartDTO {
-
-    private Long id;
     private int quantity;
-
+    private int total;
 }

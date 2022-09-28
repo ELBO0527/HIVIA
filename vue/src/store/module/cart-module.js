@@ -12,7 +12,6 @@ const getters = {
   cartList: state => state.items,
   updateitem: state => state.item,
 };
-
 const actions = {
   async fetchCart({ commit }) {
     const getData = JSON.parse(localStorage.getItem('vuex'));
