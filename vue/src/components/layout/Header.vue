@@ -2,9 +2,8 @@
   <v-card class="overflow-hidden">
     <!--앱바-->
     <v-app-bar clipped-left app color="white">
-      <v-spacer></v-spacer>
-
-      <v-btn text color="black" dark to="/">
+      <v-app-bar-nav-icon class="d-flex d-sm-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-btn class="d-none d-sm-flex" text color="black" dark to="/">
         SHOPPINGMALL
       </v-btn>
 
@@ -16,7 +15,7 @@
       </v-btn> -->
 
       <!-- 첫번째 드롭박스 -->
-      <div class="text-center">
+      <div class="d-none d-sm-flex text-center">
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -47,7 +46,7 @@
         문의하기
       </v-btn> -->
 
-      <v-btn text color="primary" dark v-bind="attrs" v-on="on" to="/admin">
+      <v-btn class="d-none d-sm-flex" text color="primary" dark v-bind="attrs" v-on="on" to="/admin">
         관리자 페이지
       </v-btn>
 
@@ -68,28 +67,64 @@
         <v-icon>mdi-heart</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <v-avatar class="mx-2" v-if="isLogin">
+      <v-avatar class="d-none d-sm-flex mx-2" v-if="isLogin">
           <img src="https://i.pravatar.cc/64">
       </v-avatar>
 
-      <v-btn text to="/mypage">
+      <v-btn v-if="isLogin" class="d-none d-sm-flex" text to="/mypage">
         <span to="/mypage">{{this.$store.state.userModule.id}}님</span>
       </v-btn>
-      <v-btn v-if="isLogin" class="ma-2" color="primary" outlined to="/signin" @click="Logout()">로그아웃</v-btn>
+      <v-btn v-if="isLogin" class="d-none d-sm-flex ma-2" color="primary" outlined to="/signin" @click="Logout()">로그아웃</v-btn>
       <div v-else>
-      <v-btn class="ma-2" color="primary" outlined to="/signin">로그인</v-btn>
-      <v-btn color="primary" dark to="/signup"
+      <v-btn class="d-none d-sm-flex ma-2" color="primary" outlined to="/signin">로그인</v-btn>
+      <v-btn color="d-none d-sm-flex primary" dark to="/signup"
         >회원가입</v-btn
       >
       </div>
     </v-app-bar>
+
+    <v-navigation-drawer
+      class=""
+      v-model="drawer"
+      absolute
+      temporary
+    >
+      <v-list
+        nav
+        dense
+      >
+        <v-list-item-group
+          active-class="deep-purple--text text--accent-4"
+        >
+          <v-list-item>
+            <v-list-item-title>Foo</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Bar</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Fizz</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Buzz</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+
   </v-card>
+
+  
 </template>
 
 <script>
 export default {
   data(){
   return{
+    drawer: this.$store.state.drawer,
     attrs: "",
     on: "",
     items: [],
@@ -106,8 +141,13 @@ export default {
 		isLogin() {
 			return this.$store.getters['isLogin'];
 		}
-	}
+	},
 
+  watch: {
+      group () {
+        this.drawer = false
+      },
+    },
 
 };
 

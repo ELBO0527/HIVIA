@@ -231,6 +231,7 @@ export default {
       const index = this.friends.indexOf(item.name);
       if (index >= 0) this.friends.splice(index, 1);
     },
+    
     postItem() {
       this.addItems({
           name : this.name, 

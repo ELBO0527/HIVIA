@@ -41,7 +41,7 @@
           sm="12"
         >
           <v-text-field
-            v-model="title"
+            v-model="needs"
             :rules="rules"
             counter="25"
             hint="This field uses counter prop"
@@ -112,7 +112,7 @@
             </v-col>
           </v-row>
           <v-row class="mt-3 pa-6" cols="12" md="12" sm="6">
-            <v-btn color="primary" to="/itemOrderConfirmed">결제하기</v-btn>
+            <v-btn color="primary" @click="postOrder()" to="/itemOrderConfirmed">결제하기</v-btn>
          </v-row>
         </v-card>
       </v-col>
@@ -138,6 +138,7 @@ export default {
         { text: '사이즈', value: 'item.size' },
         { text: '수량', value: 'quantity' },
       ],
+      needs: this.needs,
       itemPrice : this.$store.state.b.itemPrice,
       deliveryFee: 3000,
       totalPrice : 0,
@@ -145,6 +146,32 @@ export default {
   },
   methods: {
     ...mapActions(['fetchCart']),
+    postOrder(userName) {
+    const getData = JSON.parse(localStorage.getItem("vuex"));
+    const token = getData.userModule.accessToken;
+        userName = this.$store.state.userModule.id;
+        
+        const data = {
+          needs : this.needs,
+          price : this.totalPrice,
+          deliveryFee : this.deliveryFee,
+          totalPrice : this.totalPrice + this.deliveryFee
+    	};
+
+        this.$axios.post(`/order/${userName}`, data,{ headers: { "X-AUTH-TOKEN" : token
+    }})
+             .then(response => {
+              this.$router.push({
+                        name: "cart"
+                    });
+                    alert(response.data.msg)
+                 console.log(response);
+             })
+             .catch(function (error) {
+                console.log(error.response)
+                    alert(response.data.msg)
+             })
+    },
   },
   computed: 
   mapGetters(['cartList']),  

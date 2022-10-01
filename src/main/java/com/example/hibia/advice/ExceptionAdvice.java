@@ -67,6 +67,12 @@ public class ExceptionAdvice {
         return responseService.getFailResult(Integer.valueOf(getMessage("cartItemAlreadyExist.code")),getMessage("cartItemAlreadyExist.msg"));
     }
 
+    @ExceptionHandler(CItemStockLackException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public CommonResult itemStockLackException(HttpServletRequest request, CCartItemExistException e){
+        return responseService.getFailResult(Integer.valueOf(getMessage("itemStockLack.code")),getMessage("itemStockLack.msg"));
+    }
+
     private String getMessage(String code){
         return getMessage(code, null);
     }

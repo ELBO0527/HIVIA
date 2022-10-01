@@ -17,6 +17,8 @@ const storageState = createPersistedState({
 
 export default new Vuex.Store({
   state: {
+    //drawer
+    drawer : false,
     //login & jwt
   
     //item DTO

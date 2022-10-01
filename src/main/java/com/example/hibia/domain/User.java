@@ -132,4 +132,9 @@ public class User implements UserDetails {
 		this.zipcode = zipcode;
 		return this;
 	}
+
+	public User setBalance(int money){
+		this.balance = balance - money;
+		return this;
+	}
 }

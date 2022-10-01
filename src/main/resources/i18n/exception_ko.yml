@@ -23,3 +23,6 @@ resourceNotExist:
 cartItemAlreadyExist:
   code: "-1008"
   msg: "이미 장바구니에 등록된 상품입니다."
+itemStockLack:
+  code: "-1009"
+    msg: "상품 재고가 부족합니다."

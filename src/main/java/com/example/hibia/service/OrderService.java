@@ -4,9 +4,7 @@ import com.example.hibia.advice.exception.CCartItemExistException;
 import com.example.hibia.advice.exception.CResourceNotExistException;
 import com.example.hibia.advice.exception.CUserNotFoundException;
 import com.example.hibia.domain.*;
-import com.example.hibia.dto.Item_OrderDTO;
 import com.example.hibia.dto.OrderDTO;
-import com.example.hibia.repository.CartRepository;
 import com.example.hibia.repository.Item_OrderRepository;
 import com.example.hibia.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +23,6 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final UserService userService;
     private final CartService cartService;
-    private final CartRepository cartRepository;
     private final ItemService itemService;
 
     public List<Order> findAllOrderItems(String name) {//주문내역 전체 조회
@@ -39,7 +36,7 @@ public class OrderService {
     public Order addOrder(String name, OrderDTO orderDTO) {//주문하기
         User user = userService.findUser(name);
         if (!name.equals(user.getUsername())) {
-            new CUserNotFoundException();
+            throw new CUserNotFoundException();
         }
 
         List<Cart> cartList = cartService.findAllCartItems(name);
@@ -48,8 +45,6 @@ public class OrderService {
         int sum_cart = 0;
 
         for(Cart cart : cartList){
-
-            System.out.println(cart.getItem().getName());
             //아이템 수량 체크
             if (cart.getItem().getStock() >= cart.getQuantity()){
             //item_order 저장
@@ -63,7 +58,6 @@ public class OrderService {
 
             sum_cart += itemOrder.getTotal();
             itemOrderList.add(itemOrder);
-            item_orderRepository.saveAll(itemOrderList);
 
             //아이템수량제거
             Item item = itemService.findItem(cart.getItem().getName());
@@ -74,9 +68,11 @@ public class OrderService {
 
             }else if (cart.getItem().getStock() < cart.getQuantity()){
                 //수량이 적을시 예외 (수정필요)
-                new CCartItemExistException();
+                throw new CCartItemExistException();
             }
         }
+
+        item_orderRepository.saveAll(itemOrderList);
 
         Order order = Order.builder()
                 .needs(orderDTO.getNeeds())
@@ -89,6 +85,9 @@ public class OrderService {
                 .addrdetail(user.getAddr_detail())
                 .user(userService.findUser(name))
                 .build();
+
+        //금액 차감
+        user.setBalance(orderDTO.getTotalprice());
 
         return orderRepository.save(order);
     }

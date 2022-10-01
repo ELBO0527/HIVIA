@@ -23,3 +23,6 @@ resourceNotExist:
 cartItemAlreadyExist:
   code: "-1008"
   msg: "This item already exist in cart."
+itemStockLack:
+  code: "-1009"
+    msg: "Out Of Stock."

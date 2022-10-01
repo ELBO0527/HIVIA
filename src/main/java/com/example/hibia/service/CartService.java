@@ -37,7 +37,7 @@ public class CartService {
         Cart ValidCart = cartRepository.findByItem(item);
 
         if (ValidCart != null){
-            new CCartItemExistException();
+            throw new CCartItemExistException();
         }
 
         Cart cart = Cart.builder()
@@ -53,24 +53,20 @@ public class CartService {
         Cart cart = findCartItem(id);
         User user = cart.getUser();
         if (!uid.equals(user.getEmail())){
-            new CUserNotFoundException();
+            throw new CUserNotFoundException();
         }
         cart.setCart(cartDTO.getQuantity());
         return cart;
     }
 
-    public boolean deleteCartItem(Long id, String uid){//장바구니 내용 삭제
+    public boolean deleteCartItem(Long id, String uid) {//장바구니 내용 삭제
         Cart cart = findCartItem(id);
         User user = cart.getUser();
-        if (!uid.equals(user.getEmail())){
-            new CUserNotFoundException();
+        if (!uid.equals(user.getUsername())) {
+            throw new CUserNotFoundException();
         }
         cartRepository.delete(cart);
 
         return true;
     }
-
-//    public Cart deleteAllCartItems(String name){
-//        Cart cart = findAllCartItems(name);
-//    }
 }

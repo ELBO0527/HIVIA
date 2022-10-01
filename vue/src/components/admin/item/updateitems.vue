@@ -158,7 +158,8 @@ export default {
 
   methods: {
     ...mapActions(["updateItem","fetchOneItem"]),
-          updateProduct(productId) {
+         
+    updateProduct(productId) {
     const getData = JSON.parse(localStorage.getItem("vuex"));
     const token = getData.userModule.accessToken;
 

@@ -16,7 +16,7 @@
             ></v-carousel-item>
           </v-carousel>
         </v-col>
-        <v-col cols="6" md="6" sm="6">
+        <v-col cols="6" md="6" sm="12">
           <h2>상품 소개</h2>
           <v-col cols="12" md="6" sm="6">
             <h2>{{name}}</h2>
@@ -44,7 +44,7 @@
                 <v-span class="pt-8">{{price}}원</v-span>
               </v-col>
             </v-row>
-            <div v-if="stock = 0">
+            <div v-if="stock == 0">
               <span>품절입니다</span>
             </div>
             <div v-else>
@@ -53,12 +53,21 @@
                 <v-span class="pt-8">수량</v-span>
               </v-col>
               <v-col cols="6" md="6" sm="6">
-                <v-text-field v-model="quantity" hide-details type="number" max-width="4" />
+                <v-text-field v-model="quantity" @click=sumCartTotal() hide-details type="number" max-width="4" />
               </v-col>
             </v-row>
-          </div>
             <span>남은 수량 : {{stock}}개</span>
-            <v-btn class="ma-2 mt-lg-12" outlined to="/cart" color="indigo">
+          </div>
+          <v-row cols="12" md="12" sm="12">
+               <v-col cols="6" md="6" sm="6">
+                <v-span class="pt-8">총 가격</v-span>
+              </v-col>
+               <v-col cols="6" md="6" sm="6">
+                <v-span class="pt-8">{{ total }}원</v-span>
+              </v-col>
+            </v-row>
+            <v-btn class="ma-2 mt-lg-12" outlined 
+             @click="updateCart(name)" color="indigo">
               장바구니에 담기
             </v-btn>
             <v-btn class="ma-2" outlined to="/itemOrder" color="indigo">
@@ -110,7 +119,6 @@ export default {
             src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
           },
         ],
-      quantity : "1",
        items: [
           '90',
           '95',
@@ -122,6 +130,8 @@ export default {
           '상품 리뷰', '상품 문의', '판매자 소개', '배송/환불/AS/교환',
         ],
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      quantity : 1,
+      total : 0,
       name: this.$store.state.a.item.name,
       price: this.$store.state.a.item.price,
       brand: this.$store.state.a.item.brand,
@@ -134,7 +144,49 @@ export default {
     }
   } ,
  methods: {
-   ...mapActions(["fetchOneItem"]),
- }
+   ...mapActions(["addCart"]),
+   updateCart(itemName) {
+    const getData = JSON.parse(localStorage.getItem("vuex"));
+    const token = getData.userModule.accessToken;
+
+        const data = {
+          quantity: this.quantity,
+          total: this.total,
+
+    	};
+
+        this.$axios.post(`/cart/${itemName}`, data,{ headers: { "X-AUTH-TOKEN" : token
+    }})
+             .then(response => {
+              this.$router.push({
+                        name: "cart"
+                    });
+                    alert(response.data.msg)
+                 console.log(response);
+             })
+             .catch(function (error) {
+                console.log(error.response)
+                    alert(response.data.msg)
+             })
+    },
+
+   addCarts(name) {
+    name = this.name;
+      this.addCart({
+          quantity: this.quantity,
+          total: this.total,
+        })
+        console.log(this.quantity)
+        console.log(this.total)
+        
+      },
+  sumCartTotal() {
+    this.total = this.quantity * this.price;
+  },
+
+  mounted(){
+    this.total = this.price * this.quantity;
+  }
+}    
 }
 </script>

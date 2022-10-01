@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- drawer 삽입 -->
-    <div style="position : fixed" class="d-none d-lg-block">
+    <div class="d-none d-lg-block">
       <v-navigation-drawer clipped permanent app>
         <v-list nav dense>
           <v-list-item>
@@ -27,7 +27,9 @@
         </v-list>
       </v-navigation-drawer>
     </div>
+    <div class="d-flex">
     <router-view></router-view>
+  </div>
   </v-app>
 </template>
 
@@ -38,6 +40,8 @@ export default {
   data() {
     return{
     selectedItem: 1,
+    quantity : 1,
+      total : 0,
     items: [
       { text: "dashboard", icon: "mdi-clock", route: '/item' },
       { text: "item", icon: "mdi-flag", route: "/item/itemdetail" },
@@ -47,7 +51,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["fetchOneItem"])}
-    ,computed: mapGetters(["itemsList"]),
+    ...mapActions(["fetchOneItem"]),
+  },
+    
+    computed: mapGetters(["itemsList"]),
 };
 </script>

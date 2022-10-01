@@ -45,7 +45,7 @@ public class ReviewService {
         Review review = findReview(id);
         User user = review.getUser();
         if(!uid.equals(user.getEmail()))
-            new CNotOwnerException();
+            throw new CNotOwnerException();
 
         review.setReview(reviewDTO.getAuthor(), reviewDTO.getContent(), reviewDTO.getStars());
 
@@ -56,7 +56,7 @@ public class ReviewService {
         Review review = findReview(id);
         User user = review.getUser();
         if(!uid.equals(user.getEmail()))
-            new CNotOwnerException();
+            throw new CNotOwnerException();
         reviewRepository.delete(review);
         return true;
     }

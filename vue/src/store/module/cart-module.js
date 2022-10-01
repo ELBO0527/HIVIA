@@ -12,6 +12,7 @@ const getters = {
   cartList: state => state.items,
   updateitem: state => state.item,
 };
+
 const actions = {
   async fetchCart({ commit }) {
     const getData = JSON.parse(localStorage.getItem('vuex'));
@@ -23,25 +24,22 @@ const actions = {
     console.log('success');
     commit('setCart', response.data.list);
   },
-  async fetchOneCart({ commit }, id) {
+  
+  
+  async addCart({ commit }, name, item) {
     const getData = JSON.parse(localStorage.getItem('vuex'));
     const token = getData.userModule.accessToken;
-    const response = await axios.get(`/cart/${id}`, {
+    const response = await axios.post(`/cart/${name}`, item, {
       headers: { 'X-AUTH-TOKEN': token },
     });
-    console.log(response.data.data.name);
-    commit('setOneCart', response.data.data);
-  },
-  async addCart({ commit }, item) {
-    const getData = JSON.parse(localStorage.getItem('vuex'));
-    const token = getData.userModule.accessToken;
-    const response = await axios.post('/cart/', item, {
-      headers: { 'X-AUTH-TOKEN': token },
-    });
+    console.log(response);
+    console.log(name);
+    console.log(response.data);
     alert(response.data);
-    commit('addNewItemInCart', response.data.list);
+    commit('addNewItemInCart', response.data.data);
     router.push('item');
   },
+
   async updateCart({ commit }, id, item) {
     const getData = JSON.parse(localStorage.getItem('vuex'));
     const token = getData.userModule.accessToken;
@@ -54,6 +52,7 @@ const actions = {
 
     commit('updateCartItem', response.data.data, id);
   },
+
   async deleteCart({ commit }, id) {
     const getData = JSON.parse(localStorage.getItem('vuex'));
     const token = getData.userModule.accessToken;
