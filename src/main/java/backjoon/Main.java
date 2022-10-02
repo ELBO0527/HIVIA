@@ -43,28 +43,28 @@ public class Main {
     }
 
     public static void dfs(int start){
-        check[start] = true;
+        checked[start] = true;
         sb.append(start + " ");
 
         for(int i = 0 ; i <= node ; i++) {
-            if(arr[start][i] == 1 && !check[i])
+            if(intArr[start][i] == 1 && !checked[i])
                 dfs(i);
         }
     }
 
     public static void bfs(int start){
-        q.add(start);
-        check[start] = true;
+        queue.add(start);
+        checked[start] = true;
 
-        while(!q.isEmpty()) {
+        while(!queue.isEmpty()) {
 
-            start = q.poll();
+            start = queue.poll();
             sb.append(start + " ");
 
             for(int i = 1 ; i <= node ; i++) {
-                if(arr[start][i] == 1 && !check[i]) {
-                    q.add(i);
-                    check[i] = true;
+                if(intArr[start][i] == 1 && !checked[i]) {
+                    queue.add(i);
+                    checked[i] = true;
                 }
             }
         }
