@@ -32,6 +32,7 @@ public class Main {
 
     }
 
+<<<<<<< HEAD
     public static void greedy(){
 
     }
@@ -52,5 +53,33 @@ class Action implements Comparable<Action>{
     @Override
     public int compareTo(Action o) {
         return o.endTime - this.endTime;
+=======
+    public static void dfs(int start){
+        checked[start] = true;
+        sb.append(start + " ");
+
+        for(int i = 0 ; i <= node ; i++) {
+            if(intArr[start][i] == 1 && !checked[i])
+                dfs(i);
+        }
+    }
+
+    public static void bfs(int start){
+        queue.add(start);
+        checked[start] = true;
+
+        while(!queue.isEmpty()) {
+
+            start = queue.poll();
+            sb.append(start + " ");
+
+            for(int i = 1 ; i <= node ; i++) {
+                if(intArr[start][i] == 1 && !checked[i]) {
+                    queue.add(i);
+                    checked[i] = true;
+                }
+            }
+        }
+>>>>>>> d5efa9a145290d6c8307d3185a03688ae3d84c39
     }
 }
