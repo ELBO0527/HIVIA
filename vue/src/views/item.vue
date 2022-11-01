@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- drawer 삽입 -->
-    <div class="d-none d-lg-block">
+    <div class="">
       <v-navigation-drawer clipped permanent app>
         <v-list nav dense>
           <v-list-item>
@@ -43,10 +43,7 @@ export default {
     quantity : 1,
       total : 0,
     items: [
-      { text: "dashboard", icon: "mdi-clock", route: '/item' },
-      { text: "item", icon: "mdi-flag", route: "/item/itemdetail" },
-      { text: "user", icon: "mdi-flag", route: "/admin/user" },
-      { text: "category", icon: "mdi-flag", route: "/admin/category" }
+      { text: "의류", icon: "mdi-store", route: '/item' },
     ]
     }
   },

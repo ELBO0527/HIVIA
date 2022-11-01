@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 public class UserService implements UserDetailsService {
-	
+
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 
@@ -89,4 +89,5 @@ public class UserService implements UserDetailsService {
 		this.findUser(id);
 		userRepository.deleteById(id);
 	}
+
 }

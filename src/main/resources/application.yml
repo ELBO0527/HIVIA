@@ -36,3 +36,6 @@ logging:
     org:
       springframework:
         security: DEBUG
+file:
+  upload:
+    location: /Users/82104/Desktop

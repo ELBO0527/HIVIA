@@ -8,7 +8,13 @@ import com.example.hibia.model.response.SingleResult;
 import com.example.hibia.service.ResponseService;
 import com.example.hibia.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.servlet.Servlet;
 
 @RestController
 @RequiredArgsConstructor
@@ -42,5 +48,21 @@ public class UserController {
 	public CommonResult deleteUser(@PathVariable Long id){
 		userService.deleteUser(id);
 		return responseService.getSuccessResult();
+	}
+
+	@PostMapping(value = "/uploadProfile")
+	public ResponseEntity<?> uploadProfile(MultipartFile multipartFile){
+		if (multipartFile.isEmpty()){
+
+		}
+
+		String fileName = "image.png";
+
+		String downloadURI = ServletUriComponentsBuilder.fromCurrentRequestUri()
+				.path("/download")
+				.path(fileName)
+				.toUriString();
+
+		return new ResponseEntity<>(downloadURI, HttpStatus.OK);
 	}
 }

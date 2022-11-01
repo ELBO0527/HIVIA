@@ -15,5 +15,6 @@ public class OrderDTO {
     private String mobile;
     private String addr;
     private String addrdetail;
+    private int order_status;
     private User user;
 }

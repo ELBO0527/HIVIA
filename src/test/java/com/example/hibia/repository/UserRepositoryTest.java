@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 
@@ -48,14 +49,17 @@ public class UserRepositoryTest {
                         .profile_url("test")
                         .addr("addr")
                         .addr_detail("detail")
+                        .zipcode("366666")
                         .birthday(LocalDate.ofEpochDay(2022-01-22))
                         .build());
         //when
-        Optional<User> user = userRepository.findByUsername(uid);
+        Optional<User> user = userRepository.findByUsername(name);
+
         //then
         assertNotNull(user);
         assertTrue(user.isPresent());
-        assertEquals(user.get().getEmail(), uid);
+        assertEquals(user.get().getUsername(), name);
+        assertThat(user.get().getEmail(), is(uid));
     }
     
 }

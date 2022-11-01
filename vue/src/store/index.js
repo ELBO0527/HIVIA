@@ -35,5 +35,5 @@ export default new Vuex.Store({
    userModule: userModule,
    b: CartModule
   },
-  plugins: [createPersistedState()]
+  plugins: [createPersistedState({userModule})]
 })

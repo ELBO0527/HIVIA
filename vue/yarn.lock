@@ -944,10 +944,10 @@
     "cssnano-preset-default" "^4.0.0"
     "postcss" "^7.0.0"
 
-"@mdi/font@5.9.55":
-  "integrity" "sha1-QazVC4gHPe1wlfwwKdhxK24S844="
-  "resolved" "https://registry.nlark.com/@mdi/font/download/@mdi/font-5.9.55.tgz"
-  "version" "5.9.55"
+"@mdi/font@^7.0.96":
+  "integrity" "sha512-rzlxTfR64hqY8yiBzDjmANfcd8rv+T5C0Yedv/TWk2QyAQYdc66e0kaN1ipmnYU3RukHRTRcBARHzzm+tIhL7w=="
+  "resolved" "https://registry.npmjs.org/@mdi/font/-/font-7.0.96.tgz"
+  "version" "7.0.96"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   "integrity" "sha1-UkryQNGjYFJ7cwR17PoTRKpUDd4="

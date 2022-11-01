@@ -30,6 +30,7 @@ public class OrderController {
         return responseService.getListResult(orderService.findAllOrderItems(uid));
     }
 
+    //단건 주문
     @PostMapping("/{id}")
     public SingleResult<Order> addOrder(@PathVariable String id, @RequestBody OrderDTO orderDTO){
 
@@ -38,4 +39,8 @@ public class OrderController {
 
         return responseService.getSingleResult(orderService.addOrder(uid,orderDTO));
     }
+    
+    //수정 주문
+    //주문 취소
+    //주문 상세
 }

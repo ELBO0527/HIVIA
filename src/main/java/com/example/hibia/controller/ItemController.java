@@ -8,7 +8,11 @@ import com.example.hibia.model.response.SingleResult;
 import com.example.hibia.service.ItemService;
 import com.example.hibia.service.ResponseService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ItemController {
 
+    private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
     private final ItemService itemService;
     private final ResponseService responseService;
 
@@ -30,8 +35,14 @@ public class ItemController {
         return responseService.getListResult(itemService.findAllItems());
     }
 
+    @GetMapping(value = "/userpage")
+    public ListResult<Item> findAllItems(Pageable pageable){
+        logger.info("log : <<"+ pageable +">>");
+        return responseService.getListResult(itemService.findAllItemss(pageable));
+    }
+
     @PostMapping(value = "/")
-    public SingleResult<Item> saveItem(@RequestBody ItemDTO itemDTO){
+    public SingleResult<Item> saveItem(@RequestBody ItemDTO itemDTO, MultipartFile file){
         return responseService.getSingleResult(itemService.saveItem(itemDTO));
     }
 

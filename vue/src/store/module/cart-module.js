@@ -11,6 +11,9 @@ const state = {
 const getters = {
   cartList: state => state.items,
   updateitem: state => state.item,
+  isNull(state) {
+    return state.item == '' ? false : true;
+  },
 };
 
 const actions = {
@@ -34,7 +37,7 @@ const actions = {
     });
     console.log(response);
     console.log(name);
-    console.log(response.data);
+    console.log(response.data.list);
     alert(response.data);
     commit('addNewItemInCart', response.data.data);
     router.push('item');

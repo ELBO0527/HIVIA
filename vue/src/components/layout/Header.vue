@@ -16,8 +16,6 @@
 
       <!-- 첫번째 드롭박스 -->
       <div class="d-none d-sm-flex text-center">
-        <v-menu open-on-hover offset-y>
-          <template v-slot:activator="{ on, attrs }">
             <v-btn
               text
               color="primary"
@@ -28,17 +26,6 @@
             >
               컬렉션
             </v-btn>
-          </template>
-          <v-list>
-            <v-list-item
-              v-for="(item, index) in items"
-              :key="index"
-              to="/item"
-            >
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
       </div>
 
       <!-- 상품버튼 -->
@@ -63,6 +50,23 @@
       ></v-text-field>
       <v-spacer></v-spacer>
       <!-- 아이콘-->
+      <v-btn icon to="/cart">
+        <div 
+          v-if="isNull"
+          >
+          <v-icon>mdi-cart</v-icon>
+      </div>
+        <div
+        v-else
+        >
+          <v-badge
+          color="green"
+          content="1"
+        >
+        <v-icon>mdi-cart</v-icon>
+        </v-badge>
+        </div>
+      </v-btn>
       <v-btn icon to="/signin">
         <v-icon>mdi-heart</v-icon>
       </v-btn>
@@ -72,14 +76,16 @@
       </v-avatar>
 
       <v-btn v-if="isLogin" class="d-none d-sm-flex" text to="/mypage">
-        <span to="/mypage">{{this.$store.state.userModule.id}}님</span>
+        <span>{{this.$store.state.userModule.id}}님</span>
       </v-btn>
       <v-btn v-if="isLogin" class="d-none d-sm-flex ma-2" color="primary" outlined to="/signin" @click="Logout()">로그아웃</v-btn>
       <div v-else>
+        <v-row>
       <v-btn class="d-none d-sm-flex ma-2" color="primary" outlined to="/signin">로그인</v-btn>
-      <v-btn color="d-none d-sm-flex primary" dark to="/signup"
+      <v-btn class="d-none d-sm-flex my-2 primary" dark to="/signup"
         >회원가입</v-btn
       >
+    </v-row>
       </div>
     </v-app-bar>
 
@@ -140,7 +146,11 @@ export default {
 	computed : {
 		isLogin() {
 			return this.$store.getters['isLogin'];
-		}
+		},
+    isNull(){
+      console.log(this.$store.getters['isNull'])
+      return this.$store.getters['isNull'];
+    }
 	},
 
   watch: {

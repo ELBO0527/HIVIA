@@ -28,6 +28,9 @@ const actions = {
     const response = await axios.get(`/item/user/${id}`, {
       headers: { 'X-AUTH-TOKEN': token },
     });
+    router.push({
+      name: "ItemDetail"
+  });
     console.log(id)
     console.log(response.data.data.name);
     commit('setOneItem', response.data.data);

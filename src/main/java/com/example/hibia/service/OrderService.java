@@ -84,6 +84,7 @@ public class OrderService {
                 .addr(user.getAddr())
                 .addrdetail(user.getAddr_detail())
                 .user(userService.findUser(name))
+                .order_status(orderDTO.getOrder_status())
                 .build();
 
         //금액 차감
@@ -91,12 +92,21 @@ public class OrderService {
 
         return orderRepository.save(order);
     }
-    
+
+    public Order updateOrder(Long id,String uid,OrderDTO orderDTO){
+        Order Order = findOrderItem(id);
+        User user = Order.getUser();
+        if (!uid.equals(user.getEmail())) {
+            throw new CUserNotFoundException();
+        }
+
+        return null;
+    }
     public Order returnOrder(Long id, String uid, OrderDTO OrderDTO) {//주문 환불
         Order Order = findOrderItem(id);
         User user = Order.getUser();
         if (!uid.equals(user.getEmail())) {
-            new CUserNotFoundException();
+           throw new CUserNotFoundException();
         }
 
         return null;
@@ -107,7 +117,7 @@ public class OrderService {
         Order Order = findOrderItem(id);
         User user = Order.getUser();
         if (!uid.equals(user.getEmail())) {
-            new CUserNotFoundException();
+            throw new CUserNotFoundException();
         }
 
         return null;

@@ -66,7 +66,7 @@
             <v-divider class="ma-2"></v-divider>
             <!-- 상품 목록 -->
             <v-container>
-              <h2>전체에에잉</h2>
+              <h2>전체</h2>
               <v-list-item-subtitle>상세분류</v-list-item-subtitle>
               <v-row>
                 <v-col
@@ -77,7 +77,6 @@
                   ><v-card
                     class="mx-auto my-4"
                     max-width="374"
-                    to="/item/itemdetail"
                     @click="fetchOneItem(item2.id)"
                   >
                     <template slot="progress">
@@ -133,8 +132,7 @@
                       <div>
                         상품소개.
                       </div>
-                      <v-btn color="primary" class="mt-2"   
-                      to="/item/itemdetail"
+                      <v-btn color="primary" class="mt-2"
                       @click="fetchOneItem(item2.id)">
                         상세보기</v-btn
                       >
@@ -172,10 +170,7 @@ export default {
       axios
         .get("/item/user")
         .then(response => {
-          console.log(response.data.list)
           this.items2 = response.data.list;
-          console.log(this.items2[0].name)
-          console.log(this.items2.length)
         })
         .catch(error => {
           console.log(error);

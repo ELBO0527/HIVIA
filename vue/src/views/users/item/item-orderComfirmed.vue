@@ -1,7 +1,7 @@
 <template>
   <v-container
-  class="pa-6 ma-2">
-    <div align="center" justify-center>
+  class="d-flex" align-center justify-center>
+    <div align-center justify-center>
       <v-card
     class="mx-auto"
     max-width="344"

@@ -1,12 +1,13 @@
 <template>
-  <v-container class="ma-2">
-    <v-row cols="12" md="12" sm="6">
-      <v-col cols="12" md="12" sm="6">
-        <span align-center>주문하기</span>
+  <v-container class="pa-2" align-center justify-center>
+    <div class="pa-2" align-center justify-center>
+    <v-row cols="12" md="12">
+      <v-col cols="12" md="12" sm="8">
+        <h2 align-center>주문하기</h2>
       </v-col>
     </v-row>
     <v-row cols="12" md="12" sm="6">
-      <v-col cols="12" md="12" sm="6">
+      <v-col cols="12" md="12" sm="8">
         <v-card class="pa-3">
           <v-cardtitle class="ma-4">주문자 정보</v-cardtitle>
           <v-row class="ma-4">
@@ -22,7 +23,6 @@
             label="주문자 이름"
           ></v-text-field>
         </v-col>
-
         <v-col
           cols="12"
           sm="12"
@@ -48,7 +48,6 @@
             label="상세주소"
           ></v-text-field>
         </v-col>
-
         <v-col
           cols="12"
           sm="12"
@@ -67,11 +66,13 @@
 
       </v-col>
     </v-row>
-    <v-row cols="12" md="12" sm="6">
-      <v-col cols="12" md="12" sm="6">        
+  </div>
+  <div>
+    <v-row cols="12" md="12">
+      <v-col cols="12" md="12" sm="8">        
         <v-card>
       <v-card-title>
-        <h1>상품 정보</h1>
+        <h1 class="ma-2">상품 정보</h1>
       </v-card-title>
       <v-data-table
       :headers="headers"
@@ -79,13 +80,15 @@
       class="elevation-1"
     >
     </v-data-table>
-  </v-card>
+   </v-card>
       </v-col>
     </v-row>
+  </div>
+  <div>
     <v-row cols="12" md="12" sm="6">
-      <v-col cols="12" md="12" sm="6">        
+      <v-col cols="12" md="12" sm="8">        
         <v-card class="pa-3">
-          <v-card-title class="ma-4">결제하기</v-card-title>
+          <h1 class="ma-2">결제하기</h1>
             <v-row class="pa-3">
               <v-col>
                 <h2>상품 총 가격</h2>
@@ -111,12 +114,15 @@
               {{this.totalPrice}}원
             </v-col>
           </v-row>
-          <v-row class="mt-3 pa-6" cols="12" md="12" sm="6">
+          <v-row class="mt-3 pa-6" cols="12" md="12" sm="8">
+            <div  align-center justify-center>
             <v-btn color="primary" @click="postOrder()" to="/itemOrderConfirmed">결제하기</v-btn>
+            </div>
          </v-row>
         </v-card>
       </v-col>
     </v-row>
+  </div>
   </v-container>
 </template>
 
@@ -165,7 +171,7 @@ export default {
                         name: "cart"
                     });
                     alert(response.data.msg)
-                 console.log(response);
+                 console.log(response.data);
              })
              .catch(function (error) {
                 console.log(error.response)

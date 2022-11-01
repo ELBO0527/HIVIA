@@ -4,11 +4,17 @@ package com.example.hibia.service;
 import com.example.hibia.advice.exception.ResourceNotFoundException;
 import com.example.hibia.domain.Item;
 import com.example.hibia.dto.ItemDTO;
+import com.example.hibia.properties.FileUploadProperties;
 import com.example.hibia.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,12 +22,17 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Transactional
 public class ItemService {
-
     private final ItemRepository itemRepository;
 
     public List<Item> findAllItems(){
         return itemRepository.findAll();
     }
+
+    public List<Item> findAllItemss(Pageable pageable){
+        return itemRepository.findAll(pageable).getContent();
+    }
+
+
 
     //아이템 이름 id값으로 단일 조회, 아래 함수와 오버로딩
     public Item findItem(Long id){
@@ -34,6 +45,7 @@ public class ItemService {
     }
 
     public Item saveItem(ItemDTO itemDTO){
+
         Item item = Item.builder()
                 .name(itemDTO.getName())
                 .brand(itemDTO.getBrand())
