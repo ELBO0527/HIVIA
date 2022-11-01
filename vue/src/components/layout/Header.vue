@@ -26,6 +26,16 @@
             >
               컬렉션
             </v-btn>
+<<<<<<< HEAD
+=======
+          </template>
+          <v-list>
+            <v-list-item v-for="(item, index) in items" :key="index" to="/item">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+>>>>>>> 942e3e38ec880ec41c0ec18855cf3fadd926f56a
       </div>
 
       <!-- 상품버튼 -->
@@ -71,6 +81,7 @@
         <v-icon>mdi-heart</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
+<<<<<<< Updated upstream
       <v-avatar class="d-none d-sm-flex mx-2" v-if="isLogin">
           <img src="https://i.pravatar.cc/64">
       </v-avatar>
@@ -84,8 +95,31 @@
       <v-btn class="d-none d-sm-flex ma-2" color="primary" outlined to="/signin">로그인</v-btn>
       <v-btn class="d-none d-sm-flex my-2 primary" dark to="/signup"
         >회원가입</v-btn
+=======
+      <v-avatar class="mx-2" v-if="isLogin">
+        <img src="https://i.pravatar.cc/64" />
+      </v-avatar>
+
+      <v-btn text to="/mypage">
+        <span to="/mypage">{{ this.$store.state.userModule.id }}님</span>
+      </v-btn>
+      <v-btn
+        v-if="isLogin"
+        class="ma-2"
+        color="primary"
+        outlined
+        to="/signin"
+        @click="Logout()"
+        >로그아웃</v-btn
+>>>>>>> Stashed changes
       >
+<<<<<<< HEAD
     </v-row>
+=======
+      <div v-else>
+        <v-btn class="ma-2" color="primary" outlined to="/signin">로그인</v-btn>
+        <v-btn color="primary" dark to="/signup">회원가입</v-btn>
+>>>>>>> 942e3e38ec880ec41c0ec18855cf3fadd926f56a
       </div>
     </v-app-bar>
 
@@ -128,6 +162,7 @@
 
 <script>
 export default {
+<<<<<<< Updated upstream
   data(){
   return{
     drawer: this.$store.state.drawer,
@@ -158,7 +193,26 @@ export default {
         this.drawer = false
       },
     },
+=======
+  data() {
+    return {
+      attrs: '',
+      on: '',
+      items: [],
+    };
+  },
+  methods: {
+    Logout() {
+      this.$store.dispatch('doLogout');
+      this.$router.push('/');
+    },
+  },
+>>>>>>> Stashed changes
 
+  computed: {
+    isLogin() {
+      return this.$store.getters['isLogin'];
+    },
+  },
 };
-
 </script>

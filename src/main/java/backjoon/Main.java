@@ -7,13 +7,17 @@ import java.util.Arrays;
 
 
 public class Main {
+<<<<<<< HEAD
     static int map[][];
     static int w,h,p, larva;
     static boolean visited[][];
+=======
+>>>>>>> 942e3e38ec880ec41c0ec18855cf3fadd926f56a
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+<<<<<<< HEAD
         int n = Integer.parseInt(br.readLine());
 
         for (int i=0; i<n; i++){//전체 n번만큼 loop
@@ -49,6 +53,55 @@ public class Main {
                     dfs(x,y);
                 }
             }
+=======
+        int input = Integer.parseInt(br.readLine());
+        ArrayList<Action> list = new ArrayList<>();
+
+        for (int i=0; i< input; i++) {
+            String linked = br.readLine();
+            String[] lineArr = linked.split(" ");
+
+            int a = Integer.parseInt(lineArr[0]);
+            int b = Integer.parseInt(lineArr[1]);
+
+            list.add(new Action("Act",a,b));
+        }
+        Collections.sort(list);
+        for (int i=0; i<list.size();i++)
+        System.out.println(list.get(i));
+
+        for (Action action : list){
+            System.out.println(action);
+        }
+
+    }
+
+<<<<<<< HEAD
+    public static void greedy(){
+
+    }
+}
+
+class Action implements Comparable<Action>{
+
+    String action;
+    int startTime;
+    int endTime;
+
+    public Action(String action, int startTime, int endTime) {
+        this.action = action;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    @Override
+    public int compareTo(Action o) {
+        return o.endTime - this.endTime;
+=======
+    public static void dfs(int start){
+        checked[start] = true;
+        sb.append(start + " ");
+>>>>>>> 942e3e38ec880ec41c0ec18855cf3fadd926f56a
 
             System.out.println(larva);
         }
@@ -70,5 +123,6 @@ public class Main {
                 visited[start][end-1] = true;
             }
         }
+>>>>>>> d5efa9a145290d6c8307d3185a03688ae3d84c39
     }
 }
