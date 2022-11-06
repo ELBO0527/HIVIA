@@ -3,126 +3,75 @@ package backjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 public class Main {
-<<<<<<< HEAD
-    static int map[][];
-    static int w,h,p, larva;
-    static boolean visited[][];
-=======
->>>>>>> 942e3e38ec880ec41c0ec18855cf3fadd926f56a
+    static Queue<Integer> queue;
+    static boolean visited[];
+    static int su;
+    static int sis;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-<<<<<<< HEAD
-        int n = Integer.parseInt(br.readLine());
+        String s = br.readLine();
+        String arr[] = s.split(" ");
 
-        for (int i=0; i<n; i++){//전체 n번만큼 loop
+        su = Integer.parseInt(arr[0]);
+        sis = Integer.parseInt(arr[1]);
 
-            String s = br.readLine();
-            String arr[] = s.split(" ");//입력 받은 조건을 arr에 저장
+        visited = new boolean[100001];
 
-            w = Integer.parseInt(arr[0]);//가로
-            h = Integer.parseInt(arr[1]);//세로
-            p = Integer.parseInt(arr[2]);//배추 갯수
-            larva = 0; //출력값 초기화
+        System.out.println(bfs(su));
+    }
+    public static int bfs(int cur){
+        queue = new LinkedList();
+        int count = -1;
+        int tem = 0;
 
-            map = new int[w+1][h+1];
-            visited = new boolean[w+1][h+1];
+        if (su >= sis){
+            count = su-sis;
+            return count;
+        }
 
-           for (int j=0; j<w+1; j++){
-               for (int k=0; k<h+1; k++){
-                   visited[j][k] = true;
-               }
-           }
-
-            for (int j=0; j<p; j++){
-
-                String str = br.readLine();
-                String sArr[] = str.split(" ");//배추 좌표 위치를 sArr에 저장
-
-                int x = Integer.parseInt(sArr[0]);
-                int y = Integer.parseInt(sArr[1]);
-
-                map[x][y] = 1;
-                visited[x][y] = false;
-                if (visited[x][y] == false){
-                    dfs(x,y);
+        if (cur == 0){
+            cur++;
+            count++;
+            visited[0] = visited[1] = true;
+        }
+        tem = cur;
+        queue.add(cur);
+        while(tem!=sis){
+            count++;
+            for (int i=0; i<=100000; i++){
+                if (visited[i]) {
+                    queue.add(i);
                 }
             }
-=======
-        int input = Integer.parseInt(br.readLine());
-        ArrayList<Action> list = new ArrayList<>();
 
-        for (int i=0; i< input; i++) {
-            String linked = br.readLine();
-            String[] lineArr = linked.split(" ");
+            while(!queue.isEmpty()){
+                tem = queue.poll();
+                if (sis == tem) {
+                    break;
+                }
+                if (tem == 0){
+                    tem++;
+                }
 
-            int a = Integer.parseInt(lineArr[0]);
-            int b = Integer.parseInt(lineArr[1]);
-
-            list.add(new Action("Act",a,b));
-        }
-        Collections.sort(list);
-        for (int i=0; i<list.size();i++)
-        System.out.println(list.get(i));
-
-        for (Action action : list){
-            System.out.println(action);
-        }
-
-    }
-
-<<<<<<< HEAD
-    public static void greedy(){
-
-    }
-}
-
-class Action implements Comparable<Action>{
-
-    String action;
-    int startTime;
-    int endTime;
-
-    public Action(String action, int startTime, int endTime) {
-        this.action = action;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
-
-    @Override
-    public int compareTo(Action o) {
-        return o.endTime - this.endTime;
-=======
-    public static void dfs(int start){
-        checked[start] = true;
-        sb.append(start + " ");
->>>>>>> 942e3e38ec880ec41c0ec18855cf3fadd926f56a
-
-            System.out.println(larva);
-        }
-    }
-
-    public static void dfs(int start,int end){
-        visited[start][end] = true;
-
-        larva += 1;
-
-        for (int i=0; i<p; i++){
-            if ( map[start+1][end] == 1 && !visited[start+1][end]){
-                visited[start+1][end] = true;
-            } else if ( map[start-1][end] == 1 && !visited[start-1][end]){
-                visited[start-1][end] = true;
-            } else if ( map[start][end+1] == 1 && !visited[start][end+1]){
-                visited[start][end+1] = true;
-            } else if ( map[start][end-1] == 1 && !visited[start][end-1]){
-                visited[start][end-1] = true;
+                for (int i=0; i<3; i++){
+                    if (tem*2 <= sis+1 && !visited[tem*2]){
+                        visited[tem*2] = true;
+                    }else if( tem-1 >= 0 && !visited[tem-1]){
+                        visited[tem-1] = true;
+                    }else if( tem + 1 < sis+1 && !visited[tem+1]){
+                        visited[tem+1] = true;
+                    }
+                }
             }
         }
->>>>>>> d5efa9a145290d6c8307d3185a03688ae3d84c39
+
+        return count;
     }
 }

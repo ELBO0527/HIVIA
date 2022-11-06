@@ -74,6 +74,7 @@
         <v-row>
           <v-col cols="12" md="12">
             <div class="pa-12" justify="center" align="center">
+              <v-btn @click="popupKakaoLogin()">카카오로그인</v-btn>
               <v-btn color="primary" @click="loginSubmit()"> 로그인</v-btn>
             </div>
           </v-col>
@@ -110,6 +111,9 @@ export default {
           console.log(id, passwd);
         });
     },
+    popupKakaoLogin() {
+        window.open('${loginUrl}', 'popupKakaoLogin', 'width=700,height=500,scrollbars=0,toolbar=0,menubar=no')
+    }
   },
 };
 </script>
