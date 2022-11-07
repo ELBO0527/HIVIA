@@ -30,7 +30,7 @@
               </v-col>
               <v-col class="d-flex" cols="12" sm="3">
                 <v-row>
-                  <v-text-field label="사용될 이름을 입력하세요." solo dense v-model="usrname"></v-text-field>
+                  <v-text-field label="사용될 이름을 입력하세요." solo dense v-model="username"></v-text-field>
                   <!--<v-list-item-subtitle>*답변 등록 시 연락받을 이메일 주소를 입력하세요.</v-list-item-subtitle>-->
                 </v-row>
               </v-col>

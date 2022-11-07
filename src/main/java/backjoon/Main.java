@@ -8,10 +8,12 @@ import java.util.Queue;
 
 
 public class Main {
-    static Queue<Integer> queue;
-    static boolean visited[];
+    static Queue<Node> queue;
+    static boolean visited[][];
+    static int map[][];
     static int su;
     static int sis;
+    static int count, mute;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,56 +24,56 @@ public class Main {
         su = Integer.parseInt(arr[0]);
         sis = Integer.parseInt(arr[1]);
 
-        visited = new boolean[100001];
+        map = new int[su][sis];
+        visited = new boolean[su][sis];
 
-        System.out.println(bfs(su));
-    }
-    public static int bfs(int cur){
-        queue = new LinkedList();
-        int count = -1;
-        int tem = 0;
-
-        if (su >= sis){
-            count = su-sis;
-            return count;
-        }
-
-        if (cur == 0){
-            cur++;
-            count++;
-            visited[0] = visited[1] = true;
-        }
-        tem = cur;
-        queue.add(cur);
-        while(tem!=sis){
-            count++;
-            for (int i=0; i<=100000; i++){
-                if (visited[i]) {
-                    queue.add(i);
-                }
+        for (int i=0; i<su;i++){
+            String str = br.readLine();
+            String StrArr[] = str.split("");
+            for (int j=0; j<sis; j++){
+                map[i][j] = Integer.parseInt(StrArr[j]);
             }
+        }
 
-            while(!queue.isEmpty()){
-                tem = queue.poll();
-                if (sis == tem) {
-                    break;
-                }
-                if (tem == 0){
-                    tem++;
-                }
+        System.out.println(bfs(1,1));
+    }
+    public static int bfs(int x,int y){
+        queue = new LinkedList<>();
+        queue.add(new Node(x,y));
+        visited[x][y] = true;
 
-                for (int i=0; i<3; i++){
-                    if (tem*2 <= sis+1 && !visited[tem*2]){
-                        visited[tem*2] = true;
-                    }else if( tem-1 >= 0 && !visited[tem-1]){
-                        visited[tem-1] = true;
-                    }else if( tem + 1 < sis+1 && !visited[tem+1]){
-                        visited[tem+1] = true;
-                    }
+        while(!queue.isEmpty()){
+            Node node = queue.poll();
+            int tempX = node.x;
+            int tempY = node.y;
+
+            for (int i=0; i<4; i++){
+                if(map[tempX+1][tempY] == 1 && !visited[tempX+1][tempY]){
+                    queue.add(new Node(tempX+1,tempY));
+                    visited[tempX+1][tempY] = true;
+                }else if (map[tempX][tempY+1] == 1 && !visited[tempX][tempY+1]){
+                    queue.add(new Node(tempX,tempY+1));
+                    visited[tempX][tempY+1] = true;
+                }else if (map[tempX-1][tempY] == 1 && !visited[tempX-1][tempY]){
+                    queue.add(new Node(tempX-1,tempY));
+                    visited[tempX-1][tempY] = true;
+                }else if (map[tempX][tempY-1] == 1 && !visited[tempX][tempY-1]){
+                    queue.add(new Node(tempX,tempY-1));
+                    visited[tempX][tempY-1] = true;
                 }
             }
         }
 
         return count;
+    }
+
+    public static class Node{
+        private int x;
+        private int y;
+
+        public Node(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }

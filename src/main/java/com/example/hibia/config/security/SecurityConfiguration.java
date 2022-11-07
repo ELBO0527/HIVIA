@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/","/sign/**", "/cart/**", "/exception/**", "/item/user/**", "/user/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/actuator/health","/hibia/**","/","/sign/**", "/cart/**", "/exception/**", "/item/user/**", "/user/**").permitAll()
                 //.antMatchers("/item/**").hasRole("ADMIN")
                 .antMatchers("/item/**", "/review/**", "/user/**", "/order/**").hasRole("USER")
                 .antMatchers("/**").hasRole("ADMIN")

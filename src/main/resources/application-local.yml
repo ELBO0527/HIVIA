@@ -1,6 +1,5 @@
 spring:
-  profile:
-    active: local
+  profiles: local
   datasource:
     url: jdbc:mariadb://localhost:3306/hibia?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: org.mariadb.jdbc.Driver
@@ -12,32 +11,16 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-  messages:
-    basename: i18n/exception
-    encoding: UTF-8
-  servlet:
-    multipart:
-      max-request-size: 50MB
-      max-file-size: 50MB
-  jwt:
-    secret: hibia
-  social:
-    kakao:
-      client_id: 2b540be99e2ee859c6b54078ccee3da3 # 앱생성시 받은 REST API 키
-      redirect: /social/login/kakao
-      url:
-        login: https://kauth.kakao.com/oauth/authorize
-        token: https://kauth.kakao.com/oauth/token
-        profile: https://kapi.kakao.com/v2/user/me
   url:
-    base: http://localhost:8082
+    base: http://localhost:8888
 server:
-  port: 8888
+  host:
+    api: http://localhost:8888
+    front: http://localhost:3010
 logging:
   level:
-    org:
-      springframework:
-        security: DEBUG
+    root: warn
+    com.example.hibia : DEBUG
 file:
   upload:
     location: /Users/82104/Desktop
