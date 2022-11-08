@@ -25,4 +25,4 @@ cartItemAlreadyExist:
   msg: "This item already exist in cart."
 itemStockLack:
   code: "-1009"
-    msg: "Out Of Stock."
+  msg: "Out Of Stock"

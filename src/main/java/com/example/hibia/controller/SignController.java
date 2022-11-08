@@ -25,7 +25,7 @@ public class SignController {
 
     @PostMapping(value = "/signin")
 //    public SingleResult<String> signin(@RequestParam(value = "id") String id, @RequestParam String passwd){
-    public SingleResult<String> signin(@RequestBody SigninRequestDTO signinRequestDTO){
+    public SingleResult<String> signin(@RequestBody SigninRequestDTO signinRequestDTO,@RequestParam(value = "ko",required = false) String lang){
         User user = userService.findUser(signinRequestDTO.getId());
         if(!passwordEncoder.matches(signinRequestDTO.getPasswd(), user.getPasswd()))
             throw new CEmailSigninFailedException();

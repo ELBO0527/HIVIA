@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/actuator/health","/hibia/**","/","/sign/**", "/cart/**", "/exception/**", "/item/user/**", "/user/**").permitAll()
+                .antMatchers("/actuator/health","/hibia/**","/","/sign/**","/social/**", "/cart/**", "/exception/**", "/item/user/**", "/user/**").permitAll()
                 //.antMatchers("/item/**").hasRole("ADMIN")
                 .antMatchers("/item/**", "/review/**", "/user/**", "/order/**").hasRole("USER")
                 .antMatchers("/**").hasRole("ADMIN")

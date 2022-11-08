@@ -161,12 +161,14 @@ export default {
               this.$router.push({
                         name: "cart"
                     });
-                    alert(response.data.msg)
+                 alert(response.data.msg)
                  console.log(response);
+                 console.log(response.data.msg); 
              })
              .catch(function (error) {
                 console.log(error.response)
-                    alert(response.data.msg)
+                    alert(error.response.data.msg)
+
              })
     },
 

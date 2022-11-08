@@ -39,7 +39,7 @@ public class CartController {
     }
 
     @PostMapping("/{itemname}")
-    public SingleResult<Cart> addCartItem(@PathVariable String itemname, @RequestBody CartDTO cartDTO){
+    public SingleResult<Cart> addCartItem(@PathVariable String itemname, @RequestBody CartDTO cartDTO,@RequestParam(value = "ko",required = false) String lang){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String uid = authentication.getName();
 

@@ -106,7 +106,7 @@ export default {
              })
              .catch(function (error) {
                 console.log(error.response)
-                    alert(response.data.msg)
+                alert(error.response.data.msg)
              })
     }
   },

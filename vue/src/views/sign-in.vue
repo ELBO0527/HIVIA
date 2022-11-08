@@ -33,7 +33,7 @@
                   <h4>아이디</h4>
                 </v-sheet>
               </v-col>
-              <v-col class="d-flex" cols="12" sm="3">
+              <v-col class="d-flex" cols="12" sm="4">
                 <v-row>
                   <v-text-field
                     label="아이디를 입력하세요."
@@ -57,7 +57,7 @@
                 </v-sheet>
               </v-col>
 
-              <v-col class="d-flex" cols="12" sm="3">
+              <v-col class="d-flex" cols="12" sm="4">
                 <v-row>
                   <v-text-field
                     label="비밀번호를 입력하세요."
@@ -73,9 +73,20 @@
         </v-col>
         <v-row>
           <v-col cols="12" md="12">
-            <div class="pa-12" justify="center" align="center">
-              <v-btn @click="popupKakaoLogin()">카카오로그인</v-btn>
-              <v-btn color="primary" @click="loginSubmit()"> 로그인</v-btn>
+            <div class="pa-3" justify="center" align="center">
+              <v-btn min-width="250" color="primary" @click="loginSubmit()"> 로그인</v-btn>
+              <v-btn class="mx-3" min-width="250" color="primary" outlined dark to="/signup"> 회원가입</v-btn>
+            </div>
+          </v-col>
+          <v-col cols="12" md="12">
+            <div class="pa-3" justify="center" align="center">
+              <v-img
+  lazy-src="https://picsum.photos/id/11/10/6"
+  max-height="150"
+  max-width="250"
+  @click="kakaoLoginBtn()"
+  src="../assets/kakao_login_medium_wide.png"
+></v-img>
             </div>
           </v-col>
         </v-row>
@@ -85,6 +96,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -101,19 +113,24 @@ export default {
           };
           this.$store.dispatch('doLogin', saveData).then(() => {
 	        this.$router.push("/");
-        }).catch((err) => {
-	        this.errorMessage = err.response.data.errormessage;
-          console.log(err);
-          console.log(id, passwd);
         })
         .catch(err => {
           this.errorMessage = err.response.data.errormessage;
           console.log(id, passwd);
+          alert(err.response.data.msg)
         });
     },
-    popupKakaoLogin() {
-        window.open('${loginUrl}', 'popupKakaoLogin', 'width=700,height=500,scrollbars=0,toolbar=0,menubar=no')
-    }
+
+    kakaoLoginBtn(){
+      axios.get('/social/login/')
+            .then((response) => {
+              console.log(response.data)
+              console.warn("warn : " + response);
+              window.location.href = response.data;
+            }).catch((err) => {
+              console.log(err);
+            })
+    },
   },
 };
 </script>

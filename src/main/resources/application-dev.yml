@@ -1,7 +1,7 @@
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mariadb://52.78.16.92:3306/elbo?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mariadb://13.125.208.123:3306/elbo?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: org.mariadb.jdbc.Driver
     username: elbo
     password: 1234
@@ -11,12 +11,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-  url:
-    base: http://52.78.16.92:8888
 server:
   host:
-    api: http://52.78.16.92:8888
-    front: http://52.78.16.92:3000
+    api: http://13.125.208.123:8888
+    front: http://13.125.208.123:3000
 logging:
   level:
     root: warn

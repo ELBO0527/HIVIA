@@ -11,12 +11,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-  url:
-    base: http://localhost:8888
 server:
   host:
     api: http://localhost:8888
-    front: http://localhost:3010
+    front: http://localhost:3000
 logging:
   level:
     root: warn

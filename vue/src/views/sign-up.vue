@@ -25,25 +25,24 @@
             <v-row>
               <v-col class="pa-4" cols="3" md="5">
                 <v-sheet align="center" justify="center">
-                  <h4>이름</h4>
+                  <h4>아이디</h4>
                 </v-sheet>
               </v-col>
               <v-col class="d-flex" cols="12" sm="3">
                 <v-row>
-                  <v-text-field label="사용될 이름을 입력하세요." solo dense v-model="username"></v-text-field>
-                  <!--<v-list-item-subtitle>*답변 등록 시 연락받을 이메일 주소를 입력하세요.</v-list-item-subtitle>-->
+                  <v-text-field label="사용될 아이디를 입력하세요." solo dense v-model="username"></v-text-field>
                 </v-row>
               </v-col>
             </v-row>
             <v-row>
               <v-col class="pa-4" cols="3" md="5">
                 <v-sheet align="center" justify="center">
-                  <h4>아이디</h4>
+                  <h4>E-mail</h4>
                 </v-sheet>
               </v-col>
               <v-col class="d-flex" cols="12" sm="3">
                 <v-row>
-                  <v-text-field label="아이디를 입력하세요." solo dense type="email" v-model="email"></v-text-field>
+                  <v-text-field label="이메일을 입력하세요." solo dense type="email" v-model="email"></v-text-field>
                   <!--<v-list-item-subtitle>*답변 등록 시 연락받을 이메일 주소를 입력하세요.</v-list-item-subtitle>-->
                 </v-row>
               </v-col>
@@ -135,13 +134,6 @@
               <v-col class="d-flex" cols="12" sm="3">
                 <v-row>
                   <v-text-field label="핸드폰 번호를 입력하세요." solo dense v-model="mobile"></v-text-field>
-                </v-row>
-              </v-col>
-              <v-col class="d-flex" cols="12" sm="3">
-                <v-row>
-                  <div class="pa-12" justify="center" align="center">
-                    <v-btn color="primary"> 인증하기</v-btn>
-                  </div>
                 </v-row>
               </v-col>
             </v-row>

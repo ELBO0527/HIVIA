@@ -18,6 +18,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/review")
 public class ReviewController {
 

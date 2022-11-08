@@ -82,9 +82,6 @@
       <div v-else>
         <v-row>
       <v-btn class="d-none d-sm-flex ma-2" color="primary" outlined to="/signin">로그인</v-btn>
-      <v-btn class="d-none d-sm-flex my-2 primary" dark to="/signup"
-        >회원가입</v-btn
-      >
     </v-row>
       </div>
     </v-app-bar>

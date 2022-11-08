@@ -69,7 +69,7 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(CItemStockLackException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public CommonResult itemStockLackException(HttpServletRequest request, CCartItemExistException e){
+    public CommonResult itemStockLackException(HttpServletRequest request, CItemStockLackException e){
         return responseService.getFailResult(Integer.valueOf(getMessage("itemStockLack.code")),getMessage("itemStockLack.msg"));
     }
 
