@@ -14,4 +14,10 @@ public class MainController {
         return "Process finished";
     }
 
+    @GetMapping("/hibia/test")
+    @ResponseBody
+    public String test(){
+        return "test";
+    }
+
 }
