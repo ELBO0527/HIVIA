@@ -17,7 +17,7 @@ public class MainController {
     @GetMapping("/hibia/test")
     @ResponseBody
     public String test(){
-        return "test";
+        return "test 수정햇다용";
     }
 
 }
