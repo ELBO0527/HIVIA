@@ -81,7 +81,6 @@
           <v-col cols="12" md="12">
             <div class="pa-3" justify="center" align="center">
               <v-img
-  lazy-src="https://picsum.photos/id/11/10/6"
   max-height="150"
   max-width="250"
   @click="kakaoLoginBtn()"

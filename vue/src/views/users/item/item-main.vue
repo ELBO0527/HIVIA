@@ -4,66 +4,9 @@
       <v-col cols="12" md="12">
         <v-row class="ma-n3">
           <!-- 첫 줄 두번째 구분 -->
-          <v-col cols="12" md="12"> </v-col>
-
-          <!-- 첫줄 세번째 구분 -->
-          <v-col cols="12" md="12">
-            <v-form>
-              <v-container>
-                <v-row>
-                  <v-col cols="12">
-                    <v-text-field
-                      outlined
-                      clearable
-                      label="내용"
-                      type="text"
-                      hide-details
-                    >
-                      <template v-slot:append-outer>
-                        <v-btn color="primary"  >
-                          검색
-                        </v-btn>
-                      </template>
-                    </v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-form>
-          </v-col>
 
           <!-- 카테고리슬라이더 -->
           <v-col cols="12">
-            <v-sheet class="mx-auto" max-width="1000">
-              <v-slide-group multiple show-arrows>
-                <v-slide-item
-                  v-for="n in 25"
-                  :key="n"
-                  v-slot="{ active, toggle }"
-                >
-                  <v-btn
-                    class="mx-2"
-                    :input-value="active"
-                    active-class="purple white--text"
-                    depressed
-                    rounded
-                    @click="toggle"
-                  >
-                    카테고리 {{ n }}
-                  </v-btn>
-                </v-slide-item>
-              </v-slide-group>
-            </v-sheet>
-            <v-col class="d-flex" cols="12" md="12">
-              <v-container>
-                <v-sheet
-                  color="grey lighten-3"
-                  class="d-flex"
-                  height="300"
-                >
-                </v-sheet>
-              </v-container>
-            </v-col>
-            <v-divider class="ma-2"></v-divider>
             <!-- 상품 목록 -->
             <v-container>
               <h2>전체</h2>
