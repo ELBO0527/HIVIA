@@ -3,9 +3,6 @@
     <v-row>
       <v-col cols="12" md="12">
         <v-row class="ma-n3">
-          <!-- 첫 줄 두번째 구분 -->
-
-          <!-- 카테고리슬라이더 -->
           <v-col cols="12">
             <!-- 상품 목록 -->
             <v-container>
@@ -52,11 +49,11 @@
                         </v-row> </template
                     ></v-img>
 
-                    <v-card-title>{{item2.name}}</v-card-title>
+                    <v-card-title>{{ item2.name }}</v-card-title>
                     <v-card-text>
                       <v-row align="center" class="mx-0">
                         <v-rating
-                          :value=item2.stars
+                          :value="item2.stars"
                           color="amber"
                           dense
                           half-increments
@@ -64,19 +61,20 @@
                           size="14"
                         ></v-rating>
 
-                        <div class="grey--text ms-4">
-                          {{item2.stars }} (413)
-                        </div>
+                        <div class="grey--text ms-4">{{ item2.stars }} (0)</div>
                       </v-row>
                       <div class="my-4 text-subtitle-1">
-                        <h3 class="blue--text">{{item2.price}}원</h3>
+                        <h3 class="blue--text">{{ item2.price }}원</h3>
                         • 상품 소개
                       </div>
                       <div>
                         상품소개.
                       </div>
-                      <v-btn color="primary" class="mt-2"
-                      @click="fetchOneItem(item2.id)">
+                      <v-btn
+                        color="primary"
+                        class="mt-2"
+                        @click="fetchOneItem(item2.id)"
+                      >
                         상세보기</v-btn
                       >
                     </v-card-text>
@@ -96,34 +94,33 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import axios from "axios";
+import axios from 'axios';
 
 export default {
   data() {
     return {
       page: 1,
       v0: true,
-    selectedItem: 0,
-    items2: [],
-    }
+      selectedItem: 0,
+      items2: [],
+    };
   },
   methods: {
-    ...mapActions(["fetchOneItem"]),
-   fetchItem() {
+    ...mapActions(['fetchOneItem']),
+    fetchItem() {
       axios
-        .get("/item/user")
+        .get('/item/user')
         .then(response => {
           this.items2 = response.data.list;
         })
         .catch(error => {
           console.log(error);
-          alert(error.response.data.msg)
+          alert(error.response.data.msg);
         });
     },
   },
-    mounted() {
+  mounted() {
     this.fetchItem();
   },
-
 };
 </script>
