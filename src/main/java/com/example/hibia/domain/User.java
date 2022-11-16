@@ -43,7 +43,7 @@ public class User implements UserDetails {
 	@Column(length = 50, nullable = false)
 	private String username;
 	
-	@Column(nullable = false)
+	@Column
 	private String passwd;
 
 	@Column(columnDefinition = "integer default 0")
@@ -72,7 +72,7 @@ public class User implements UserDetails {
 	@Column
 	private String profile_url;
 
-	@Column
+	@Column(length = 100)
 	private String provider;
 
 	@ElementCollection(fetch = FetchType.EAGER)

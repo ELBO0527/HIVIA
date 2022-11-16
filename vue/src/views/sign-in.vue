@@ -126,7 +126,7 @@ export default {
 
     kakaoLoginBtn() {
       axios
-        .get('/social/login/')
+        .get('/sign/signin/kakao')
         .then(response => {
           console.log(response.data);
           console.warn('warn : ' + response);
