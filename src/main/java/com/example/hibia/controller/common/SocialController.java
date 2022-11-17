@@ -1,15 +1,18 @@
 package com.example.hibia.controller.common;
 
 import com.example.hibia.dto.RetKakaoAuth;
+import com.example.hibia.model.response.SingleResult;
 import com.example.hibia.service.KakaoService;
+import com.example.hibia.service.ResponseService;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,6 +23,7 @@ public class SocialController {
     private final Gson gson;
     private final RestTemplate restTemplate;
     private final KakaoService kakaoService;
+    private final ResponseService responseService;
 
     @Value("${spring.url.base}")
     private String baseUrl;
@@ -41,9 +45,8 @@ public class SocialController {
     }
 
     @GetMapping(value = "/kakao")
-    public String redirectKakao(@RequestParam String code){
-        String authInfo = String.valueOf(kakaoService.getKakaoTokenInfo(code));
-
-        return authInfo;
+    public SingleResult<RetKakaoAuth> redirectKakao(@RequestParam String code){
+        return responseService.getSingleResult(kakaoService.getKakaoTokenInfo(code));
     }
+
 }

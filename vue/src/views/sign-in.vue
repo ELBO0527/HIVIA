@@ -19,116 +19,122 @@
         </v-sheet>
       </v-col>
       <v-col cols="12" md="12"> </v-col>
+    </v-row>
 
-      <!-- 로그인 내용 -->
-      <v-row class="mx-24">
-        <v-col cols="12" md="12">
-          <div class="pa-12" justify="center" align="center">
-            <h2>정보를 입력해주세요</h2>
-          </div>
-          <v-sheet height="120">
-            <v-row>
-              <v-col class="pa-4" cols="3" md="5">
-                <v-sheet align="center" justify="center">
-                  <h4>아이디</h4>
-                </v-sheet>
-              </v-col>
-              <v-col class="d-flex" cols="12" sm="4">
-                <v-row>
-                  <v-text-field
-                    label="아이디를 입력하세요."
-                    solo
-                    dense
-                    full-width="200"
-                    v-model="userId"
-                  ></v-text-field>
-                  <!--<v-list-item-subtitle>*답변 등록 시 연락받을 이메일 주소를 입력하세요.</v-list-item-subtitle>-->
-                </v-row>
-              </v-col>
-            </v-row>
-          </v-sheet>
-        </v-col>
-        <v-col cols="12" md="12">
-          <v-sheet height="120">
-            <v-row>
-              <v-col class="pa-4" cols="3" md="5">
-                <v-sheet align="center" justify="center">
-                  <h4>비밀번호</h4>
-                </v-sheet>
-              </v-col>
-
-              <v-col class="d-flex" cols="12" sm="4">
-                <v-row>
-                  <v-text-field
-                    label="비밀번호를 입력하세요."
-                    solo
-                    dense
-                    type="password"
-                    v-model="passwd"
-                  ></v-text-field>
-                </v-row>
-              </v-col>
-            </v-row>
-          </v-sheet>
-        </v-col>
-        <v-row>
-          <v-col cols="12" md="12">
-            <div class="pa-3" justify="center" align="center">
-              <v-btn min-width="250" color="primary" @click="loginSubmit()"> 로그인</v-btn>
-              <v-btn class="mx-3" min-width="250" color="primary" outlined dark to="/signup"> 회원가입</v-btn>
-            </div>
+    <!-- 로그인 내용 -->
+    <v-row>
+      <v-col cols="12">
+        <div class="mb-6" align="center">
+          <h2>정보를 입력해주세요</h2>
+        </div>
+        <v-row class="my-6" justify="center" align="center">
+          <v-col class="mr-md-3" cols="3" sm="1" align="center">
+            <h4>아이디</h4>
           </v-col>
-          <v-col cols="12" md="12">
-            <div class="pa-3" justify="center" align="center">
-              <v-img
-  max-height="150"
-  max-width="250"
-  @click="kakaoLoginBtn()"
-  src="../assets/kakao_login_medium_wide.png"
-></v-img>
-            </div>
+          <v-col cols="3" align="center">
+            <v-text-field
+              label="아이디를 입력하세요."
+              solo
+              dense
+              full-width="200"
+              v-model="userId"
+              hide-details="auto"
+            ></v-text-field>
+            <!--<v-list-item-subtitle>*답변 등록 시 연락받을 이메일 주소를 입력하세요.</v-list-item-subtitle>-->
           </v-col>
         </v-row>
-      </v-row>
+      </v-col>
+
+      <v-col cols="12">
+        <v-row justify="center">
+          <v-col class="mr-md-3" cols="3" md="1" sm="1" align="center">
+            <h4>비밀번호</h4>
+          </v-col>
+
+          <v-col cols="3" align="center">
+            <v-text-field
+              label="비밀번호를 입력하세요."
+              solo
+              dense
+              type="password"
+              full-width="200"
+              v-model="passwd"
+              hide-details="auto"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+    <!--버튼-->
+    <v-row class="my-12" justify="center" align="center">
+      <v-col cols="2" justify="center" align="center">
+        <v-btn min-width="300" color="primary" @click="loginSubmit()">
+          로그인
+        </v-btn>
+      </v-col>
+      <div>
+        <v-img
+          max-height="40"
+          min-width="300"
+          @click="kakaoLoginBtn()"
+          src="../assets/kakao_login_medium_wide.png"
+        ></v-img>
+      </div>
+    </v-row>
+    <v-divider class="mt-12"></v-divider>
+    <v-row justify="center">
+      <v-col class="mt-4" cols="4" justify="center" align="center">
+        <v-btn disabled text color="black">
+          <strong>아직 회원이 아니신가요?</strong></v-btn
+        >
+        <v-btn :disabled="loading" color="blue" text dark to="/signup">
+          <strong>회원가입</strong></v-btn
+        >
+      </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 export default {
   data() {
     return {
       id: '',
       passwd: '',
+      loading: false,
     };
   },
 
   methods: {
     loginSubmit() {
-          let saveData = { 
-            id: this.userId, 
-            passwd: this.passwd 
-          };
-          this.$store.dispatch('doLogin', saveData).then(() => {
-	        this.$router.push("/");
+      let saveData = {
+        id: this.userId,
+        passwd: this.passwd,
+      };
+      this.$store
+        .dispatch('doLogin', saveData)
+        .then(() => {
+          this.$router.push('/');
         })
         .catch(err => {
           this.errorMessage = err.response.data.errormessage;
           console.log(id, passwd);
-          alert(err.response.data.msg)
+          alert(err.response.data.msg);
         });
     },
 
-    kakaoLoginBtn(){
-      axios.get('/social/login/')
-            .then((response) => {
-              console.log(response.data)
-              console.warn("warn : " + response);
-              window.location.href = response.data;
-            }).catch((err) => {
-              console.log(err);
-            })
+    kakaoLoginBtn() {
+      axios
+        .get('/sign/signin/kakao')
+        .then(response => {
+          console.log(response.data);
+          console.warn('warn : ' + response);
+          window.location.href = response.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
   },
 };

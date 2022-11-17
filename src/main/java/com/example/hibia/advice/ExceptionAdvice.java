@@ -73,6 +73,19 @@ public class ExceptionAdvice {
         return responseService.getFailResult(Integer.valueOf(getMessage("itemStockLack.code")),getMessage("itemStockLack.msg"));
     }
 
+    @ExceptionHandler(CCommunicationException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public CommonResult communicationException(HttpServletRequest request, CCommunicationException e){
+        return responseService.getFailResult(Integer.valueOf(getMessage("communicationError.code")),getMessage("communicationError.msg"));
+    }
+
+    @ExceptionHandler(CUserExistException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public CommonResult communicationException(HttpServletRequest request, CUserExistException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("existingUser.code")), getMessage("existingUser.msg"));
+    }
+
+
     private String getMessage(String code){
         return getMessage(code, null);
     }
