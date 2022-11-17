@@ -1,7 +1,7 @@
 <template>
   <v-card class="overflow-hidden">
     <!--앱바-->
-    <v-app-bar clipped-left app color="white">
+    <v-app-bar clipped-left app elevation="1" color="white">
       <v-app-bar-nav-icon class="d-flex d-sm-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-btn class="d-none d-sm-flex" text color="black" dark to="/">
         SHOPPINGMALL

@@ -29,6 +29,9 @@ export default new Vuex.Store({
     
   },
   actions: {
+    async getAllItems({commit}){
+
+    }
   },
   modules: {
    a: ItemsModule,
