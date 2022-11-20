@@ -29,6 +29,7 @@ const actions = {
         axios.defaults.headers.common['X-AUTH-TOKEN'] = res.data.data;
         result = true;
       } else {
+        console.log('err');
         let err = new Error('401');
         err.response = { data: { success: false, errormessage: '실패' } };
         resultErr = err;

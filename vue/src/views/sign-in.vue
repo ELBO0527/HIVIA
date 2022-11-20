@@ -72,14 +72,14 @@
           로그인
         </v-btn>
       </v-col>
-      <div>
+      <v-col cols="2" justify="center" align="center">
         <v-img
           max-height="40"
           min-width="300"
           @click="kakaoLoginBtn()"
           src="../assets/kakao_login_medium_wide.png"
         ></v-img>
-      </div>
+      </v-col>
     </v-row>
     <v-divider class="mt-12"></v-divider>
     <v-row justify="center">
@@ -116,6 +116,7 @@ export default {
         .dispatch('doLogin', saveData)
         .then(() => {
           this.$router.push('/');
+          console.log(saveData);
         })
         .catch(err => {
           this.errorMessage = err.response.data.errormessage;
@@ -124,6 +125,7 @@ export default {
         });
     },
 
+<<<<<<< Updated upstream
     async kakaoLoginBtn() {
       const response = await axios.get('/social/login/')
           const params = {redirectUri: "http://localhost:3000/signin"}
@@ -145,6 +147,16 @@ export default {
             .dispatch('socialLogin',response.data.data)
             .then(() => {
           this.$router.push('/');
+=======
+    kakaoLoginBtn() {
+      axios
+        .get('/social/login/')
+        .then(response => {
+          console.log(response.data);
+          let data = response.data;
+          window.location = response.data;
+          console.log(data);
+>>>>>>> Stashed changes
         })
         .catch(err => {
           this.errorMessage = err.response.data.errormessage;
