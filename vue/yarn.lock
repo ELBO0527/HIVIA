@@ -1044,6 +1044,11 @@
   "resolved" "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz"
   "version" "0.0.29"
 
+"@types/kakao-js-sdk@latest":
+  "integrity" "sha512-kB0nXS97K7zFgIhLi7oDi1zeR7WV6zRNvRwtJ3KxICz8VWcuqnFYwMq1eBzyhOIJsBTCFRhB4tR1IPHKp7qcKw=="
+  "resolved" "https://registry.npmjs.org/@types/kakao-js-sdk/-/kakao-js-sdk-1.39.1.tgz"
+  "version" "1.39.1"
+
 "@types/mime@^1":
   "integrity" "sha1-k+Jb+e51/g/YC1lLxP6w6GIRG1o="
   "resolved" "https://registry.nlark.com/@types/mime/download/@types/mime-1.3.2.tgz"
@@ -8704,6 +8709,13 @@
   "resolved" "https://registry.nlark.com/vue-hot-reload-api/download/vue-hot-reload-api-2.3.4.tgz"
   "version" "2.3.4"
 
+"vue-kakao-sdk@^0.2.5":
+  "integrity" "sha512-Mw5cIC/XQvfsaGZ/7MtWg5kKvN4W3GixfNXyOGmh9SYwAXDGRjsansZQ6kWUfnFnxe3VFHmty2mviln/gsnW+Q=="
+  "resolved" "https://registry.npmjs.org/vue-kakao-sdk/-/vue-kakao-sdk-0.2.5.tgz"
+  "version" "0.2.5"
+  dependencies:
+    "@types/kakao-js-sdk" "latest"
+
 "vue-loader-v16@npm:vue-loader@^16.1.0":
   "integrity" "sha512-7vKN45IxsKxe5GcVCbc2qFU5aWzyiLrYJyUuMz4BQLKctCj/fmCa0w6fGiiQ2cLFetNcek1ppGJQDCup0c1hpA=="
   "resolved" "https://registry.npmjs.org/vue-loader/-/vue-loader-16.8.3.tgz"
@@ -8750,7 +8762,7 @@
   "resolved" "https://registry.nlark.com/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^2 || ^3.0.0-0", "vue@^2.0.0", "vue@^2.6.11", "vue@^2.6.4":
+"vue@*", "vue@^2 || ^3.0.0-0", "vue@^2.0.0", "vue@^2.6.11", "vue@^2.6.4":
   "integrity" "sha1-5RqlJQJQ1Wmj+606ilpofWA24jU="
   "resolved" "https://registry.nlark.com/vue/download/vue-2.6.14.tgz?cache=0&sync_timestamp=1631142011059&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fvue%2Fdownload%2Fvue-2.6.14.tgz"
   "version" "2.6.14"

@@ -124,18 +124,41 @@ export default {
         });
     },
 
-    kakaoLoginBtn() {
-      axios
-        .get('/sign/signin/kakao')
-        .then(response => {
+    async kakaoLoginBtn() {
+      const response = await axios.get('/social/login/')
+          const params = {redirectUri: "http://localhost:3000/signin"}
           console.log(response.data);
-          console.warn('warn : ' + response);
-          window.location.href = response.data;
-        })
-        .catch(err => {
-          console.log(err);
-        });
+          window.Kakao.Auth.authorize(params);
     },
   },
+  mounted(){    
+    const check = window.location.href.includes("?") ? '1' : '0'
+    console.log(check)
+    if(check == 1){
+      let code = new URL(window.location.href).searchParams.get('code');
+      axios.get('http://localhost:8888/signin',{params: {code : code}})
+          .then((response) => {
+            console.log(response.data.data);
+            axios.defaults.headers.common['X-AUTH-TOKEN'] = response.data.data;
+            //this.$store.dispatch('socialId',id)
+            this.$store
+            .dispatch('socialLogin',response.data.data)
+            .then(() => {
+          this.$router.push('/');
+        })
+        .catch(err => {
+          this.errorMessage = err.response.data.errormessage;
+          console.log(id, passwd);
+          alert(err.response.data.msg);
+        });
+          //this.$router.push('/');
+        })
+        .catch(err => {
+          this.errorMessage = err.response.data.errormessage;
+          console.log(id, passwd);
+          alert(err.response.data.msg);
+        });
+    }
+    }
 };
 </script>

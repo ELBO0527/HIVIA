@@ -1,7 +1,13 @@
 package com.example.hibia.controller.common;
 
-import com.example.hibia.dto.RetKakaoAuth;
+import com.example.hibia.advice.exception.CCommunicationException;
+import com.example.hibia.advice.exception.CUserExistException;
+import com.example.hibia.advice.exception.CUserNotFoundException;
+import com.example.hibia.config.security.JwtTokenProvider;
+import com.example.hibia.domain.User;
+import com.example.hibia.dto.KakaoProfile;
 import com.example.hibia.model.response.SingleResult;
+import com.example.hibia.repository.UserRepository;
 import com.example.hibia.service.KakaoService;
 import com.example.hibia.service.ResponseService;
 import com.google.gson.Gson;
@@ -14,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
+import java.util.Optional;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/social/login")
+@RequestMapping(value = "/social/login/")
 public class SocialController {
 
     private final Environment env;
@@ -24,6 +33,8 @@ public class SocialController {
     private final RestTemplate restTemplate;
     private final KakaoService kakaoService;
     private final ResponseService responseService;
+    private final UserRepository userRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Value("${spring.url.base}")
     private String baseUrl;
@@ -45,8 +56,29 @@ public class SocialController {
     }
 
     @GetMapping(value = "/kakao")
-    public SingleResult<RetKakaoAuth> redirectKakao(@RequestParam String code){
-        return responseService.getSingleResult(kakaoService.getKakaoTokenInfo(code));
+    public SingleResult<String> redirectKakao(@RequestParam String code) throws CCommunicationException {
+
+        String accessToken = kakaoService.getKakaoTokenInfo(code).getAccess_token();
+        KakaoProfile profile = kakaoService.getKakaoProfile(accessToken);
+
+        Optional<User> isUser = userRepository.findByUsernameAndProvider(String.valueOf(profile.getId()), "kakao");
+
+
+        if(!isUser.isPresent()) {
+            //throw new CUserExistException();
+
+            User user = userRepository.save(User.builder()
+                    .username(String.valueOf(profile.getId()))
+                    .provider("kakao")
+                    .roles(Collections.singletonList("ROLE_USER"))
+                    .email("email")
+                    .balance(0)
+                    .build());
+        }
+        User user = userRepository.findByUsernameAndProvider(String.valueOf(profile.getId()), "kakao").orElseThrow(CUserNotFoundException::new);
+
+
+        return responseService.getSingleResult(jwtTokenProvider.createToken(String.valueOf(user.getId()), user.getRoles()));
     }
 
 }

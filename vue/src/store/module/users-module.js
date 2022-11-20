@@ -37,6 +37,13 @@ const actions = {
       console.log(err);
     }
   },
+  socialId({commit}, id){
+    commit('setId',id);
+  },
+  socialLogin({commit}, accessToken){
+    commit('setAccessToken', accessToken)
+  }
+  ,
   doLogout({ commit }) {
     commit('reset');
     delete axios.defaults.headers.common['X-AUTH-TOKEN'];

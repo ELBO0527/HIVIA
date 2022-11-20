@@ -11,6 +11,16 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  social:
+    kakao:
+      client_id: 2b540be99e2ee859c6b54078ccee3da3 # 앱생성시 받은 REST API 키
+      redirect: /signin
+      url:
+        login: https://kauth.kakao.com/oauth/authorize
+        token: https://kauth.kakao.com/oauth/token
+        profile: https://kapi.kakao.com/v2/user/me
+  url:
+    base: http://localhost:3000
 server:
   host:
     api: http://3.38.123.209:8888
