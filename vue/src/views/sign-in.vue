@@ -126,7 +126,7 @@ export default {
 
     async kakaoLoginBtn() {
       const response = await axios.get('/social/login/')
-          const params = {redirectUri: "http://localhost:3000/signin"}
+          const params = {redirectUri: "http://localhost:8888/signin"}
           console.log(response.data);
           window.Kakao.Auth.authorize(params);
     },
@@ -136,11 +136,11 @@ export default {
     console.log(check)
     if(check == 1){
       let code = new URL(window.location.href).searchParams.get('code');
-      axios.get('http://localhost:8888/signin',{params: {code : code}})
+      axios.get('http://localhost:8888/social/login/kakao',{params: {code : code}})
           .then((response) => {
             console.log(response.data.data);
             axios.defaults.headers.common['X-AUTH-TOKEN'] = response.data.data;
-            //this.$store.dispatch('socialId',id)
+            this.$store.dispatch('socialId',"USER")
             this.$store
             .dispatch('socialLogin',response.data.data)
             .then(() => {

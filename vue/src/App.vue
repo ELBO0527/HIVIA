@@ -11,9 +11,10 @@
 <script>
 import Footer from "./components/layout/Footer.vue";
 import Header from "./components/layout/Header.vue";
+import axios from 'axios';
 
 export default {
   components: { Footer, Header },
-  name: "App"
+  name: "App",
 };
 </script>

@@ -24,7 +24,6 @@ const actions = {
       headers: { 'X-AUTH-TOKEN': token },
     });
     console.log(response.data.list);
-    console.log('success');
     commit('setCart', response.data.list);
   },
   

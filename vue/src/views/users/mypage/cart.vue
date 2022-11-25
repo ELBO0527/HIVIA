@@ -108,19 +108,22 @@ export default {
                 console.log(error.response)
                 alert(error.response.data.msg)
              })
-    }
+    },
   },
 
-  computed: 
-  mapGetters(['cartList']),
-  mounted() {
+  mounted(){ 
     this.fetchCart();
+    console.log("as")
     //장바구니 가격 총 가격
-    for(var i =0; i<this.$store.state.b.items.length; i++) {
+      for(var i =0; i<this.$store.state.b.items.length; i++) {
       this.itemPrice += this.$store.state.b.items[i].item.price * this.$store.state.b.items[i].quantity;
       this.$store.state.b.itemPrice = this.itemPrice;
     }
     console.log(this.$store.state.b.itemPrice)
+    
   },
+
+  computed: 
+  mapGetters(['cartList']),
 }
 </script>

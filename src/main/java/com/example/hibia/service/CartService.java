@@ -34,14 +34,20 @@ public class CartService {
     public Cart addCartItem(String itemname, String email, CartDTO cartDTO){//장바구니 추가
 
         Item item = itemService.findItem(itemname);
-        Cart ValidCart = cartRepository.findByItem(item);
+        User user = userService.findUser(email);
+        /*
+        * 아래 코드처럼 코드 짜니 장바구니에 담았을 때 해당 사용자 + 아이템에 대한 validation을 하는 것이 아닌
+        * 장바구니에 유저 상관없이 아이템만 있을 때 예외가 터짐, repository에서
+        * */
+        //Cart ValidCart = cartRepository.findByItem(item);
+        Cart ValidCart = cartRepository.findByItemAndUser(item, user);
 
         if (ValidCart != null){
             throw new CCartItemExistException();
         }
 
         Cart cart = Cart.builder()
-                .user(userService.findUser(email))
+                .user(user)
                 .item(item)
                 .quantity(cartDTO.getQuantity())
                 .total(item.getPrice() * cartDTO.getQuantity())

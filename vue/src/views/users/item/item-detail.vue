@@ -185,10 +185,9 @@ export default {
   sumCartTotal() {
     this.total = this.quantity * this.price;
   },
-
-  mounted(){
+},
+mounted(){
     this.total = this.price * this.quantity;
-  }
-}    
+  },    
 }
 </script>

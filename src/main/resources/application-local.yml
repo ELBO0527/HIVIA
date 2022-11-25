@@ -20,7 +20,7 @@ spring:
         token: https://kauth.kakao.com/oauth/token
         profile: https://kapi.kakao.com/v2/user/me
   url:
-    base: http://localhost:3000
+    base: http://localhost:8888
 server:
   host:
     api: http://localhost:8888
