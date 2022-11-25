@@ -1,7 +1,6 @@
 package com.example.hibia.controller.common;
 
 import com.example.hibia.advice.exception.CCommunicationException;
-import com.example.hibia.advice.exception.CUserExistException;
 import com.example.hibia.advice.exception.CUserNotFoundException;
 import com.example.hibia.config.security.JwtTokenProvider;
 import com.example.hibia.domain.User;
@@ -12,6 +11,8 @@ import com.example.hibia.service.KakaoService;
 import com.example.hibia.service.ResponseService;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping(value = "/social/login/")
 public class SocialController {
+
+    private static final Logger logger = LoggerFactory.getLogger(SocialController.class);
 
     private final Environment env;
     private final Gson gson;
@@ -80,5 +83,7 @@ public class SocialController {
 
         return responseService.getSingleResult(jwtTokenProvider.createToken(String.valueOf(user.getId()), user.getRoles()));
     }
+
+
 
 }
