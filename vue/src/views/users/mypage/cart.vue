@@ -1,8 +1,7 @@
 <template>
-  <v-container
-  class="d-flex pa-2" align-center justify-center>
+  <v-container>
     <div
-    class="d-flex pa-2" align-center justify-center>
+    class=" pa-2" align-center justify-center>
       <v-row
       cols="12" md="12">
         <v-col
@@ -34,7 +33,7 @@
         </v-dialog>
       <v-btn
       outlined
-      @click="deleteCartItem(selected[0].id)"
+     @click="deleteCartItem(selected[0].id)"
       >
         삭제하기
       </v-btn>

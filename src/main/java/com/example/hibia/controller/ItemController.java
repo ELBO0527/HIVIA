@@ -8,9 +8,13 @@ import com.example.hibia.model.response.SingleResult;
 import com.example.hibia.service.ItemService;
 import com.example.hibia.service.ResponseService;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,12 +39,30 @@ public class ItemController {
         return responseService.getListResult(itemService.findAllItems());
     }
 
-    @GetMapping(value = "/userpage")
-    public ListResult<Item> findAllItems(Pageable pageable){
+    /*
+    * 페이징 추가한 전체 검색
+    * ?page={숫자}&size={숫자}
+    * pageableDefault size = 7로 변경 (10기본, 7로 그냥 한번 바꿔보았다 써보고싶어서), 사이즈를 따로 지정하면 변경됨
+     */
+    @GetMapping(value = "/")
+    public ListResult<Item> findAllItems(@PageableDefault(size = 7) Pageable pageable){
         logger.info("log : <<"+ pageable +">>");
         return responseService.getListResult(itemService.findAllItemss(pageable));
     }
+    
+    /*
+    * id값으로 내림차순 정렬 기능, 어떻게 동적으로 백엔드에서 구현할지 고민해봐야겟다.
+    * +api를 여러개 찍어놓으면 프론트에서 동적으로 처리되는 것처럼 보일 순 있을 것 같다.
+     */
 
+    @GetMapping(value= "/search")
+    public ListResult<Item> findByName(String keyword, @PageableDefault(size = 10,sort = "id",direction = Sort.Direction.DESC)
+    Pageable pageable){
+        logger.info("keyword : <<"+ keyword +">>");
+        logger.info("pageable : <<"+ pageable +">>");
+        //Page<Item> pageList = itemService.findByItemnameDesc(keyword, pageable);
+        return responseService.getListResult(itemService.findByItemnameDesc(keyword, pageable));
+    }
     @PostMapping(value = "/")
     public SingleResult<Item> saveItem(@RequestBody ItemDTO itemDTO, MultipartFile file){
         return responseService.getSingleResult(itemService.saveItem(itemDTO));

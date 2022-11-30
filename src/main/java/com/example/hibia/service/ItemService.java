@@ -8,6 +8,7 @@ import com.example.hibia.properties.FileUploadProperties;
 import com.example.hibia.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,11 +29,14 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
+    //이름 검색 및 페이징
+    public List<Item> findByItemnameDesc(String keyword, Pageable pageable ){
+        return itemRepository.findByNameContains(keyword, pageable).getContent();
+    }
+
     public List<Item> findAllItemss(Pageable pageable){
         return itemRepository.findAll(pageable).getContent();
     }
-
-
 
     //아이템 이름 id값으로 단일 조회, 아래 함수와 오버로딩
     public Item findItem(Long id){

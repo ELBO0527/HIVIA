@@ -5,6 +5,7 @@ import com.example.hibia.dto.CartDTO;
 import com.example.hibia.dto.OrderDTO;
 import com.example.hibia.model.response.ListResult;
 import com.example.hibia.model.response.SingleResult;
+import com.example.hibia.service.Item_OrderService;
 import com.example.hibia.service.OrderService;
 import com.example.hibia.service.ResponseService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private final OrderService orderService;
+    private final Item_OrderService itemOrderService;
     private final ResponseService responseService;
 
     @GetMapping("/")

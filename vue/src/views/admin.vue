@@ -5,7 +5,7 @@
       <v-navigation-drawer clipped permanent app>
         <v-list nav dense>
           <v-list-item>
-            <v-list-item-title class="title">ADMIN PAGE</v-list-item-title>
+            <v-list-item-title class="title">관리자 페이지</v-list-item-title>
           </v-list-item>
           <v-divider></v-divider>
           <v-list-item-group v-model="selectedItem" color="primary">
@@ -38,10 +38,10 @@ export default {
     return{
     selectedItem: 1,
     items: [
-      { text: "dashboard", icon: "mdi-clock", route: '/admin' },
-      { text: "item", icon: "mdi-flag", route: "/admin/item" },
-      { text: "user", icon: "mdi-flag", route: "/admin/user" },
-      { text: "category", icon: "mdi-flag", route: "/admin/category" }
+      { text: "대쉬보드", icon: "mdi-clock", route: '/admin' },
+      { text: "상품", icon: "mdi-flag", route: "/admin/item" },
+      { text: "유저", icon: "mdi-flag", route: "/admin/user" },
+      { text: "카테고리", icon: "mdi-flag", route: "/admin/category" }
     ]
     }
   }

@@ -3,7 +3,7 @@
     <div class="pa-2" align-center justify-center>
     <v-row cols="12" md="12">
       <v-col cols="12" md="12" sm="8">
-        <h2 align-center>주문하기</h2>
+        <h1 align-center>주문하기</h1>
       </v-col>
     </v-row>
     <v-row cols="12" md="12" sm="6">
@@ -72,7 +72,7 @@
       <v-col cols="12" md="12" sm="8">        
         <v-card>
       <v-card-title>
-        <h1 class="ma-2">상품 정보</h1>
+        <h2 class="ma-2">상품 정보</h2>
       </v-card-title>
       <v-data-table
       :headers="headers"
@@ -88,10 +88,10 @@
     <v-row cols="12" md="12" sm="6">
       <v-col cols="12" md="12" sm="8">        
         <v-card class="pa-3">
-          <h1 class="ma-2">결제하기</h1>
+          <h2 class="ma-2">결제하기</h2>
             <v-row class="pa-3">
               <v-col>
-                <h2>상품 총 가격</h2>
+                <h3>상품 총 가격</h3>
               </v-col>
               <v-col>
               {{this.$store.state.b.itemPrice}}원
@@ -99,7 +99,7 @@
             </v-row>
             <v-row class="pa-3">
               <v-col>
-                <h2>배달비</h2>
+                <h3>배달비</h3>
               </v-col>
               <v-col>
               {{this.deliveryFee}}원
@@ -108,7 +108,7 @@
           <v-divider></v-divider>
           <v-row class="mt-2 pa-3">
             <v-col>
-              <h2>총 주문 금액</h2>
+              <h3>총 주문 금액</h3>
             </v-col>
             <v-col>
               {{this.totalPrice}}원

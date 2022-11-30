@@ -27,11 +27,6 @@ const routes = [
     component: () => import("../views/sign-in.vue")
   },
   {
-    path: "/company",
-    name: "Company",
-    component: () => import("../views/company.vue")
-  },
-  {
     path: "/admin",
     name: "",
     component: () => import("../views/admin.vue"),
@@ -91,11 +86,6 @@ const routes = [
     path : "/itemOrderConfirmed",
     name : "ItemOrderConfirmed",
     component: () => import("../views/users/item/item-orderComfirmed.vue"),
-  },
-  {
-    path: "/help",
-    name: "Help",
-    component: () => import("../views/help.vue")
   },
   {
     path: "/mypage",
