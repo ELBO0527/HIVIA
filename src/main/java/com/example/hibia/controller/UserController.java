@@ -1,20 +1,18 @@
 package com.example.hibia.controller;
 
 import com.example.hibia.domain.User;
-import com.example.hibia.dto.UserDTO;
+import com.example.hibia.model.request.user.UserDTO;
 import com.example.hibia.model.response.CommonResult;
 import com.example.hibia.model.response.ListResult;
 import com.example.hibia.model.response.SingleResult;
 import com.example.hibia.service.ResponseService;
-import com.example.hibia.service.UserService;
+import com.example.hibia.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import javax.servlet.Servlet;
 
 @RestController
 @RequiredArgsConstructor

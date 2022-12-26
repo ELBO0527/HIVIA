@@ -1,7 +1,6 @@
 package com.example.hibia;
 
 import com.example.hibia.config.GracefulShutdown;
-import com.example.hibia.properties.FileUploadProperties;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Log
-@EnableConfigurationProperties({FileUploadProperties.class})
 @SpringBootApplication
 		//스프링시큐리티 기본 로그인 화면 제거
 // (exclude = { SecurityAutoConfiguration.class })

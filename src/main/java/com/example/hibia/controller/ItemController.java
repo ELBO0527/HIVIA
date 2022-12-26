@@ -1,17 +1,15 @@
 package com.example.hibia.controller;
 
 import com.example.hibia.domain.Item;
-import com.example.hibia.dto.ItemDTO;
+import com.example.hibia.model.request.item.ItemDTO;
 import com.example.hibia.model.response.CommonResult;
 import com.example.hibia.model.response.ListResult;
 import com.example.hibia.model.response.SingleResult;
-import com.example.hibia.service.ItemService;
+import com.example.hibia.service.item.ItemService;
 import com.example.hibia.service.ResponseService;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;

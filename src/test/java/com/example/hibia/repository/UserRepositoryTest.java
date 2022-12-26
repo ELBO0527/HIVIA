@@ -1,20 +1,16 @@
 package com.example.hibia.repository;
 
 import com.example.hibia.domain.User;
+import com.example.hibia.repository.user.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.resource.spi.AuthenticationMechanism;
-
-import java.net.PasswordAuthentication;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 

@@ -1,20 +1,16 @@
 package com.example.hibia.controller;
 
-import com.example.hibia.domain.Cart;
 import com.example.hibia.domain.Review;
-import com.example.hibia.dto.ReviewDTO;
+import com.example.hibia.model.request.review.ReviewDTO;
 import com.example.hibia.model.response.CommonResult;
 import com.example.hibia.model.response.ListResult;
 import com.example.hibia.model.response.SingleResult;
-import com.example.hibia.service.ItemService;
 import com.example.hibia.service.ResponseService;
-import com.example.hibia.service.ReviewService;
+import com.example.hibia.service.review.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor

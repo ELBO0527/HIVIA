@@ -1,12 +1,12 @@
 package com.example.hibia.controller;
 
 import com.example.hibia.domain.Cart;
-import com.example.hibia.dto.CartDTO;
+import com.example.hibia.model.request.cart.CartDTO;
 import com.example.hibia.model.response.CommonResult;
 import com.example.hibia.model.response.ListResult;
 import com.example.hibia.model.response.SingleResult;
-import com.example.hibia.repository.CartRepository;
-import com.example.hibia.service.CartService;
+import com.example.hibia.repository.cart.CartRepository;
+import com.example.hibia.service.cart.CartService;
 import com.example.hibia.service.ResponseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
