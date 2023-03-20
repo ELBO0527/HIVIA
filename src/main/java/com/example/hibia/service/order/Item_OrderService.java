@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 public class Item_OrderService {
 
     private final Item_OrderRepository itemOrderRepository;
-    private final ItemOrderResponse itemOrderResponse;
 
 
 }

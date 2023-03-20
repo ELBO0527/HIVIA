@@ -7,7 +7,9 @@ import com.example.hibia.domain.Cart;
 import com.example.hibia.domain.Item;
 import com.example.hibia.domain.User;
 import com.example.hibia.model.request.cart.CartDTO;
+import com.example.hibia.model.response.user.UserResponse;
 import com.example.hibia.repository.cart.CartRepository;
+import com.example.hibia.repository.user.UserRepository;
 import com.example.hibia.service.item.ItemService;
 import com.example.hibia.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,20 +25,21 @@ public class CartService {
 
     private final CartRepository cartRepository;
     private final UserService userService;
+    private final UserRepository userRepository;
     private final ItemService itemService;
 
-    public List<Cart> findAllCartItems(String name){//장바구니 전체 조회
-        return cartRepository.findByUser(userService.findUser(name));
+    public List<Cart> findAllCartItems(long userId){//장바구니 전체 조회
+        return cartRepository.findByUser(userRepository.findById(userId).orElseThrow());
     }
 
     public Cart findCartItem(Long id){//단건조회
         return cartRepository.findById(id).orElseThrow(CResourceNotExistException::new);
     }
 
-    public Cart addCartItem(String itemname, String email, CartDTO cartDTO){//장바구니 추가
+    public Cart addCartItem(String itemname, long userId, CartDTO cartDTO){//장바구니 추가
 
         Item item = itemService.findItem(itemname);
-        User user = userService.findUser(email);
+        User user = userRepository.findById(userId).orElseThrow(CUserNotFoundException::new);
         /*
         * 아래 코드처럼 코드 짜니 장바구니에 담았을 때 해당 사용자 + 아이템에 대한 validation을 하는 것이 아닌
         * 장바구니에 유저 상관없이 아이템만 있을 때 예외가 터짐, repository에서

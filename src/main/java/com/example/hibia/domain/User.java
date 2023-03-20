@@ -6,10 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,14 +18,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Builder
 @Entity
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 //@DynamicInsert null값 제외하고 생성
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id") // 양뱡향 무한참조
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id") // 양뱡향 무한참조
 @Table(name = "user")
 public class User implements UserDetails {
 		
@@ -76,8 +71,25 @@ public class User implements UserDetails {
 	private String provider;
 
 	@ElementCollection(fetch = FetchType.EAGER)
-	@Builder.Default
 	private List<String> roles = new ArrayList<>();
+
+	@Builder
+	public User(Long id, String email, String username, String passwd, int balance, LocalDate birthday, String mobile, String addr, String addr_detail, String zipcode, Cart cart, String profile_url, String provider, List<String> roles) {
+		this.id = id;
+		this.email = email;
+		this.username = username;
+		this.passwd = passwd;
+		this.balance = balance;
+		this.birthday = birthday;
+		this.mobile = mobile;
+		this.addr = addr;
+		this.addr_detail = addr_detail;
+		this.zipcode = zipcode;
+		this.cart = cart;
+		this.profile_url = profile_url;
+		this.provider = provider;
+		this.roles = roles;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities(){
@@ -120,7 +132,7 @@ public class User implements UserDetails {
 		return true;
 	}
 
-	public User setUser(String email, String username, String passwd,LocalDate birthday, String mobile, String addr
+	public void setUser(String email, String username, String passwd,LocalDate birthday, String mobile, String addr
 	 					, String addr_detail, String zipcode){
 		this.email = email;
 		this.username = username;
@@ -130,11 +142,9 @@ public class User implements UserDetails {
 		this.addr = addr;
 		this.addr_detail = addr_detail;
 		this.zipcode = zipcode;
-		return this;
 	}
 
-	public User setBalance(int money){
+	public void setBalance(int money){
 		this.balance = balance - money;
-		return this;
 	}
 }

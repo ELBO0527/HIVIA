@@ -1,6 +1,7 @@
 package com.example.hibia.controller;
 
 import com.example.hibia.domain.Order;
+import com.example.hibia.domain.User;
 import com.example.hibia.model.request.order.OrderDTO;
 import com.example.hibia.model.response.ListResult;
 import com.example.hibia.model.response.SingleResult;
@@ -13,6 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/order")
@@ -24,22 +27,16 @@ public class OrderController {
     private final ResponseService responseService;
 
     @GetMapping("/")
-    public ListResult<Order> selectAllOrders(){
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String uid = authentication.getName();
-
-        return responseService.getListResult(orderService.findAllOrderItems(uid));
+    public ListResult<Order> selectAllOrders(Principal principal){
+        User user = (User) principal;
+        return responseService.getListResult(orderService.findAllOrderItems(user.getId()));
     }
-    
+
     //단건 주문
     @PostMapping("/{id}")
-    public SingleResult<Order> addOrder(@PathVariable String id, @RequestBody OrderDTO orderDTO){
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String uid = authentication.getName();
-
-        return responseService.getSingleResult(orderService.addOrder(uid,orderDTO));
+    public SingleResult<Order> addOrder(Authentication authentication, @RequestBody OrderDTO orderDTO){
+        User user = (User) authentication.getPrincipal();
+        return responseService.getSingleResult(orderService.addOrder(user.getId(),orderDTO));
     }
     
     //수정 주문

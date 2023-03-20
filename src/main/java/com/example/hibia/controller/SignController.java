@@ -35,9 +35,8 @@ public class SignController {
     private final KakaoService kakaoService;
 
     @PostMapping(value = "/signin")
-//    public SingleResult<String> signin(@RequestParam(value = "id") String id, @RequestParam String passwd){
     public SingleResult<String> signin(@RequestBody SigninRequestDTO signinRequestDTO,@RequestParam(value = "ko",required = false) String lang){
-        User user = userService.findUser(signinRequestDTO.getId());
+        User user = userRepository.findByEmail(signinRequestDTO.getId()).orElseThrow();
         if(!passwordEncoder.matches(signinRequestDTO.getPasswd(), user.getPasswd()))
             throw new CEmailSigninFailedException();
 

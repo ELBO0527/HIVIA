@@ -1,6 +1,7 @@
 package com.example.hibia.controller;
 
 import com.example.hibia.domain.Cart;
+import com.example.hibia.domain.User;
 import com.example.hibia.model.request.cart.CartDTO;
 import com.example.hibia.model.response.CommonResult;
 import com.example.hibia.model.response.ListResult;
@@ -12,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,10 +28,8 @@ public class CartController {
 
 
     @GetMapping("/")
-    public ListResult<Cart> findCartList(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String uid = authentication.getName();
-        return responseService.getListResult(cartService.findAllCartItems(uid));
+    public ListResult<Cart> findCartList(Principal principal){
+        return responseService.getListResult(cartService.findAllCartItems(((User) principal).getId()));
     }
 
     @GetMapping("/{id}")
@@ -39,11 +40,9 @@ public class CartController {
     }
 
     @PostMapping("/{itemname}")
-    public SingleResult<Cart> addCartItem(@PathVariable String itemname, @RequestBody CartDTO cartDTO,@RequestParam(value = "ko",required = false) String lang){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String uid = authentication.getName();
-
-        return responseService.getSingleResult(cartService.addCartItem(itemname, uid, cartDTO));
+    public SingleResult<Cart> addCartItem(@PathVariable String itemname, @RequestBody CartDTO cartDTO, Authentication authentication, @RequestParam(value = "ko",required = false) String lang){
+        User user = (User) authentication.getPrincipal();
+        return responseService.getSingleResult(cartService.addCartItem(itemname, user.getId(), cartDTO));
     }
 
     @PutMapping("/{id}")

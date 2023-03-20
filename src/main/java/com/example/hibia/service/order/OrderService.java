@@ -5,8 +5,10 @@ import com.example.hibia.advice.exception.CResourceNotExistException;
 import com.example.hibia.advice.exception.CUserNotFoundException;
 import com.example.hibia.domain.*;
 import com.example.hibia.model.request.order.OrderDTO;
+import com.example.hibia.model.response.user.UserResponse;
 import com.example.hibia.repository.order.Item_OrderRepository;
 import com.example.hibia.repository.order.OrderRepository;
+import com.example.hibia.repository.user.UserRepository;
 import com.example.hibia.service.user.UserService;
 import com.example.hibia.service.cart.CartService;
 import com.example.hibia.service.item.ItemService;
@@ -24,25 +26,23 @@ public class OrderService {
 
     private final Item_OrderRepository item_orderRepository;
     private final OrderRepository orderRepository;
+    private final UserRepository userRepository;
     private final UserService userService;
     private final CartService cartService;
     private final ItemService itemService;
 
-    public List<Order> findAllOrderItems(String name) {//주문내역 전체 조회
-        return orderRepository.findByUser(userService.findUser(name));
+    public List<Order> findAllOrderItems(long uid) {//주문내역 전체 조회
+        return orderRepository.findByUser(userRepository.findById(uid).orElseThrow());
     }
 
     public Order findOrderItem(Long id) {//주문내역상세조회
         return orderRepository.findById(id).orElseThrow(CResourceNotExistException::new);
     }
 
-    public Order addOrder(String name, OrderDTO orderDTO) {//주문하기
-        User user = userService.findUser(name);
-        if (!name.equals(user.getUsername())) {
-            throw new CUserNotFoundException();
-        }
+    public Order addOrder(long userId, OrderDTO orderDTO) {//주문하기
+        User user = userRepository.findById(userId).orElseThrow(CUserNotFoundException::new);
 
-        List<Cart> cartList = cartService.findAllCartItems(name);
+        List<Cart> cartList = cartService.findAllCartItems(user.getId());
         List<Item_order> itemOrderList = new ArrayList<>();
 
         int sum_cart = 0;
@@ -86,7 +86,7 @@ public class OrderService {
                 .mobile(user.getMobile())
                 .addr(user.getAddr())
                 .addrdetail(user.getAddr_detail())
-                .user(userService.findUser(name))
+                .user(user)
                 .order_status(orderDTO.getOrder_status())
                 .build();
 
