@@ -13,19 +13,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-//@DynamicInsert null값 제외하고 생성
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id") // 양뱡향 무한참조
 @Table(name = "user")
-public class User implements UserDetails {
+public class User {
 		
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,17 +45,9 @@ public class User implements UserDetails {
 	@Column
 	private String mobile;
 
-	//주소,상세주소,우편번호,장바구니 추가(2022-07-19)
-	@Column
-	private String addr;
+	@OneToOne(mappedBy = "user")
+	private Address address;
 
-	@Column
-	private String addr_detail;
-
-	@Column
-	private String zipcode;
-
-	//한명의 유저는 하나의 장바구니
 	@OneToOne(mappedBy = "user")
 	private Cart cart;
 
@@ -70,11 +57,12 @@ public class User implements UserDetails {
 	@Column(length = 100)
 	private String provider;
 
-	@ElementCollection(fetch = FetchType.EAGER)
-	private List<String> roles = new ArrayList<>();
+	@ElementCollection(fetch = FetchType.LAZY)
+	private Set<Role> roles = new HashSet<>();
 
 	@Builder
-	public User(Long id, String email, String username, String passwd, int balance, LocalDate birthday, String mobile, String addr, String addr_detail, String zipcode, Cart cart, String profile_url, String provider, List<String> roles) {
+	public User(Long id, String email, String username, String passwd, int balance, LocalDate birthday, String mobile,
+				Address address, Cart cart, String profile_url, String provider, Set<Role> roles) {
 		this.id = id;
 		this.email = email;
 		this.username = username;
@@ -82,66 +70,19 @@ public class User implements UserDetails {
 		this.balance = balance;
 		this.birthday = birthday;
 		this.mobile = mobile;
-		this.addr = addr;
-		this.addr_detail = addr_detail;
-		this.zipcode = zipcode;
+		this.address = address;
 		this.cart = cart;
 		this.profile_url = profile_url;
 		this.provider = provider;
 		this.roles = roles;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities(){
-		return this.roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-	}
-
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	@Override
-	public String getUsername(){
-		return this.username;
-	}
-
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	@Override
-	public String getPassword() {
-		return this.passwd;
-	}
-
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-
-	public void setUser(String email, String username, String passwd,LocalDate birthday, String mobile, String addr
-	 					, String addr_detail, String zipcode){
+	public void setUser(String email, String username, String passwd,LocalDate birthday, String mobile){
 		this.email = email;
 		this.username = username;
 		this.passwd = passwd;
 		this.birthday = birthday;
 		this.mobile = mobile;
-		this.addr = addr;
-		this.addr_detail = addr_detail;
-		this.zipcode = zipcode;
 	}
 
 	public void setBalance(int money){

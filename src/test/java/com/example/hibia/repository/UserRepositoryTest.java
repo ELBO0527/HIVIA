@@ -1,5 +1,6 @@
 package com.example.hibia.repository;
 
+import com.example.hibia.domain.Role;
 import com.example.hibia.domain.User;
 import com.example.hibia.repository.user.UserRepository;
 import org.junit.Test;
@@ -39,13 +40,13 @@ public class UserRepositoryTest {
                         .email(uid)
                         .passwd(passwordEncoder.encode("1234"))
                         .username(name)
-                        .roles(Collections.singletonList("ROLE_USER"))
+                        .roles(Collections.singleton(Role.ROLE_USER))
                         .mobile(mobile)
                         .balance(0)
                         .profile_url("test")
-                        .addr("addr")
-                        .addr_detail("detail")
-                        .zipcode("366666")
+//                        .addr("addr")
+//                        .addr_detail("detail")
+//                        .zipcode("366666")
                         .birthday(LocalDate.ofEpochDay(2022-01-22))
                         .build());
         //when

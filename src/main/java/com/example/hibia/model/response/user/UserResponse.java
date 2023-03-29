@@ -17,9 +17,6 @@ public class UserResponse {
     private String mobile;
     private int balance;
     private String profile_url;
-    private String addr;
-    private String addr_detail;
-    private String zipcode;
 
     public UserResponse(final User user) {
         this.email = user.getEmail();
@@ -28,8 +25,5 @@ public class UserResponse {
         this.mobile = user.getMobile();
         this.balance = user.getBalance();
         this.profile_url = user.getProfile_url();
-        this.addr = user.getAddr();
-        this.addr_detail = user.getAddr_detail();
-        this.zipcode = user.getZipcode();
     }
 }

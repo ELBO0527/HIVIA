@@ -84,8 +84,8 @@ public class OrderService {
                 .totalprice(sum_cart + orderDTO.getDeliveryfee())
                 .name(user.getUsername())
                 .mobile(user.getMobile())
-                .addr(user.getAddr())
-                .addrdetail(user.getAddr_detail())
+                //.addr(user.getAddr())
+                //.addrdetail(user.getAddr_detail())
                 .user(user)
                 .order_status(orderDTO.getOrder_status())
                 .build();

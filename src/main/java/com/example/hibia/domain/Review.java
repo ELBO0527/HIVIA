@@ -1,17 +1,14 @@
 package com.example.hibia.domain;
 
 import com.example.hibia.domain.common.CommonDateEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
 
 @Getter
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Review extends CommonDateEntity {
 
     @Id
@@ -19,7 +16,7 @@ public class Review extends CommonDateEntity {
     @Column(name = "review_id")
     private Long id;
 
-    @Column(name = "review_author",nullable = false)
+    @Column(name = "review_author", nullable = false)
     private String author;
 
     @Column(name = "review_content", nullable = false)
@@ -40,6 +37,7 @@ public class Review extends CommonDateEntity {
         return item;
     }
 
+    @Builder
     public Review(User user, Item item, String author, String content, int stars) {
         this.user = user;
         this.item = item;
@@ -48,10 +46,9 @@ public class Review extends CommonDateEntity {
         this.stars = stars;
     }
 
-    public Review setReview(String author, String content, int stars){
+    public void setReview(String author, String content, int stars){
         this.author = author;
         this.content = content;
         this.stars = stars;
-        return this;
     }
 }

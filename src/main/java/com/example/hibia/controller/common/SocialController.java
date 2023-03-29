@@ -3,6 +3,7 @@ package com.example.hibia.controller.common;
 import com.example.hibia.advice.exception.CCommunicationException;
 import com.example.hibia.advice.exception.CUserNotFoundException;
 import com.example.hibia.config.security.JwtTokenProvider;
+import com.example.hibia.domain.Role;
 import com.example.hibia.domain.User;
 import com.example.hibia.model.request.user.social.KakaoProfile;
 import com.example.hibia.model.response.SingleResult;
@@ -73,7 +74,7 @@ public class SocialController {
             User user = userRepository.save(User.builder()
                     .username(String.valueOf(profile.getId()))
                     .provider("kakao")
-                    .roles(Collections.singletonList("ROLE_USER"))
+                    .roles(Collections.singleton(Role.ROLE_USER))
                     .email("email")
                     .balance(0)
                     .build());

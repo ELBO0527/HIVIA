@@ -8,17 +8,13 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Builder
 @Entity
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id") // 양뱡향 무한참조
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Cart extends CommonDateEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cart_id")
     private Long id;
 
@@ -39,6 +35,15 @@ public class Cart extends CommonDateEntity {
     public Cart setCart(int quantity){
         this.quantity = quantity;
         return this;
+    }
+
+    @Builder
+    public Cart(Long id, User user, Item item, int quantity, int total) {
+        this.id = id;
+        this.user = user;
+        this.item = item;
+        this.quantity = quantity;
+        this.total = total;
     }
 
     public int soldItem(Item item){

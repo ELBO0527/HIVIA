@@ -44,29 +44,27 @@ class UserServiceTest {
     public void findAllUsers() throws Exception{
         //givin
         UserResponse userResponse = UserResponse.builder()
-                .addr_detail("1")
                 .mobile("1")
                 .email("2@2")
-                .zipcode("12")
+//                .zipcode("12")
                 .profile_url("ase")
                 .balance(0)
                 .username("test")
                 .birthday(LocalDate.now())
-                .addr("addr")
-                .addr_detail("addrDeta")
+//                .addr("addr")
+//                .addr_detail("addrDeta")
                 .build();
 
         UserResponse userResponse2 = UserResponse.builder()
-                .addr_detail("1")
                 .mobile("1")
                 .email("2@2")
-                .zipcode("12")
+//                .zipcode("12")
                 .profile_url("ase")
                 .balance(0)
                 .username("test")
                 .birthday(LocalDate.now())
-                .addr("addr")
-                .addr_detail("addrDeta")
+//                .addr("addr")
+//                .addr_detail("addrDeta")
                 .build();
 
         List<UserResponse> userResponses = new ArrayList<>();

@@ -18,6 +18,7 @@ import lombok.Setter;
 @MappedSuperclass //테이블 매핑 안하고 자식 테이블에 매핑정보 상속
 @EntityListeners(AuditingEntityListener.class) //Auditing을 알림
 public class TimeEntity {
+
 	@CreatedDate
 	@Column(updatable = false)
 	private LocalDateTime createdDate;

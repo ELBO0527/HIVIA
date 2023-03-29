@@ -4,16 +4,14 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Builder
 @Entity
 @Getter
-@RequiredArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Item_order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "itemOrder_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "item_order_id")
     private Long id;
 
     @ManyToOne
@@ -33,4 +31,15 @@ public class Item_order {
 
     @Column(name = "order_quantity")
     private int quantity;
+
+    @Builder
+    public Item_order(Long id, Item item, Order order, String name, int price, int total, int quantity) {
+        this.id = id;
+        this.item = item;
+        this.order = order;
+        this.name = name;
+        this.price = price;
+        this.total = total;
+        this.quantity = quantity;
+    }
 }

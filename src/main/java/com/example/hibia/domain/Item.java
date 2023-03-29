@@ -1,23 +1,18 @@
 package com.example.hibia.domain;
 
 import com.example.hibia.domain.common.CommonDateEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Builder
 @Entity
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Item extends CommonDateEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "item_id")
     private Long id;
 
@@ -48,8 +43,9 @@ public class Item extends CommonDateEntity {
     @Column
     private LocalDate prodDate;
 
-    public Item setItem(String name, String country, String color, String brand, int price,
-                        int stars,int stock,int size, LocalDate prodDate){
+    @Builder
+    public Item(Long id, String name, String country, String color, String brand, int price, int stars, int stock, int size, LocalDate prodDate) {
+        this.id = id;
         this.name = name;
         this.country = country;
         this.color = color;
@@ -59,11 +55,22 @@ public class Item extends CommonDateEntity {
         this.stock = stock;
         this.size = size;
         this.prodDate = prodDate;
-        return this;
     }
 
-    public Item setStock(int stock){
+    public void setItem(String name, String country, String color, String brand, int price,
+                        int stars, int stock, int size, LocalDate prodDate){
+        this.name = name;
+        this.country = country;
+        this.color = color;
+        this.brand = brand;
+        this.price = price;
+        this.stars = stars;
         this.stock = stock;
-        return this;
+        this.size = size;
+        this.prodDate = prodDate;
+    }
+
+    public void setStock(int stock){
+        this.stock = stock;
     }
 }

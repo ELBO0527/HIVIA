@@ -1,28 +1,21 @@
 package com.example.hibia.domain;
 
 import com.example.hibia.domain.common.CommonDateEntity;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
-@Builder
 @Entity
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id") // 양뱡향 무한참조
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "orders")
 public class Order extends CommonDateEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id")
     private Long id;
 
@@ -57,4 +50,19 @@ public class Order extends CommonDateEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Builder
+    public Order(Long id, String needs, int price, int deliveryfee, int totalprice, String name, String mobile, String addr, String addrdetail, int order_status, User user) {
+        this.id = id;
+        this.needs = needs;
+        this.price = price;
+        this.deliveryfee = deliveryfee;
+        this.totalprice = totalprice;
+        this.name = name;
+        this.mobile = mobile;
+        this.addr = addr;
+        this.addrdetail = addrdetail;
+        this.order_status = order_status;
+        this.user = user;
+    }
 }
